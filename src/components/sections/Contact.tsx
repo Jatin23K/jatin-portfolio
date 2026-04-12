@@ -1,0 +1,137 @@
+import { useState } from 'react'
+import type { FormEvent } from 'react'
+import { siteContent } from '../../data/site'
+import { Button } from '../ui/Button'
+import { SectionHeader } from '../ui/SectionHeader'
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+
+export const ContactSection = () => {
+  const [status, setStatus] = useState<FormStatus>('idle')
+  const [feedback, setFeedback] = useState('')
+
+  const formspreeId = import.meta.env.VITE_FORMSPREE_ID?.trim()
+  const formReady = Boolean(formspreeId) && formspreeId !== 'YOUR_FORMSPREE_ID'
+  const endpoint = formReady ? `https://formspree.io/f/${formspreeId}` : ''
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!formReady || !endpoint) {
+      setStatus('error')
+      setFeedback(siteContent.contact.missingConfigMessage)
+      return
+    }
+
+    setStatus('submitting')
+    setFeedback('')
+
+    try {
+      const form = event.currentTarget
+      const formData = new FormData(form)
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error('Formspree request failed')
+      }
+
+      setStatus('success')
+      setFeedback(siteContent.contact.successMessage)
+      form.reset()
+    } catch {
+      setStatus('error')
+      setFeedback(siteContent.contact.errorMessage)
+    }
+  }
+
+  return (
+    <section id="contact" className="section-shell section-anchor pb-24">
+      <div className="container-shell">
+        <SectionHeader
+          label={siteContent.sections.contact.label}
+          title={siteContent.sections.contact.title}
+          subtitle={siteContent.sections.contact.subtitle}
+        />
+
+        <div className="grid gap-8 lg:grid-cols-[0.9fr,1.1fr]">
+          <div className="space-y-4">
+            <div className="card-shell">
+              <p className="mono-label">Email</p>
+              <a href={`mailto:${siteContent.contact.email}`} className="mt-2 block text-sm text-text hover:text-accent2">
+                {siteContent.contact.email}
+              </a>
+            </div>
+
+            <div className="card-shell space-y-3">
+              <p className="mono-label">Social</p>
+              <div className="flex flex-wrap gap-2">
+                {siteContent.contact.social.map((social) => (
+                  <Button key={social.label} variant="outlined" size="sm" href={social.href} external>
+                    {social.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <form className="card-shell space-y-4" onSubmit={onSubmit} noValidate>
+            <label className="block text-sm text-text" htmlFor="contact-name">
+              Name
+            </label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              required
+              className="w-full rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+            />
+
+            <label className="block text-sm text-text" htmlFor="contact-email">
+              Email
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              className="w-full rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+            />
+
+            <label className="block text-sm text-text" htmlFor="contact-message">
+              Message
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={4}
+              required
+              className="w-full resize-y rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+            />
+
+            <Button type="submit" disabled={status === 'submitting'}>
+              {status === 'submitting' ? 'Sending...' : 'Send Message ->'}
+            </Button>
+
+            {feedback ? (
+              <p
+                role="status"
+                aria-live="polite"
+                className={`text-sm ${status === 'success' ? 'text-[#98d982]' : 'text-accent3'}`}
+              >
+                {feedback}
+              </p>
+            ) : null}
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}
+
