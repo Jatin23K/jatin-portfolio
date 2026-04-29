@@ -28,9 +28,9 @@ export const ProjectsSection = ({
       <div className="container-shell">
         <SectionHeader label={label} title={title} subtitle={subtitle} />
 
-        <div className="columns-1 gap-6 lg:columns-2" role="list" aria-label={listAriaLabel}>
+        <div className="columns-1 gap-7 lg:columns-2 lg:gap-8" role="list" aria-label={listAriaLabel}>
           {projects.map((project) => (
-            <div key={project.id} className="mb-6 break-inside-avoid" role="listitem">
+            <div key={project.id} className="mb-7 break-inside-avoid lg:mb-8" role="listitem">
               <ProjectBlock project={project} />
             </div>
           ))}

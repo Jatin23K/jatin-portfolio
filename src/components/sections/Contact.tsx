@@ -12,9 +12,14 @@ export const ContactSection = () => {
   const [feedback, setFeedback] = useState('')
   const renderedAt = useRef(Date.now())
 
-  const formspreeId = import.meta.env.VITE_FORMSPREE_ID?.trim()
-  const formReady = Boolean(formspreeId) && formspreeId !== 'YOUR_FORMSPREE_ID'
-  const endpoint = formReady ? `https://formspree.io/f/${formspreeId}` : ''
+  const rawFormspreeValue = import.meta.env.VITE_FORMSPREE_ID?.trim() ?? ''
+  const isPlaceholder = rawFormspreeValue === '' || rawFormspreeValue === 'YOUR_FORMSPREE_ID'
+  const endpoint = !isPlaceholder
+    ? rawFormspreeValue.includes('/f/')
+      ? rawFormspreeValue
+      : `https://formspree.io/f/${rawFormspreeValue}`
+    : ''
+  const formReady = !isPlaceholder && endpoint.startsWith('https://formspree.io/f/')
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -38,8 +43,8 @@ export const ContactSection = () => {
 
     const elapsedMs = Date.now() - renderedAt.current
     if (elapsedMs < 1500) {
-      setStatus('success')
-      setFeedback(siteContent.contact.successMessage)
+      setStatus('error')
+      setFeedback('Please wait a moment and try again.')
       trackEvent('contact_submit_blocked', { reason: 'too_fast' })
       return
     }
@@ -118,7 +123,7 @@ export const ContactSection = () => {
               name="name"
               type="text"
               required
-              className="w-full rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+              className="w-full rounded-md border border-border bg-surface2/90 px-3 py-2.5 text-sm text-text outline-none transition placeholder:text-muted focus:border-accent2 focus:ring-2 focus:ring-accent2/30"
             />
 
             <label className="block text-sm text-text" htmlFor="contact-email">
@@ -129,7 +134,7 @@ export const ContactSection = () => {
               name="email"
               type="email"
               required
-              className="w-full rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+              className="w-full rounded-md border border-border bg-surface2/90 px-3 py-2.5 text-sm text-text outline-none transition placeholder:text-muted focus:border-accent2 focus:ring-2 focus:ring-accent2/30"
             />
 
             <label className="block text-sm text-text" htmlFor="contact-message">
@@ -140,7 +145,7 @@ export const ContactSection = () => {
               name="message"
               rows={4}
               required
-              className="w-full resize-y rounded-md border border-border bg-surface2 px-3 py-2 text-sm text-text outline-none transition focus:border-accent2"
+              className="w-full resize-y rounded-md border border-border bg-surface2/90 px-3 py-2.5 text-sm text-text outline-none transition placeholder:text-muted focus:border-accent2 focus:ring-2 focus:ring-accent2/30"
             />
 
             <Button type="submit" disabled={status === 'submitting'}>

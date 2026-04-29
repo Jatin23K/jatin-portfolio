@@ -20,13 +20,13 @@ type AnchorProps = SharedProps & AnchorHTMLAttributes<HTMLAnchorElement>
 
 const getClasses = ({ variant, size, className }: Pick<SharedProps, 'variant' | 'size' | 'className'>) => {
   const base =
-    'inline-flex items-center justify-center rounded-md border font-mono uppercase tracking-[0.1em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2 active:scale-[0.98]'
-  const sizeClass = size === 'sm' ? 'px-3 py-2 text-[10px]' : 'px-4 py-2.5 text-[11px]'
+    'inline-flex items-center justify-center rounded-md border font-mono uppercase tracking-[0.1em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60'
+  const sizeClass = size === 'sm' ? 'px-3 py-2 text-[10px]' : 'px-4 py-2.5 text-[11px] sm:px-5 sm:py-3'
 
   const variantClass =
     variant === 'outlined'
-      ? 'border-border text-text hover:border-accent2 hover:text-accent2'
-      : 'border-accent bg-accent text-black hover:bg-[#f0ff77]'
+      ? 'border-border text-text hover:border-accent2 hover:bg-accent2/10 hover:text-accent2'
+      : 'border-accent bg-accent text-black shadow-[0_0_0_1px_rgba(232,255,71,0.25)] hover:-translate-y-0.5 hover:bg-[#f0ff77]'
 
   return [base, sizeClass, variantClass, className].filter(Boolean).join(' ')
 }
