@@ -1,4 +1,5 @@
 import { siteContent } from '../../data/site'
+import { trackEvent } from '../../utils/analytics'
 import { Button } from '../ui/Button'
 
 export const Hero = () => {
@@ -50,11 +51,14 @@ export const Hero = () => {
           </ul>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button to="/projects">{siteContent.hero.primaryCta}</Button>
+            <Button to="/projects" onClick={() => trackEvent('projects_cta_click', { source: 'hero' })}>
+              {siteContent.hero.primaryCta}
+            </Button>
             <Button
               variant="outlined"
               href={siteContent.brand.resumeUrl}
               external={siteContent.brand.resumeUrl.startsWith('http')}
+              onClick={() => trackEvent('resume_click', { source: 'hero' })}
             >
               {siteContent.hero.secondaryCta}
             </Button>

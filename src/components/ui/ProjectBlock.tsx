@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { Project } from '../../data/projects'
-import { isComingSoonProject, shouldShowProjectAction } from '../../utils/projectSelectors'
+import { isPlannedProject, shouldShowProjectAction } from '../../utils/projectSelectors'
+import { trackEvent } from '../../utils/analytics'
 import { Badge } from './Badge'
 import { Button } from './Button'
 
@@ -12,20 +13,20 @@ const tierMeta: Record<Project['tier'], { label: string; tone: 'accent' | 'accen
 }
 
 const statusMeta: Record<Project['status'], { label: string; tone: 'success' | 'accent' | 'muted' | 'accent4' }> = {
-  live: { label: 'Live', tone: 'success' },
+  shipped: { label: 'Shipped', tone: 'success' },
   'in-progress': { label: 'In Progress', tone: 'accent' },
-  'coming-soon': { label: 'Coming Soon', tone: 'muted' },
+  planned: { label: 'Planned', tone: 'muted' },
   vision: { label: 'Vision', tone: 'accent4' },
 }
 
-interface ProjectCardProps {
+interface ProjectBlockProps {
   project: Project
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectBlock = ({ project }: ProjectBlockProps) => {
   const tier = tierMeta[project.tier]
   const status = statusMeta[project.status]
-  const dimCard = isComingSoonProject(project)
+  const dimCard = isPlannedProject(project)
 
   return (
     <article
@@ -41,6 +42,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <h3 className="mt-5 font-heading text-2xl font-bold tracking-[-0.02em] text-text">{project.title}</h3>
       <p className="mt-2 text-sm text-text-dim">{project.tagline}</p>
+      {project.oneLineOutcome ? (
+        <p className="mt-3 rounded-md border border-border/70 bg-surface2/60 px-3 py-2 text-sm text-text-dim">
+          {project.oneLineOutcome}
+        </p>
+      ) : null}
 
       <div className="mt-6 space-y-5">
         <div>
@@ -53,6 +59,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
       </div>
 
+      {(project.primaryKpi || project.kpiDelta) && (
+        <div className="mt-6 rounded-md border border-border/70 bg-surface2/70 px-3 py-2">
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-text-dim">Primary KPI</p>
+          <p className="mt-1 text-sm font-semibold text-text">
+            {project.primaryKpi ?? 'Metric'} {project.kpiDelta ? `- ${project.kpiDelta}` : ''}
+          </p>
+        </div>
+      )}
+
       <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${project.title} technology stack`}>
         {project.tech.map((tech) => (
           <li key={tech}>
@@ -63,15 +78,51 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         ))}
       </ul>
 
+      {project.metrics.length > 0 ? (
+        <div className="mt-6 grid gap-2 sm:grid-cols-2">
+          {project.metrics.map((metric) => (
+            <div key={`${metric.label}-${metric.value}`} className="rounded-md border border-border/70 bg-surface2/70 px-3 py-2">
+              <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-text-dim">{metric.label}</p>
+              <p className="mt-1 text-sm font-semibold text-text">{metric.value}</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {project.resumeBullet ? (
+        <div className="mt-4 border-l-2 border-accent2 pl-3">
+          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-text-dim">Resume Bullet</p>
+          <p className="mt-1 text-sm text-text-dim">{project.resumeBullet}</p>
+        </div>
+      ) : null}
+
+      {project.targetMilestone ? (
+        <p className="mt-4 text-xs font-mono uppercase tracking-[0.1em] text-text-dim">
+          Target Milestone: <span className="text-accent2">{project.targetMilestone}</span>
+        </p>
+      ) : null}
+
       <div className="mt-6 flex flex-wrap items-center gap-2">
         {shouldShowProjectAction(project, 'demo') ? (
-          <Button variant="filled" size="sm" href={project.demo} external>
+          <Button
+            variant="filled"
+            size="sm"
+            href={project.links.demo}
+            external
+            onClick={() => trackEvent('project_demo_click', { project_id: project.id })}
+          >
             {'Live Demo ->'}
           </Button>
         ) : null}
 
         {shouldShowProjectAction(project, 'github') ? (
-          <Button variant="outlined" size="sm" href={project.github} external>
+          <Button
+            variant="outlined"
+            size="sm"
+            href={project.links.github}
+            external
+            onClick={() => trackEvent('project_github_click', { project_id: project.id })}
+          >
             GitHub
           </Button>
         ) : null}
@@ -82,7 +133,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           </Button>
         ) : (
           <span className="text-xs font-mono uppercase tracking-[0.1em] text-text-dim">
-            Case Study Coming Soon
+            Case Study In Progress
           </span>
         )}
       </div>

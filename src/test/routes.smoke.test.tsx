@@ -21,7 +21,7 @@ describe('route smoke tests', () => {
   it('renders projects route', async () => {
     renderAtPath('/projects')
 
-    expect(await screen.findByText("Things I've Built")).toBeInTheDocument()
+    expect(await screen.findByText('Reorderable Project Portfolio')).toBeInTheDocument()
   })
 
   it('renders about route', async () => {

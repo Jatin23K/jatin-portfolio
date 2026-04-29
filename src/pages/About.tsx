@@ -1,9 +1,15 @@
 import { siteContent } from '../data/site'
 import { Badge } from '../components/ui/Badge'
+import { RouteMeta } from '../components/seo/RouteMeta'
 
 const About = () => {
   return (
     <main className="container-shell section-shell section-anchor pt-32">
+      <RouteMeta
+        title="About - Jatin Kumar"
+        description="Background, operating approach, and long-term product vision for transparent AI systems."
+        canonicalPath="/about"
+      />
       <Badge tone="accent2">{siteContent.about.label}</Badge>
       <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-[-0.02em] text-text sm:text-5xl">
         {siteContent.about.title}

@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { siteContent } from '../../data/site'
+import { trackEvent } from '../../utils/analytics'
 import { Button } from '../ui/Button'
 import { SectionHeader } from '../ui/SectionHeader'
 
@@ -9,6 +10,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export const ContactSection = () => {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [feedback, setFeedback] = useState('')
+  const renderedAt = useRef(Date.now())
 
   const formspreeId = import.meta.env.VITE_FORMSPREE_ID?.trim()
   const formReady = Boolean(formspreeId) && formspreeId !== 'YOUR_FORMSPREE_ID'
@@ -16,10 +18,29 @@ export const ContactSection = () => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
 
     if (!formReady || !endpoint) {
       setStatus('error')
       setFeedback(siteContent.contact.missingConfigMessage)
+      trackEvent('contact_submit_blocked', { reason: 'missing_form_config' })
+      return
+    }
+
+    const honeypot = formData.get('website')
+    if (typeof honeypot === 'string' && honeypot.trim().length > 0) {
+      setStatus('success')
+      setFeedback(siteContent.contact.successMessage)
+      trackEvent('contact_submit_blocked', { reason: 'honeypot' })
+      return
+    }
+
+    const elapsedMs = Date.now() - renderedAt.current
+    if (elapsedMs < 1500) {
+      setStatus('success')
+      setFeedback(siteContent.contact.successMessage)
+      trackEvent('contact_submit_blocked', { reason: 'too_fast' })
       return
     }
 
@@ -27,9 +48,6 @@ export const ContactSection = () => {
     setFeedback('')
 
     try {
-      const form = event.currentTarget
-      const formData = new FormData(form)
-
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -44,10 +62,12 @@ export const ContactSection = () => {
 
       setStatus('success')
       setFeedback(siteContent.contact.successMessage)
+      trackEvent('contact_submit_success')
       form.reset()
     } catch {
       setStatus('error')
       setFeedback(siteContent.contact.errorMessage)
+      trackEvent('contact_submit_error')
     }
   }
 
@@ -82,6 +102,14 @@ export const ContactSection = () => {
           </div>
 
           <form className="card-shell space-y-4" onSubmit={onSubmit} noValidate>
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
             <label className="block text-sm text-text" htmlFor="contact-name">
               Name
             </label>

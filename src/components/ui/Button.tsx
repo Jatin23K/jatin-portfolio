@@ -1,4 +1,4 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 type Variant = 'filled' | 'outlined'
@@ -12,6 +12,7 @@ interface SharedProps {
   to?: string
   href?: string
   external?: boolean
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
 }
 
 type ButtonProps = SharedProps & ButtonHTMLAttributes<HTMLButtonElement>
@@ -38,13 +39,14 @@ export const Button = ({
   to,
   href,
   external = false,
+  onClick,
   ...rest
 }: ButtonProps & AnchorProps) => {
   const classes = getClasses({ variant, size, className })
 
   if (to) {
     return (
-      <Link to={to} className={classes}>
+      <Link to={to} className={classes} onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}>
         {children}
       </Link>
     )
@@ -57,6 +59,7 @@ export const Button = ({
         className={classes}
         target={external ? '_blank' : undefined}
         rel={external ? 'noreferrer' : undefined}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
         {...rest}
       >
         {children}
@@ -65,7 +68,7 @@ export const Button = ({
   }
 
   return (
-    <button type="button" className={classes} {...rest}>
+    <button type="button" className={classes} onClick={onClick as MouseEventHandler<HTMLButtonElement> | undefined} {...rest}>
       {children}
     </button>
   )

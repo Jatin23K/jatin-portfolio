@@ -3,15 +3,35 @@ import { projects } from '../data/projects'
 import {
   featuredProjects,
   getProjectById,
-  isComingSoonProject,
+  homepageProjects,
+  isPlannedProject,
+  visibleProjects,
   shouldShowProjectAction,
 } from '../utils/projectSelectors'
 
 describe('project selectors', () => {
-  it('returns featured projects only', () => {
+  it('returns visible projects in numeric order', () => {
+    const visible = visibleProjects()
+    expect(visible.length).toBe(7)
+    expect(visible.every((project) => project.isVisible)).toBe(true)
+    expect(visible.map((project) => project.id)).toEqual([
+      'tldr-shield',
+      'launchmint-ai',
+      'leap-axiom',
+      'specialized-ml-project',
+      'sql-analytics-project',
+      'end-to-end-ml-project',
+      'core-mcp-platform',
+    ])
+  })
+
+  it('returns featured/homepage projects sorted by home order fallback', () => {
     const featured = featuredProjects()
-    expect(featured.length).toBe(3)
-    expect(featured.every((project) => project.featured)).toBe(true)
+    const homepage = homepageProjects()
+    expect(featured.map((project) => project.id)).toEqual(homepage.map((project) => project.id))
+    expect(homepage.length).toBe(3)
+    expect(homepage.every((project) => project.featured)).toBe(true)
+    expect(homepage.map((project) => project.id)).toEqual(['tldr-shield', 'launchmint-ai', 'leap-axiom'])
   })
 
   it('returns project by id', () => {
@@ -19,16 +39,27 @@ describe('project selectors', () => {
     expect(project?.title).toBe('TLDR Shield')
   })
 
-  it('hides demo/github actions for coming soon cards', () => {
-    const project = projects.find((item) => item.id === 'ml-project')
+  it('hides demo/github actions for planned cards', () => {
+    const project = projects.find((item) => item.id === 'specialized-ml-project')
     expect(project).toBeDefined()
     if (!project) {
       return
     }
 
-    expect(isComingSoonProject(project)).toBe(true)
+    expect(isPlannedProject(project)).toBe(true)
     expect(shouldShowProjectAction(project, 'demo')).toBe(false)
     expect(shouldShowProjectAction(project, 'github')).toBe(false)
+  })
+
+  it('hides case study action when caseStudyPublished is false', () => {
+    const project = projects.find((item) => item.id === 'specialized-ml-project')
+    expect(project).toBeDefined()
+    if (!project) {
+      return
+    }
+
+    expect(project.caseStudyPublished).toBe(false)
+    expect(shouldShowProjectAction(project, 'caseStudy')).toBe(false)
   })
 })
 

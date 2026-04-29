@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { siteContent } from '../../data/site'
+import { trackEvent } from '../../utils/analytics'
 import { Button } from '../ui/Button'
 
 const normalizeHashHref = (href: string): string => href.replace('/#', '#')
@@ -73,6 +74,7 @@ export const Navigation = () => {
             size="sm"
             href={siteContent.brand.resumeUrl}
             external={siteContent.brand.resumeUrl.startsWith('http')}
+            onClick={() => trackEvent('resume_click', { source: 'nav_desktop' })}
           >
             {siteContent.brand.resumeLabel}
           </Button>
@@ -96,7 +98,7 @@ export const Navigation = () => {
       >
         <div className="flex flex-col gap-3">
           {navItems.map((item) => (
-            <Link key={item.href} to={item.href} className={navLinkClass(item.href)}>
+            <Link key={item.href} to={item.href} className={navLinkClass(item.href)} onClick={() => setIsMenuOpen(false)}>
               {item.label}
             </Link>
           ))}
@@ -105,7 +107,10 @@ export const Navigation = () => {
             size="sm"
             href={siteContent.brand.resumeUrl}
             external={siteContent.brand.resumeUrl.startsWith('http')}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              trackEvent('resume_click', { source: 'nav_mobile' })
+              setIsMenuOpen(false)
+            }}
             className="mt-1 w-fit"
           >
             {siteContent.brand.resumeLabel}

@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import { Navigation } from '../components/layout/Navigation'
 import { ContactSection } from '../components/sections/Contact'
-import { ProjectCard } from '../components/ui/ProjectCard'
+import { ProjectBlock } from '../components/ui/ProjectBlock'
 import { SkillBar } from '../components/ui/SkillBar'
 import { projects } from '../data/projects'
 import { skills } from '../data/skills'
@@ -21,8 +21,8 @@ describe('component smoke tests', () => {
     expect(screen.getAllByRole('link', { name: 'About' }).length).toBeGreaterThan(0)
   })
 
-  it('renders project card with coming soon state', () => {
-    const project = projects.find((item) => item.id === 'ml-project')
+  it('renders project card with planned state', () => {
+    const project = projects.find((item) => item.id === 'specialized-ml-project')
     expect(project).toBeDefined()
     if (!project) {
       return
@@ -30,11 +30,11 @@ describe('component smoke tests', () => {
 
     render(
       <MemoryRouter>
-        <ProjectCard project={project} />
+        <ProjectBlock project={project} />
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('Coming Soon')).toBeInTheDocument()
+    expect(screen.getByText('Planned')).toBeInTheDocument()
     expect(screen.queryByText('Live Demo ->')).not.toBeInTheDocument()
   })
 

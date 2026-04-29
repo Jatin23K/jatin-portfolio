@@ -26,9 +26,11 @@ Create `.env` from `.env.example` and set:
 
 ```bash
 VITE_FORMSPREE_ID=your_formspree_id
+VITE_SITE_URL=https://your-domain.com
 ```
 
-If this is missing, the form displays a graceful fallback message.
+If `VITE_FORMSPREE_ID` is missing, the form displays a graceful fallback message.
+If `VITE_SITE_URL` is missing, canonical tags fall back to the current browser origin.
 
 ## Scripts
 
@@ -43,6 +45,10 @@ If this is missing, the form displays a graceful fallback message.
 ## Content Update Workflow
 
 - Projects: edit `src/data/projects.ts`
+  - Use `order` to control portfolio block order
+  - Use `featured` + optional `homeOrder` for homepage highlights
+  - Use `isVisible` to hide/show a project block
+- Project narratives: edit `src/data/projectDetails.ts`
 - Skills: edit `src/data/skills.ts`
 - Global copy/nav/contact/vision: edit `src/data/site.ts`
 

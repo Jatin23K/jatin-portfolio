@@ -74,25 +74,25 @@ export interface SiteContent {
 export const siteContent: SiteContent = {
   brand: {
     monogram: 'JK',
-    role: 'Jatin Kumar - Data Scientist',
+    role: 'Jatin Kumar - AI Engineer & Data Scientist',
     resumeLabel: 'Download Resume',
     resumeUrl: '/resume.pdf',
   },
   navigation: [
-    { label: 'Projects', href: '/projects' },
-    { label: 'Skills', href: '/#skills' },
+    { label: 'Highlights', href: '/#projects-highlights' },
+    { label: 'Projects', href: '/#projects-portfolio' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/#contact' },
   ],
   hero: {
-    badge: 'Data Scientist',
+    badge: 'AI Engineer',
     headlineTop: "Building AI that's",
     headlineAccent: 'Transparent',
     headlineAccent2: 'Useful.',
     subline:
-      'Data Scientist focused on SQL, Python, Machine Learning, and AI systems that solve real business problems.',
+      'Building AI systems end-to-end, from data pipelines and ML models to multi-agent orchestration and production-grade products.',
     stats: [
-      { value: '5+', label: 'Projects' },
+      { value: '7', label: 'Projects' },
       { value: '13', label: 'SQL Modules' },
       { value: 'Full Stack', label: 'AI' },
     ],
@@ -111,8 +111,8 @@ export const siteContent: SiteContent = {
   sections: {
     projects: {
       label: '02 / Projects',
-      title: "Things I've Built",
-      subtitle: 'Every project starts with a real problem.',
+      title: 'Reorderable Project Blocks',
+      subtitle: 'Each block is data-driven and manually reorderable by project order.',
     },
     skills: {
       label: '03 / Skills',
@@ -127,7 +127,7 @@ export const siteContent: SiteContent = {
     contact: {
       label: '05 / Contact',
       title: "Let's Talk",
-      subtitle: 'Open to DS roles, collaborations, and interesting problems.',
+      subtitle: 'Open to AI/DS roles, collaborations, and interesting problems.',
     },
   },
   vision: {
@@ -160,19 +160,20 @@ export const siteContent: SiteContent = {
     ],
   },
   contact: {
-    email: 'your.email@gmail.com',
+    email: 'jatinkumar6560@gmail.com',
     social: [
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/YOUR_LINKEDIN' },
-      { label: 'GitHub', href: 'https://github.com/YOUR_GITHUB' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jatin-kumar-97a800220' },
+      { label: 'GitHub', href: 'https://github.com/Jatin23K' },
     ],
     successMessage: "Message sent. I'll get back to you soon.",
     errorMessage: 'Something went wrong. Email me directly.',
     missingConfigMessage: 'Form is not configured yet. Email me directly.',
   },
   footer: {
-    copy: 'Built with React + Tailwind · Deployed on Vercel',
+    copy: 'Built with React + Tailwind - Deployed on Vercel',
     stack: 'React + TypeScript + Vite',
-    legal: '© 2025 Jatin Kumar · All projects are original work',
+    legal: '(c) 2025 Jatin Kumar - All projects are original work',
   },
 }
+
 
