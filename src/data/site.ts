@@ -74,7 +74,7 @@ export interface SiteContent {
 export const siteContent: SiteContent = {
   brand: {
     monogram: 'JK',
-    role: 'Jatin Kumar - AI Engineer & Data Scientist',
+    role: 'Jatin Kumar - Data Scientist',
     resumeLabel: 'Download Resume',
     resumeUrl: '/resume.pdf',
   },
