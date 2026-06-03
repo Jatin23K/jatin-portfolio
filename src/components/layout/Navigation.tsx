@@ -37,7 +37,7 @@ export const Navigation = () => {
 
   const navLinkClass = (href: string): string => {
     const base =
-      'text-xs tracking-wide text-text-dim transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2'
+      'text-sm tracking-wide text-text-dim transition-colors hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2'
     return isActive(href)
       ? `${base} text-accent2 underline decoration-accent2 decoration-2 underline-offset-8`
       : base
@@ -52,7 +52,7 @@ export const Navigation = () => {
       <nav className="container-shell flex h-20 items-center justify-between" aria-label="Primary navigation">
         <Link
           to="/"
-          className="font-mono text-lg tracking-[0.18em] text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2"
+          className="font-mono text-xl tracking-[0.18em] text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent2"
           aria-label="Go to homepage"
         >
           {siteContent.brand.monogram}
@@ -71,7 +71,6 @@ export const Navigation = () => {
           ))}
           <Button
             variant="outlined"
-            size="sm"
             href={siteContent.brand.resumeUrl}
             external={siteContent.brand.resumeUrl.startsWith('http')}
             onClick={() => trackEvent('resume_click', { source: 'nav_desktop' })}
@@ -82,7 +81,7 @@ export const Navigation = () => {
 
         <button
           type="button"
-          className="inline-flex items-center rounded-md border border-border px-3 py-2 text-xs font-mono uppercase tracking-[0.1em] text-text md:hidden"
+          className="inline-flex items-center rounded-md border border-border px-4 py-2 text-sm font-mono uppercase tracking-[0.1em] text-text md:hidden"
           onClick={() => setIsMenuOpen((current) => !current)}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
@@ -104,7 +103,6 @@ export const Navigation = () => {
           ))}
           <Button
             variant="outlined"
-            size="sm"
             href={siteContent.brand.resumeUrl}
             external={siteContent.brand.resumeUrl.startsWith('http')}
             onClick={() => {

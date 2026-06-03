@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import type { Project } from '../../data/projects'
 import { isPlannedProject, shouldShowProjectAction } from '../../utils/projectSelectors'
 import { trackEvent } from '../../utils/analytics'
@@ -89,18 +88,7 @@ export const ProjectBlock = ({ project }: ProjectBlockProps) => {
         </div>
       ) : null}
 
-      {project.resumeBullet ? (
-        <div className="mt-4 border-l-2 border-accent2 pl-3">
-          <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-text-dim">Resume Bullet</p>
-          <p className="mt-1 text-sm leading-relaxed text-text-dim">{project.resumeBullet}</p>
-        </div>
-      ) : null}
 
-      {project.targetMilestone ? (
-        <p className="mt-4 text-xs font-mono uppercase tracking-[0.1em] text-text-dim">
-          Target Milestone: <span className="text-accent2">{project.targetMilestone}</span>
-        </p>
-      ) : null}
 
       <div className="mt-6 flex flex-wrap items-center gap-2">
         {shouldShowProjectAction(project, 'caseStudy') ? (
@@ -137,16 +125,20 @@ export const ProjectBlock = ({ project }: ProjectBlockProps) => {
           </Button>
         ) : null}
 
+        {shouldShowProjectAction(project, 'loom') ? (
+          <Button
+            variant="outlined"
+            size="sm"
+            href={project.links.loom}
+            external
+            onClick={() => trackEvent('project_loom_click', { project_id: project.id })}
+          >
+            Watch Demo ▶
+          </Button>
+        ) : null}
+
       </div>
 
-      {!shouldShowProjectAction(project, 'caseStudy') && (
-        <Link
-          to={`/projects/${project.id}`}
-          className="mt-4 inline-block text-xs font-mono uppercase tracking-[0.1em] text-accent2 underline decoration-dotted underline-offset-4"
-        >
-          Preview Case Study Layout
-        </Link>
-      )}
     </article>
   )
 }

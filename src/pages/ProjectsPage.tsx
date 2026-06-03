@@ -1,6 +1,6 @@
 import { ProjectsSection } from '../components/sections/Projects'
 import { RouteMeta } from '../components/seo/RouteMeta'
-import { visibleProjects } from '../utils/projectSelectors'
+import { aiSystems, traditionalDataSystems, pipelineProjects } from '../utils/projectSelectors'
 
 const ProjectsPage = () => {
   return (
@@ -11,12 +11,28 @@ const ProjectsPage = () => {
         canonicalPath="/projects"
       />
       <ProjectsSection
-        projects={visibleProjects()}
-        sectionId="projects"
-        label="Portfolio Blocks"
-        title="Reorderable Project Portfolio"
-        subtitle="Each project is a reusable block. Update order values in project data to rearrange this page."
-        listAriaLabel="Reorderable project blocks"
+        projects={aiSystems()}
+        sectionId="projects-ai"
+        label="01 / Core Engineering"
+        title="Autonomous AI & Agentic Systems"
+        subtitle="Deployed LLM orchestration, RAG pipelines, and multi-agent workflows."
+        listAriaLabel="AI systems"
+      />
+      <ProjectsSection
+        projects={traditionalDataSystems()}
+        sectionId="projects-ml"
+        label="02 / Applied Data Science"
+        title="Applied ML & Data Engineering"
+        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
+        listAriaLabel="ML systems"
+      />
+      <ProjectsSection
+        projects={pipelineProjects()}
+        sectionId="projects-pipeline"
+        label="03 / Active Research"
+        title="Active R&D (In Pipeline)"
+        subtitle="Upcoming architecture and sovereign systems currently facing hardware constraints."
+        listAriaLabel="Pipeline systems"
       />
     </main>
   )

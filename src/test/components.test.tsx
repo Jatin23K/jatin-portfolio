@@ -38,10 +38,13 @@ describe('component smoke tests', () => {
     expect(screen.queryByText('Live Demo ->')).not.toBeInTheDocument()
   })
 
-  it('renders skill bar proof text', () => {
+  it('renders skill bar proof chips', () => {
     render(<SkillBar skill={skills[0]} />)
 
-    expect(screen.getByText('13 modules - window functions, query optimization, transactions')).toBeInTheDocument()
+    // Proof text is now split into chips — assert individual tokens are present
+    expect(screen.getByText('13 modules - window functions')).toBeInTheDocument()
+    expect(screen.getByText('query optimization')).toBeInTheDocument()
+    expect(screen.getByText('transactions')).toBeInTheDocument()
   })
 
   it('shows missing formspree feedback when form id is not configured', async () => {

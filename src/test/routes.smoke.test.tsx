@@ -27,7 +27,7 @@ describe('route smoke tests', () => {
   it('renders about route', async () => {
     renderAtPath('/about')
 
-    expect(await screen.findByText('Sales-first Data Science')).toBeInTheDocument()
+    expect(await screen.findByText('Applied Data Science')).toBeInTheDocument()
   })
 
   it('renders invalid case-study state', async () => {

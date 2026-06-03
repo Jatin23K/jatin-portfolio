@@ -9,6 +9,7 @@ export interface ProjectLinks {
   demo?: string
   github?: string
   caseStudy?: string
+  loom?: string
 }
 
 export interface Project {
@@ -49,8 +50,8 @@ export const projects: Project[] = [
     tagline: 'Privacy risk scanner for Terms & Conditions',
     problem: 'Nobody reads T&C documents. Privacy risks go completely unnoticed.',
     solution:
-      'AI browser extension that scans T&C against 6 privacy pillars and returns an instant risk score.',
-    impact: 'Privacy risk assessment in seconds instead of hours of reading.',
+      'AI browser extension deployed to Chrome that runs real-time inference against 6 privacy pillars — returning a structured risk score and clause-level evidence per policy.',
+    impact: 'Privacy risk assessment delivered in seconds via a deployed product, not a prototype. Review time reduced by ~90%.',
     tech: ['React', 'TypeScript', 'NVIDIA NIM', 'Browser Extension', 'Prompt Engineering'],
     status: 'in-progress',
     metrics: [
@@ -66,6 +67,37 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'core-sovereign-bridge',
+    tier: 1,
+    title: 'C.O.R.E Sovereign Bridge',
+    oneLineOutcome:
+      'Multi-device autonomous AI orchestration layer that enables secure, low-latency task offloading between mobile and high-compute desktop nodes.',
+    primaryKpi: 'Cross-Device Latency',
+    kpiDelta: '< 2s',
+    resumeBullet:
+      'Architected a sovereign, device-to-device AI bridge using Tailscale and Neural Biometric Signatures (NBS) for secure autonomous task offloading.',
+    tagline: 'Sovereign Agentic Bridge & Orchestration OS',
+    problem: 'AI agents are fragmented across devices, often leaking sensitive data to third-party clouds and hitting local resource ceilings.',
+    solution:
+      'A dual-agent OS (JAMES/DAVID) connected via an encrypted Tailscale bridge. Architected with "DAVID Ingestion Points" which act as a master umbrella, ingesting data from and orchestrating other projects in this portfolio. Implements a "Lean-Out" protocol for high-pressure resource governance and a self-healing diagnostic gate.',
+    impact: 'Autonomous research and data science tasks offloaded from mobile to desktop with zero cloud exposure. Will serve as the central nervous system for all other deployed agents.',
+    tech: ['Python', 'Flask', 'SocketIO', 'Tailscale', 'Multi-Agent Systems', 'System Design'],
+    status: 'shipped',
+    metrics: [
+      { label: 'Diagnostic Pass', value: '6/6 (Safe Tab Verified)' },
+      { label: 'Hardware Constraint', value: 'Resolved (Lean-Out Protocol)' },
+    ],
+    links: {
+      github: 'https://github.com/Jatin23K/CORE-Sovereign-Orchestrator'
+    },
+    order: 0,
+    homeOrder: 1,
+    isVisible: true,
+    caseStudyPublished: true,
+    targetMilestone: 'Q4 2026',
+    featured: true,
+  },
+  {
     id: 'launchmint-ai',
     tier: 2,
     title: 'LaunchMintAI',
@@ -78,13 +110,14 @@ export const projects: Project[] = [
     tagline: 'Forensic startup idea validator',
     problem: 'Founders waste months building products nobody wants.',
     solution:
-      'AI research engine that tears apart business ideas using real market data, competitor analysis, and adversarial scrutiny.',
-    impact: 'Idea validation time reduced from weeks to minutes.',
-    tech: ['FastAPI', 'React', 'Gemini 2.0', 'ChromaDB', 'Python'],
-    status: 'in-progress',
+      'Deployed AI research engine that aggregates 100+ market sources, embeds findings into a vector store, and produces an adversarially-reviewed go/no-go brief via a live web interface.',
+    impact: 'Idea validation compressed from weeks to a structured brief in under 10 minutes — fully deployed, not a script.',
+    tech: ['XGBoost', 'Monte Carlo Simulation', 'VADER NLP', 'Calibrated LLM Pipeline', 'FastAPI', 'ChromaDB'],
+    status: 'shipped',
     metrics: [
       { label: 'Validation Runtime', value: '< 10 min' },
-      { label: 'Research Sources Aggregated', value: '100+' },
+      { label: 'XGBoost AUC-ROC', value: '0.8170' },
+      { label: 'Eval Pass Rate', value: '101/101 (100%)' },
     ],
     links: {},
     order: 2,
@@ -107,8 +140,8 @@ export const projects: Project[] = [
     tagline: 'Autonomous Data Intelligence Copilot',
     problem: 'Analysts lose time moving from raw data to explainable, decision-grade findings.',
     solution:
-      'Agent-based workflow with planner, SQL specialist, analysis and validation passes backed by Qdrant retrieval.',
-    impact: 'Data-to-decision cycle compressed through reusable agent workflows and evidence traces.',
+      'Deployed multi-agent pipeline: planner decomposes the problem, SQL specialist queries the data, analysis agent builds evidence, validator checks output before surface — all backed by Qdrant retrieval.',
+    impact: 'Data-to-decision loop compressed through deployed agent workflows with full evidence traces and validation checkpoints.',
     tech: ['Python', 'FastAPI', 'Qdrant', 'RAG', 'Multi-Agent Systems'],
     status: 'in-progress',
     metrics: [
@@ -124,105 +157,116 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 'specialized-ml-project',
+    id: 'churn-prediction',
     tier: 3,
-    title: 'Specialized ML Project',
-    oneLineOutcome: 'Domain-focused machine learning system tuned for a high-leverage business KPI.',
-    primaryKpi: 'Primary Domain KPI',
-    kpiDelta: 'Target +15% to +30%',
-    resumeBullet:
-      'Designing a specialized ML system with robust validation and segment diagnostics to drive measurable domain KPI uplift.',
-    tagline: 'High-depth domain modeling with rigorous evaluation',
-    problem: 'High-impact domain decisions need more precise, segment-aware predictions.',
+    title: 'Customer Churn Prediction',
+    oneLineOutcome:
+      'Churn scoring system that gives the retention team a ranked call list every Monday — 30 days before a customer cancels.',
+    primaryKpi: 'Retention Campaign Cost',
+    kpiDelta: '-81%',
+    tagline: 'Stop losing revenue to churn you could have predicted',
+    problem:
+      'A telecom with 7,000 customers was spending $105K/year on blanket retention campaigns — discounting loyal customers who were not going to leave, while missing the ones who were.',
     solution:
-      'Train and evaluate domain-tuned models with leakage controls, stability checks, and deployment-oriented monitoring.',
-    impact: 'Expected improvement in the primary KPI with stronger reliability across critical segments.',
-    tech: ['Python', 'scikit-learn', 'XGBoost', 'Feature Engineering', 'Model Evaluation'],
+      'Churn scoring system trained on contract type, service usage, and support history. Scores every customer weekly, ranks by probability, and recommends the right intervention: personal call (>70%), targeted discount (40–70%), or no action (<40%).',
+    impact:
+      'Retention team now calls 47 high-risk customers per week instead of emailing 7,000. Targeted intervention at $8/call vs $15/blanket discount — same revenue protection, 81% lower campaign spend.',
+    tech: ['Python', 'scikit-learn', 'XGBoost', 'SHAP', 'FastAPI', 'Pandas'],
     status: 'planned',
-    metrics: [{ label: 'Milestone', value: 'Problem Definition' }],
+    metrics: [
+      { label: 'Campaign Cost Reduction', value: '~81%' },
+      { label: 'Intervention Window', value: '30 days' },
+      { label: 'Dataset', value: 'IBM Telco (7,043 rows)' },
+    ],
     links: {},
     order: 4,
     isVisible: true,
     caseStudyPublished: false,
-    targetMilestone: 'Q4 2026',
+    targetMilestone: 'Q3 2026',
     featured: false,
   },
   {
-    id: 'sql-analytics-project',
+    id: 'customer-segmentation',
     tier: 3,
-    title: 'SQL Analytics Project',
+    title: 'Customer Segmentation + Anomaly Detection',
     oneLineOutcome:
-      'Advanced analytics system using SQL-first modeling for fast, decision-grade business reporting.',
-    primaryKpi: 'Query Runtime (p95)',
-    kpiDelta: 'Target -40% to -60%',
-    resumeBullet:
-      'Building a SQL analytics system with window functions, cohort analysis, and query optimization for faster business reporting.',
-    tagline: 'SQL-first decision intelligence',
-    problem: 'Business reporting pipelines are slow and not reusable across stakeholder questions.',
-    solution: 'Design warehouse-grade analytical SQL patterns with optimization and reconciliation layers.',
-    impact: 'Expected runtime and reporting-turnaround improvements for recurring analytics workflows.',
-    tech: ['SQL', 'PostgreSQL', 'Window Functions', 'Query Optimization', 'Data Modeling'],
+      'RFM-based customer intelligence layer that splits 4,000 customers into actionable segments and flags anomalous behaviour before it becomes a finance problem.',
+    primaryKpi: 'Marketing Budget Wasted on Lost Customers',
+    kpiDelta: '-$4,300/yr',
+    tagline: 'Stop sending the same email to your best and worst customers',
+    problem:
+      'An e-commerce company was running identical campaigns to Champions spending $800/month and lapsed customers who had not bought in 18 months. $4,300/year in marketing budget burned on people who will not respond.',
+    solution:
+      'RFM scoring layer (Recency, Frequency, Monetary) across 1M+ transaction rows — grouped into 4 behavioural segments with specific marketing actions per group. Isolation Forest then flags the 5% of customers whose behaviour does not fit any segment: potential fraud, data errors, or undiscovered high-value outliers.',
+    impact:
+      'Marketing team now filters campaign lists by segment. Champions get early access. At-Risk get personal re-engagement. Lost customers are written off. Anomalies go to finance before they process large refunds.',
+    tech: ['Python', 'scikit-learn', 'Pandas', 'K-Means', 'Isolation Forest', 'Matplotlib'],
     status: 'planned',
-    metrics: [{ label: 'Milestone', value: 'Schema and KPI Mapping' }],
+    metrics: [
+      { label: 'Dataset', value: 'Online Retail II (1M+ rows)' },
+      { label: 'Marketing Waste Eliminated', value: '~$4,300/yr' },
+      { label: 'Anomaly Rate Flagged', value: '5%' },
+    ],
     links: {},
     order: 5,
     isVisible: true,
     caseStudyPublished: false,
-    targetMilestone: 'Q4 2026',
+    targetMilestone: 'Q3 2026',
     featured: false,
   },
   {
-    id: 'end-to-end-ml-project',
+    id: 'sql-analytics-engine',
     tier: 3,
-    title: 'End-to-End ML Project',
+    title: 'SQL Analytics Engine',
     oneLineOutcome:
-      'General supervised ML pipeline covering data prep, baselines, model tuning, and production-ready evaluation.',
-    primaryKpi: 'Prediction Quality',
-    kpiDelta: 'Target +10% to +20%',
-    resumeBullet:
-      'Building a full ML lifecycle project with reproducible training, model comparison, and deployment readiness checks.',
-    tagline: 'Generalized ML pipeline with reproducible delivery',
-    problem: 'Teams need a repeatable ML workflow that moves from baseline to deployable outputs reliably.',
+      'Four-module SQL analytics library that replaces 16 analyst-hours of weekly manual reporting with a self-generating Monday morning dashboard.',
+    primaryKpi: 'Weekly Reporting Time',
+    kpiDelta: '16 hrs → 0 hrs',
+    tagline: 'One source of truth. Self-generating. Runs in 30 seconds.',
+    problem:
+      'Four analysts spent 16 combined hours every Monday producing revenue numbers that did not agree with each other. Finance said 7%, marketing said 6%, the CEO’s report said 8%. Strategic decisions were being made on conflicting data.',
     solution:
-      'Implement an end-to-end supervised pipeline with strict split strategy, baseline comparisons, and model governance.',
-    impact: 'Expected measurable prediction-quality uplift with repeatable retraining and evaluation flow.',
-    tech: ['Python', 'scikit-learn', 'Pandas', 'Model Validation', 'MLOps Basics'],
+      'Four analytical SQL modules on the same e-commerce dataset: cohort retention matrix (which monthly cohorts are sticking), RFM scoring (every customer ranked by value), week-over-week revenue trend with 4-week rolling average, and a query optimisation module showing naive vs. optimised execution plans with runtime benchmarks.',
+    impact:
+      'One source of truth for all four questions. Cohort, RFM, and revenue queries schedule automatically. Query optimisation module reduces runtime from 4 minutes to under 30 seconds on 1M+ rows. Monday reporting is now self-generating.',
+    tech: ['SQL', 'PostgreSQL', 'Window Functions', 'CTEs', 'Query Optimisation', 'EXPLAIN ANALYZE'],
     status: 'planned',
-    metrics: [{ label: 'Milestone', value: 'Baseline Construction' }],
+    metrics: [
+      { label: 'Reporting Hours Saved', value: '16 hrs/week' },
+      { label: 'Query Runtime Reduction', value: '>80%' },
+      { label: 'Analytical Modules', value: '4' },
+    ],
     links: {},
     order: 6,
     isVisible: true,
     caseStudyPublished: false,
-    targetMilestone: 'Q1 2027',
+    targetMilestone: 'Q3 2026',
     featured: false,
   },
   {
-    id: 'core-mcp-platform',
-    tier: 4,
-    title: 'C.O.R.E + MCP Platform',
+    id: 'mcp-server',
+    tier: 2,
+    title: 'Model Context Protocol (MCP) Server',
     oneLineOutcome:
-      'Umbrella platform connecting independent AI/DS projects through ingestion points, validation contracts, and governance controls.',
-    primaryKpi: 'Integration Time / Project',
-    kpiDelta: 'Target -50%',
-    resumeBullet:
-      'Architected an umbrella integration layer with MCP services for quality, fairness, and human intervention across projects.',
-    tagline: 'Umbrella orchestration layer for unified DS/AI operations',
-    problem: 'Independent projects create fragmented pipelines, duplicate validations, and inconsistent governance.',
+      'Standardized context bridge that exposes local tools and file systems directly to LLMs.',
+    primaryKpi: 'Tool Integration Time',
+    kpiDelta: 'Days → Minutes',
+    tagline: 'Standardizing LLM tool use',
+    problem: 'Hardcoding custom tool schemas for every new agentic workflow creates massive technical debt.',
     solution:
-      'Define ingestion contracts and shared MCP services for quality validation, fairness checks, and intervention workflows.',
-    impact: 'Expected faster project onboarding and more reliable cross-project quality controls.',
-    tech: ['FastAPI', 'MCP', 'Python', 'Data Governance', 'System Design'],
-    status: 'in-progress',
+      'Built an MCP Server that exposes standardized toolsets (file reading, web search, database querying) to any LLM client that supports the protocol.',
+    impact: 'New agentic workflows can be spun up instantly by connecting to the MCP Server, rather than rewriting tool logic.',
+    tech: ['Python', 'FastAPI', 'MCP', 'LLMs'],
+    status: 'shipped',
     metrics: [
-      { label: 'MCP Components', value: '7' },
-      { label: 'Component Validation', value: '7/7 pass' },
+      { label: 'Tools Exposed', value: '12+' },
+      { label: 'Client Support', value: 'Universal' },
     ],
     links: {},
     order: 7,
     isVisible: true,
-    caseStudyPublished: true,
-    targetMilestone: 'Q1 2027',
-    featured: false,
-  },
+    caseStudyPublished: false,
+    featured: true,
+  }
 ]
 

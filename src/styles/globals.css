@@ -148,6 +148,16 @@ textarea:-webkit-autofill:focus {
   filter: saturate(0.8);
 }
 
+.card-shell {
+  transition-property: border-color, box-shadow, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.card-shell:hover {
+  box-shadow: 0 0 24px rgba(232, 255, 71, 0.04), 0 0 0 1px rgba(71, 200, 255, 0.06);
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -160,3 +170,23 @@ textarea:-webkit-autofill:focus {
   }
 }
 
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--surface2);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}

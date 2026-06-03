@@ -34,6 +34,15 @@ export const homepageProjects = (): Project[] =>
       return projectSort(left, right)
     })
 
+export const aiSystems = (): Project[] =>
+  visibleProjects().filter((p) => ['tldr-shield', 'launchmint-ai', 'leap-axiom', 'mcp-server'].includes(p.id))
+
+export const traditionalDataSystems = (): Project[] =>
+  visibleProjects().filter((p) => ['churn-prediction', 'customer-segmentation', 'sql-analytics-engine'].includes(p.id))
+
+export const pipelineProjects = (): Project[] =>
+  visibleProjects().filter((p) => ['core-sovereign-bridge'].includes(p.id))
+
 export const featuredProjects = (): Project[] => homepageProjects()
 
 export const getProjectById = (id: string): Project | undefined =>
@@ -41,7 +50,7 @@ export const getProjectById = (id: string): Project | undefined =>
 
 export const shouldShowProjectAction = (
   project: Project,
-  action: 'demo' | 'github' | 'caseStudy',
+  action: 'demo' | 'github' | 'caseStudy' | 'loom',
 ): boolean => {
   if (action === 'caseStudy') {
     return project.caseStudyPublished && Boolean(projectDetails[project.id])
