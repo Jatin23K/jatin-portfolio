@@ -80,7 +80,7 @@ export const siteContent: SiteContent = {
   },
   navigation: [
     { label: 'Executive Summary', href: '/#projects-highlights' },
-    { label: 'Case Studies', href: '/#projects-ai' },
+    { label: 'Projects', href: '/#projects-ai' },
     { label: 'Skills', href: '/#skills' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/#contact' },
@@ -97,7 +97,7 @@ export const siteContent: SiteContent = {
       { value: 'Predictive ML', label: '& SQL ANALYTICS' },
       { value: 'Sovereign', label: 'ORCHESTRATION OS' },
     ],
-    primaryCta: 'View Case Studies ->',
+    primaryCta: 'View Projects ->',
     secondaryCta: 'Download Resume',
     sqlSnippetTitle: 'Autonomous Agent Orchestration',
     sqlSnippet: [
@@ -120,7 +120,7 @@ export const siteContent: SiteContent = {
   },
   sections: {
     projects: {
-      label: '02 / Case Studies',
+      label: '02 / Projects',
       title: 'Architected Systems',
       subtitle: 'Each system is data-grounded, deterministically evaluated, and built for production.',
     },

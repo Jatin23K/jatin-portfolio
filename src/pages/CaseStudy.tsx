@@ -670,7 +670,7 @@ const CaseStudy = () => {
       <div className="mt-8 flex flex-wrap gap-3">
         {shouldShowProjectAction(project, 'demo') ? (
           <Button href={project.links.demo} external>
-            {'Live Demo ->'}
+            {'Website'}
           </Button>
         ) : null}
         {shouldShowProjectAction(project, 'github') ? (

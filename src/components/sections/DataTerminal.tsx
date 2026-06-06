@@ -35,7 +35,7 @@ const TIER_BARS: { label: string; value: number; max: number; color: string }[] 
 const KPI_STATS = [
   { label: 'Total Projects', value: String(totalProjects), sub: 'in portfolio' },
   { label: 'Active Builds', value: String(inProgressCount), sub: 'in progress' },
-  { label: 'Case Studies', value: `${completion.published}/${completion.total}`, sub: 'published' },
+  { label: 'Projects', value: `${completion.published}/${completion.total}`, sub: 'published' },
   { label: 'KPI Coverage', value: `${kpiCov.pct}%`, sub: 'of active projects' },
 ]
 

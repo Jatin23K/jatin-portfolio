@@ -49,7 +49,7 @@ export const ProjectBlock = ({ project, isFeatured = false }: ProjectBlockProps)
           external
           onClick={() => trackEvent('project_demo_click', { project_id: project.id })}
         >
-          {'Live Demo ->'}
+          {'Website'}
         </Button>
       ) : null}
 

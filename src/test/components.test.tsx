@@ -35,7 +35,7 @@ describe('component smoke tests', () => {
     )
 
     expect(screen.getByText('Planned')).toBeInTheDocument()
-    expect(screen.queryByText('Live Demo ->')).not.toBeInTheDocument()
+    expect(screen.queryByText('Website')).not.toBeInTheDocument()
   })
 
   it('renders skill bar proof chips', () => {
