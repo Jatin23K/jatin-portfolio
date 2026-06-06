@@ -29,10 +29,10 @@ const ProjectsPage = () => {
       <ProjectsSection
         projects={pipelineProjects()}
         sectionId="projects-pipeline"
-        label="03 / Active Research"
-        title="Active R&D (In Pipeline)"
-        subtitle="Upcoming architecture and sovereign systems currently facing hardware constraints."
-        listAriaLabel="Pipeline systems"
+        label="03 / Sovereign Builds"
+        title="Sovereign Builds"
+        subtitle="Built for myself. Runs on my hardware. Exists outside any platform or subscription."
+        listAriaLabel="Sovereign builds"
       />
     </main>
   )

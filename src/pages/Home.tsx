@@ -47,10 +47,10 @@ const Home = () => {
       <ProjectsSection
         projects={pipelineProjects()}
         sectionId="projects-pipeline"
-        label="CASE STUDIES / ACTIVE RESEARCH"
-        title="Active R&D (In Pipeline)"
-        subtitle="Upcoming architecture and sovereign systems currently facing hardware constraints."
-        listAriaLabel="Pipeline systems"
+        label="CASE STUDIES / SOVEREIGN BUILDS"
+        title="Sovereign Builds"
+        subtitle="Built for myself. Runs on my hardware. Exists outside any platform or subscription."
+        listAriaLabel="Sovereign builds"
       />
       <ContactSection />
     </main>

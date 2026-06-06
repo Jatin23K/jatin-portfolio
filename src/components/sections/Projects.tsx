@@ -28,10 +28,18 @@ export const ProjectsSection = ({
       <div className="container-shell">
         <SectionHeader label={label} title={title} subtitle={subtitle} />
 
-        <div className="columns-1 gap-7 lg:columns-2 lg:gap-8" role="list" aria-label={listAriaLabel}>
+        <div 
+          className={projects.length === 1 ? "mx-auto max-w-6xl" : "columns-1 gap-7 lg:columns-2 lg:gap-8"} 
+          role="list" 
+          aria-label={listAriaLabel}
+        >
           {projects.map((project) => (
-            <div key={project.id} className="mb-7 break-inside-avoid lg:mb-8" role="listitem">
-              <ProjectBlock project={project} />
+            <div 
+              key={project.id} 
+              className={`mb-7 lg:mb-8 ${projects.length === 1 ? '' : 'break-inside-avoid'}`} 
+              role="listitem"
+            >
+              <ProjectBlock project={project} isFeatured={projects.length === 1} />
             </div>
           ))}
         </div>

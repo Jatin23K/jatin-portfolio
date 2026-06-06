@@ -18,7 +18,8 @@ const totalProjects = getTotalVisibleProjects()
 const inProgressCount = getInProgressCount()
 
 const STATUS_BARS: { label: string; value: number; max: number; color: string }[] = [
-  { label: 'In Progress', value: statusDist['in-progress'], max: totalProjects, color: 'var(--accent)' },
+  { label: 'In Progress', value: statusDist['in-progress'], max: totalProjects, color: 'var(--accent3)' },
+  { label: 'Field Testing', value: statusDist['field-testing'], max: totalProjects, color: 'var(--accent)' },
   { label: 'Planned', value: statusDist.planned, max: totalProjects, color: 'var(--accent2)' },
   { label: 'Shipped', value: statusDist.shipped, max: totalProjects, color: '#98d982' },
   { label: 'Vision', value: statusDist.vision, max: totalProjects, color: 'var(--accent4)' },

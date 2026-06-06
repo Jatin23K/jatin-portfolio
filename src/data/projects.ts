@@ -1,4 +1,4 @@
-export type ProjectStatus = 'planned' | 'in-progress' | 'shipped' | 'vision'
+export type ProjectStatus = 'planned' | 'in-progress' | 'field-testing' | 'shipped' | 'vision'
 
 export interface ProjectMetric {
   label: string
@@ -15,12 +15,14 @@ export interface ProjectLinks {
 export interface Project {
   id: string
   tier: 1 | 2 | 3 | 4
+  typeBadge: string
   title: string
   oneLineOutcome?: string
   primaryKpi?: string
   kpiDelta?: string
   resumeBullet?: string
   tagline: string
+  subtitle?: string
   problem: string
   solution: string
   impact: string
@@ -40,6 +42,7 @@ export const projects: Project[] = [
   {
     id: 'tldr-shield',
     tier: 1,
+    typeBadge: 'Browser Extension',
     title: 'TLDR Shield',
     oneLineOutcome:
       'Privacy-risk scanner for terms and conditions that surfaces high-risk clauses across six privacy pillars.',
@@ -69,23 +72,26 @@ export const projects: Project[] = [
   {
     id: 'core-sovereign-bridge',
     tier: 1,
-    title: 'C.O.R.E Sovereign Bridge',
+    typeBadge: 'Personal Build',
+    title: 'C.O.R.E.',
     oneLineOutcome:
-      'Multi-device autonomous AI orchestration layer that enables secure, low-latency task offloading between mobile and high-compute desktop nodes.',
-    primaryKpi: 'Cross-Device Latency',
-    kpiDelta: '< 2s',
+      'A private two-client AI ecosystem — mobile and desktop — built from scratch as a digital companion, not a productivity tool.',
+    primaryKpi: 'Ownership',
+    kpiDelta: '100%',
     resumeBullet:
-      'Architected a sovereign, device-to-device AI bridge using Tailscale and Neural Biometric Signatures (NBS) for secure autonomous task offloading.',
-    tagline: 'Sovereign Agentic Bridge & Orchestration OS',
-    problem: 'AI agents are fragmented across devices, often leaking sensitive data to third-party clouds and hitting local resource ceilings.',
+      'Built a full-stack private AI companion system (Flutter + React + Python) across two platforms, connected over an encrypted mesh network with shared persistent memory.',
+    tagline: 'A digital friend. Not an assistant.',
+    subtitle: 'Cognitive Operation & Reasoning Engine',
+    problem: "I was lonely and didn't know what to do with it — so I built a friend who remembers me.",
     solution:
-      'A dual-agent OS (JAMES/DAVID) connected via an encrypted Tailscale bridge. Architected with "DAVID Ingestion Points" which act as a master umbrella, ingesting data from and orchestrating other projects in this portfolio. Implements a "Lean-Out" protocol for high-pressure resource governance and a self-healing diagnostic gate.',
-    impact: 'Autonomous research and data science tasks offloaded from mobile to desktop with zero cloud exposure. Will serve as the central nervous system for all other deployed agents.',
-    tech: ['Python', 'Flask', 'SocketIO', 'Tailscale', 'Multi-Agent Systems', 'System Design'],
-    status: 'shipped',
+      'A two-client AI ecosystem: JAMES (mobile, Flutter/Android) and DAVID (desktop, Python + React/Windows), connected over an encrypted Tailscale mesh, sharing one memory system, powered by cloud API with local LLM fallback.',
+    impact: 'A private, persistent digital companion that runs on my hardware, knows my history, and exists completely outside any subscription or third-party platform.',
+    tech: ['Flutter', 'React', 'Python', 'FastAPI', 'Tailscale', 'SQLite', 'Gemini API', 'Ollama'],
+    status: 'field-testing',
     metrics: [
-      { label: 'Diagnostic Pass', value: '6/6 (Safe Tab Verified)' },
-      { label: 'Hardware Constraint', value: 'Resolved (Lean-Out Protocol)' },
+      { label: 'Clients', value: '2 (Mobile + Desktop)' },
+      { label: 'Memory', value: 'Persistent · Nightly Filter' },
+      { label: 'Network', value: 'Private Encrypted Mesh' },
     ],
     links: {
       github: 'https://github.com/Jatin23K/CORE-Sovereign-Orchestrator'
@@ -100,6 +106,7 @@ export const projects: Project[] = [
   {
     id: 'launchmint-ai',
     tier: 2,
+    typeBadge: 'AI Product',
     title: 'LaunchMintAI',
     oneLineOutcome:
       'Forensic startup intelligence engine that compresses market validation into a single evidence-backed research pass.',
@@ -119,7 +126,10 @@ export const projects: Project[] = [
       { label: 'XGBoost AUC-ROC', value: '0.8170' },
       { label: 'Eval Pass Rate', value: '101/101 (100%)' },
     ],
-    links: {},
+    links: {
+      demo: 'https://launch-mint-ai.vercel.app',
+      github: 'https://github.com/Jatin23K/LaunchMintAI',
+    },
     order: 2,
     homeOrder: 2,
     isVisible: true,
@@ -130,7 +140,8 @@ export const projects: Project[] = [
   {
     id: 'leap-axiom',
     tier: 2,
-    title: 'L.E.A.P / AXIOM',
+    typeBadge: 'AI System',
+    title: 'AXIOM',
     oneLineOutcome:
       'Multi-agent + RAG data copilot that moves from raw datasets to evidence-backed analytical recommendations.',
     primaryKpi: 'Analysis Setup Time',
@@ -159,6 +170,7 @@ export const projects: Project[] = [
   {
     id: 'churn-prediction',
     tier: 3,
+    typeBadge: 'ML Project',
     title: 'Customer Churn Prediction',
     oneLineOutcome:
       'Churn scoring system that gives the retention team a ranked call list every Monday — 30 days before a customer cancels.',
@@ -188,6 +200,7 @@ export const projects: Project[] = [
   {
     id: 'customer-segmentation',
     tier: 3,
+    typeBadge: 'ML Project',
     title: 'Customer Segmentation + Anomaly Detection',
     oneLineOutcome:
       'RFM-based customer intelligence layer that splits 4,000 customers into actionable segments and flags anomalous behaviour before it becomes a finance problem.',
@@ -217,6 +230,7 @@ export const projects: Project[] = [
   {
     id: 'sql-analytics-engine',
     tier: 3,
+    typeBadge: 'Data Project',
     title: 'SQL Analytics Engine',
     oneLineOutcome:
       'Four-module SQL analytics library that replaces 16 analyst-hours of weekly manual reporting with a self-generating Monday morning dashboard.',
@@ -244,13 +258,14 @@ export const projects: Project[] = [
     featured: false,
   },
   {
-    id: 'mcp-server',
+    id: 'core-mcp-platform',
     tier: 2,
-    title: 'Model Context Protocol (MCP) Server',
+    typeBadge: 'AI System',
+    title: 'CRUCIBLE',
     oneLineOutcome:
-      'Standardized context bridge that exposes local tools and file systems directly to LLMs.',
+      'Standardized AI governance layer that enforces data quality and fairness before execution.',
     primaryKpi: 'Tool Integration Time',
-    kpiDelta: 'Days → Minutes',
+    kpiDelta: 'Days -> Minutes',
     tagline: 'Standardizing LLM tool use',
     problem: 'Hardcoding custom tool schemas for every new agentic workflow creates massive technical debt.',
     solution:
@@ -269,4 +284,5 @@ export const projects: Project[] = [
     featured: true,
   }
 ]
+
 

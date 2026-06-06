@@ -3,6 +3,7 @@ import { projects, type ProjectStatus } from '../data/projects'
 export interface StatusDistribution {
   planned: number
   'in-progress': number
+  'field-testing': number
   shipped: number
   vision: number
 }
@@ -27,7 +28,7 @@ export interface KpiCoverage {
 }
 
 export const getStatusDistribution = (): StatusDistribution => {
-  const dist: StatusDistribution = { planned: 0, 'in-progress': 0, shipped: 0, vision: 0 }
+  const dist: StatusDistribution = { planned: 0, 'in-progress': 0, 'field-testing': 0, shipped: 0, vision: 0 }
   projects.forEach((p) => {
     if (p.isVisible) dist[p.status as ProjectStatus]++
   })
@@ -54,7 +55,7 @@ export const getCompletionRate = (): CompletionRate => {
 
 export const getKpiCoverage = (): KpiCoverage => {
   const active = projects.filter(
-    (p) => p.isVisible && (p.status === 'in-progress' || p.status === 'shipped'),
+    (p) => p.isVisible && (p.status === 'in-progress' || p.status === 'field-testing' || p.status === 'shipped'),
   )
   const withKpi = active.filter((p) => p.primaryKpi && p.primaryKpi.trim().length > 0).length
   return {
@@ -71,4 +72,4 @@ export const getShippedCount = (): number =>
   projects.filter((p) => p.isVisible && p.status === 'shipped').length
 
 export const getInProgressCount = (): number =>
-  projects.filter((p) => p.isVisible && p.status === 'in-progress').length
+  projects.filter((p) => p.isVisible && (p.status === 'in-progress' || p.status === 'field-testing')).length
