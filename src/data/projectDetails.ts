@@ -26,6 +26,8 @@ export interface VisualModule {
   differentiators?: string[]
   images: string[]
   landscape?: boolean
+  paired?: boolean   // renders images as side-by-side pairs (for portrait/mobile screenshots)
+  pairedLabels?: [string, string]  // optional labels for the two columns e.g. ['JAMES', 'JANIE']
 }
 
 export interface EvalMetric {
@@ -138,33 +140,36 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         images: ['/core/architecture_diagram.jpg'],
       },
       {
-        title: 'JAMES — Mobile Client',
+        title: 'JAMES vs JANIE — Mobile Persona Comparison',
         description:
-          'Flutter-based Android client. JAMES is the conversational front-end — the face of C.O.R.E. on mobile. Default persona: analytical, direct, task-oriented. Core Brain shows live reasoning steps. Vault stores sensitive data locally. Dashboard surfaces system health and memory state. Diagnostics exposes live bridge and model status.',
+          'Flutter-based Android client. Both personas share the exact same infrastructure — same memory system, same Tailscale bridge, same model layer. Persona switching is instant with zero backend changes. Left column is JAMES (analytical, direct). Right column is JANIE (warmer, conversational). The AI layer adapts; the architecture stays constant.',
         input: 'Platform: Flutter · Android · Modules: Chat, Vault, Core Brain, Dashboard, Diagnostics, Session',
-        images: ['/core/james_chat.jpeg', '/core/james_core_1.jpeg', '/core/james_vault.jpeg', '/core/james_dashboard_1.jpeg', '/core/james_diagnostics.jpeg', '/core/james_session.jpeg'],
+        paired: true,
+        pairedLabels: ['JAMES', 'JANIE'],
+        images: [
+          '/core/james_chat.jpeg', '/core/janie_chat.jpeg',
+          '/core/james_vault.jpeg', '/core/janie_vault.jpeg',
+          '/core/james_core_1.jpeg', '/core/janie_core_1.jpeg',
+          '/core/james_dashboard_1.jpeg', '/core/janie_dashboard_1.jpeg',
+          '/core/james_diagnostics.jpeg', '/core/janie_diagnostics.jpeg',
+          '/core/james_session.jpeg', '/core/janie_session.jpeg',
+        ],
       },
       {
-        title: 'JANIE — Mobile Persona',
+        title: 'DAVID vs DARA — Desktop Persona Comparison',
         description:
-          'The second mobile persona. JANIE shares the exact same infrastructure as JAMES — same memory, same bridge, same model layer — but presents with a distinct conversational tone and context. Persona switching is instant. Both run on the same Flutter client with zero backend changes.',
-        input: 'Platform: Flutter · Android · Modules: Chat, Vault, Core Brain, Dashboard, Diagnostics, Session',
-        images: ['/core/janie_chat.jpeg', '/core/janie_core_1.jpeg', '/core/janie_vault.jpeg', '/core/janie_dashboard_1.jpeg', '/core/janie_diagnostics.jpeg', '/core/janie_session.jpeg'],
-      },
-      {
-        title: 'DAVID — Desktop Client',
-        description:
-          'React + Python Windows client. DAVID is the computational brain — handles heavy tasks, file management, and autonomous project execution. Cortex is the central command hub. Can receive delegated tasks from JAMES over the Tailscale bridge. Default persona: analytical, research-oriented.',
+          'React + Python Windows client. DAVID is the computational brain — handles heavy tasks, file management, and autonomous project execution. DARA is the same system with a warmer persona. Both personas have full module parity. Cortex is the central command hub. Tasks and Projects can be delegated from JAMES over the Tailscale bridge.',
         input: 'Platform: React + Python · Windows · Modules: Cortex, Files, Tasks, Projects, Settings, Security + Bridge',
-        images: ['/core/david_chat.png', '/core/david_cortex.png', '/core/david_dashboard.png', '/core/david_tasks.png', '/core/david_files.png', '/core/david_projects.png'],
-        landscape: true,
-      },
-      {
-        title: 'DARA — Desktop Persona',
-        description:
-          'The second desktop persona. DARA shares the same Python backend and React shell as DAVID but presents with a warmer, more conversational tone. Demonstrates the dual-persona architecture — the AI layer adapts while the infrastructure stays constant.',
-        input: 'Platform: React + Python · Windows · Full module parity with DAVID',
-        images: ['/core/dara_chat.png', '/core/dara_cortex.png', '/core/dara_dashboard.png', '/core/dara_tasks.png', '/core/dara_files.png', '/core/dara_projects.png'],
+        paired: true,
+        pairedLabels: ['DAVID', 'DARA'],
+        images: [
+          '/core/david_chat.png', '/core/dara_chat.png',
+          '/core/david_cortex.png', '/core/dara_cortex.png',
+          '/core/david_dashboard.png', '/core/dara_dashboard.png',
+          '/core/david_tasks.png', '/core/dara_tasks.png',
+          '/core/david_files.png', '/core/dara_files.png',
+          '/core/david_projects.png', '/core/dara_projects.png',
+        ],
         landscape: true,
       },
     ],

@@ -598,22 +598,50 @@ const CaseStudy = () => {
                         </div>
 
                         {/* Image strip */}
-                        <div className={`w-full xl:w-3/5 grid gap-3 ${
-                          module.landscape ? 'grid-cols-2' :
-                          module.images.length === 4 ? 'grid-cols-2 lg:grid-cols-4 xl:grid-cols-2' :
-                          module.images.length === 3 ? 'grid-cols-1 sm:grid-cols-3 xl:grid-cols-1' :
-                          module.images.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
-                          'grid-cols-1'
-                        }`}>
-                          {module.images.map((img, imgIdx) => (
-                            <div key={imgIdx} className="overflow-y-auto overflow-x-hidden max-h-[600px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full">
-                              <img
-                                src={img}
-                                alt={`${module.title} screen ${imgIdx + 1}`}
-                                className="w-full h-auto object-contain"
-                              />
+                        <div className={`w-full xl:w-3/5 flex flex-col gap-3`}>
+                          {/* Paired mode: column headers */}
+                          {module.paired && module.pairedLabels && (
+                            <div className="grid grid-cols-2 gap-3 mb-1">
+                              {module.pairedLabels.map((label) => (
+                                <p key={label} className="text-center font-mono text-[9px] uppercase tracking-widest text-accent2">{label}</p>
+                              ))}
                             </div>
-                          ))}
+                          )}
+                          {/* Paired mode: chunk images into pairs */}
+                          {module.paired ? (
+                            Array.from({ length: Math.ceil(module.images.length / 2) }).map((_, rowIdx) => (
+                              <div key={rowIdx} className="grid grid-cols-2 gap-3">
+                                {module.images.slice(rowIdx * 2, rowIdx * 2 + 2).map((img, imgIdx) => (
+                                  <div key={imgIdx} className={`overflow-hidden rounded-md border border-border bg-surface2 relative shadow-lg ${module.landscape ? 'max-h-[280px]' : 'max-h-[420px]'}`}>
+                                    <img
+                                      src={img}
+                                      alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
+                                      className="w-full h-full object-cover object-top"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            ))
+                          ) : (
+                            /* Standard grid mode */
+                            <div className={`grid gap-3 ${
+                              module.landscape ? 'grid-cols-2' :
+                              module.images.length === 4 ? 'grid-cols-2 lg:grid-cols-4 xl:grid-cols-2' :
+                              module.images.length === 3 ? 'grid-cols-1 sm:grid-cols-3 xl:grid-cols-1' :
+                              module.images.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
+                              'grid-cols-1'
+                            }`}>
+                              {module.images.map((img, imgIdx) => (
+                                <div key={imgIdx} className="overflow-y-auto overflow-x-hidden max-h-[600px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full">
+                                  <img
+                                    src={img}
+                                    alt={`${module.title} screen ${imgIdx + 1}`}
+                                    className="w-full h-auto object-contain"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
