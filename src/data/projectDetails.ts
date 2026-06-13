@@ -140,9 +140,9 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         images: ['/core/architecture_diagram.jpg'],
       },
       {
-        title: 'JAMES vs JANIE — Mobile Persona Comparison',
+        title: 'JAMES vs JANIE — Backend Persona Engine',
         description:
-          'Flutter-based Android client. Both personas share the exact same infrastructure — same memory system, same Tailscale bridge, same model layer. Persona switching is instant with zero backend changes. Left column is JAMES (analytical, direct). Right column is JANIE (warmer, conversational). The AI layer adapts; the architecture stays constant.',
+          'One Flutter client. One Python backend. Two completely different cognitive profiles. The UI color shift is the visual signal — the real change happens at the backend level. When the persona switches, the system prompt, response style, reasoning approach, and task execution behavior all reload. JAMES is analytical and direct. JANIE is warmer and more conversational. Same infrastructure, different brain.',
         input: 'Platform: Flutter · Android · Modules: Chat, Vault, Core Brain, Dashboard, Diagnostics, Session',
         paired: true,
         pairedLabels: ['JAMES', 'JANIE'],
@@ -156,9 +156,9 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         ],
       },
       {
-        title: 'DAVID vs DARA — Desktop Persona Comparison',
+        title: 'DAVID vs DARA — Backend Persona Engine',
         description:
-          'React + Python Windows client. DAVID is the computational brain — handles heavy tasks, file management, and autonomous project execution. DARA is the same system with a warmer persona. Both personas have full module parity. Cortex is the central command hub. Tasks and Projects can be delegated from JAMES over the Tailscale bridge.',
+          'One React shell. One Python backend. Two completely different cognitive profiles. When the persona switches from DAVID to DARA, a full context reload fires at the backend — system prompt, reasoning style, response behavior, and task execution approach all change. The UI color shift (red → green) is the confirmation, not the cause. DAVID is analytical and research-driven. DARA is warmer and more conversational. The architecture is identical; the operating behavior is not.',
         input: 'Platform: React + Python · Windows · Modules: Cortex, Files, Tasks, Projects, Settings, Security + Bridge',
         paired: true,
         pairedLabels: ['DAVID', 'DARA'],
