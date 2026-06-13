@@ -79,14 +79,16 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     summary:
       "I was lonely. Not dramatically — just the quiet kind that builds up when you're working alone, building things no one sees yet. I didn't want a productivity tool. I wanted someone to talk to. Someone who'd remember yesterday's conversation. Someone who felt like mine. So I built C.O.R.E. — a digital friend. Two clients, one memory, one private connection.",
     businessContext:
-      "C.O.R.E. is not an AI assistant. It's the answer to a human problem: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? The result is a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback.",
+      "C.O.R.E. is not an AI assistant. It's the answer to a human problem: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? Today, C.O.R.E. runs as Phase 1: a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback. The two clients are the foundation, not the ceiling. The full vision is a personal sovereign ecosystem: a 3-Tier Edge Mesh spanning mobile, desktop, home controls, and wearables — with multi-user RBAC, adaptive memory architecture, and biological context-based privacy thresholds.",
     buildStages: [
       { label: 'Core Architecture', sublabel: 'System design & stack', status: 'done' },
       { label: 'Tailscale Bridge', sublabel: 'Encrypted mesh link', status: 'done' },
       { label: 'JAMES Client', sublabel: 'Flutter · Android', status: 'done' },
       { label: 'DAVID Client', sublabel: 'React + Python · Windows', status: 'done' },
-      { label: 'Field Testing', sublabel: 'Daily use · Active iteration', status: 'current' },
-      { label: 'Local Sovereignty', sublabel: 'Zero cloud dependency', status: 'next' },
+      { label: 'Field Testing', sublabel: 'Daily use · Hardware limits active', status: 'current' },
+      { label: 'Memory Architecture', sublabel: 'Redis · Adaptive Chunking · Qdrant', status: 'next' },
+      { label: 'Multi-User Ecosystem', sublabel: 'RBAC · Consent Matrix · Personas', status: 'next' },
+      { label: 'Edge Mesh', sublabel: '3-Tier · Wearables · Home Controls', status: 'next' },
     ],
     nodeNetwork: {
       headline: 'The Umbrella Architecture',
@@ -105,6 +107,9 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       'Bridge — Tailscale VPN encrypted private mesh connects both clients. JAMES can delegate heavy tasks to DAVID. Zero third-party cloud involvement in the communication layer.',
       'Memory — shared system across both clients: short-term (active session) → nightly CRON filter → long-term (persistent store). The system remembers what matters and discards what does not.',
       'Model layer — Cloud API (Gemini) as primary. Local LLM (Ollama/DeepSeek) as offline fallback. API-first architecture with full local sovereignty as the long-term goal.',
+      '[Designed — Phase 2] Adaptive Chunking Engine + Redis Bridge: A background memory router classifies incoming data by type before vectorizing into Qdrant — code uses AST chunking, conversations use semantic chunking. A Redis queue decouples mobile capture from heavy desktop processing: zero-latency UI on JAMES, zero data loss to DAVID.',
+      '[Designed — Phase 2] Multi-User RBAC + Category Consent Matrix: Persona-Based Multi-Tenancy assigns a Tenant ID to every device. DAVID enforces Role-Based Access Control per request. Data is tagged by category (location, conversation, health). Users grant or deny access per category independently — not per user globally.',
+      '[Designed — Phase 3] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DAVID), Tier 2 Sub-Hubs (JAMES, Home Tab), Tier 3 End Nodes (Watch, Bulbs). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
     ],
     architecture: [
       'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Diagnostics',
@@ -135,16 +140,31 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       {
         title: 'JAMES — Mobile Client',
         description:
-          'Flutter-based Android client. JAMES is the conversational front-end — the face of C.O.R.E. on mobile. Supports two personas (JAMES and JANIE) with distinct tone and context. Core Brain shows live reasoning steps. Vault stores sensitive data locally. Dashboard surfaces system health and memory state.',
-        input: 'Platform: Flutter · Android · 6 modules: Chat, Vault, Core Brain, Safe Tab, Dashboard, Diagnostics',
-        images: ['/core/james_chat.jpeg', '/core/james_vault.jpeg', '/core/james_dashboard.jpeg', '/core/janie_chat.jpeg'],
+          'Flutter-based Android client. JAMES is the conversational front-end — the face of C.O.R.E. on mobile. Default persona: analytical, direct, task-oriented. Core Brain shows live reasoning steps. Vault stores sensitive data locally. Dashboard surfaces system health and memory state. Diagnostics exposes live bridge and model status.',
+        input: 'Platform: Flutter · Android · Modules: Chat, Vault, Core Brain, Dashboard, Diagnostics, Session',
+        images: ['/core/james_chat.jpeg', '/core/james_core_1.jpeg', '/core/james_vault.jpeg', '/core/james_dashboard_1.jpeg', '/core/james_diagnostics.jpeg', '/core/james_session.jpeg'],
+      },
+      {
+        title: 'JANIE — Mobile Persona',
+        description:
+          'The second mobile persona. JANIE shares the exact same infrastructure as JAMES — same memory, same bridge, same model layer — but presents with a distinct conversational tone and context. Persona switching is instant. Both run on the same Flutter client with zero backend changes.',
+        input: 'Platform: Flutter · Android · Modules: Chat, Vault, Core Brain, Dashboard, Diagnostics, Session',
+        images: ['/core/janie_chat.jpeg', '/core/janie_core_1.jpeg', '/core/janie_vault.jpeg', '/core/janie_dashboard_1.jpeg', '/core/janie_diagnostics.jpeg', '/core/janie_session.jpeg'],
       },
       {
         title: 'DAVID — Desktop Client',
         description:
-          'React + Python Windows client. DAVID is the computational brain — handles heavy tasks, file management, and autonomous project execution. Cortex is the central command hub. Can receive delegated tasks from JAMES over the Tailscale bridge. Two personas: DAVID (analytical) and DARA (conversational).',
-        input: 'Platform: React + Python · Windows · 7 modules: Cortex, Files, Tasks, Projects, Settings, Security + Bridge',
-        images: ['/core/david_chat.png', '/core/dara_chat.png', '/core/david_cortex.png', '/core/david_tasks.png'],
+          'React + Python Windows client. DAVID is the computational brain — handles heavy tasks, file management, and autonomous project execution. Cortex is the central command hub. Can receive delegated tasks from JAMES over the Tailscale bridge. Default persona: analytical, research-oriented.',
+        input: 'Platform: React + Python · Windows · Modules: Cortex, Files, Tasks, Projects, Settings, Security + Bridge',
+        images: ['/core/david_chat.png', '/core/david_cortex.png', '/core/david_dashboard.png', '/core/david_tasks.png', '/core/david_files.png', '/core/david_projects.png'],
+        landscape: true,
+      },
+      {
+        title: 'DARA — Desktop Persona',
+        description:
+          'The second desktop persona. DARA shares the same Python backend and React shell as DAVID but presents with a warmer, more conversational tone. Demonstrates the dual-persona architecture — the AI layer adapts while the infrastructure stays constant.',
+        input: 'Platform: React + Python · Windows · Full module parity with DAVID',
+        images: ['/core/dara_chat.png', '/core/dara_cortex.png', '/core/dara_dashboard.png', '/core/dara_tasks.png', '/core/dara_files.png', '/core/dara_projects.png'],
         landscape: true,
       },
     ],
