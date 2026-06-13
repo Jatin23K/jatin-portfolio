@@ -571,9 +571,9 @@ const CaseStudy = () => {
                       </div>
                     ) : (
                       /* ── Split layout (modules with left-side context) ── */
-                      <div className="flex flex-col gap-5">
-                        {/* Context block — full width above */}
-                        <div className="grid gap-4 lg:grid-cols-2">
+                      <div className="flex flex-col xl:flex-row gap-8 items-center">
+                        {/* Text Content */}
+                        <div className="flex w-full xl:w-2/5 flex-col gap-5">
                           <p className="text-sm leading-relaxed text-text-dim">{module.description}</p>
                           {module.input && (
                             <div className="rounded-md border border-border bg-surface2/60 p-4">
@@ -581,36 +581,36 @@ const CaseStudy = () => {
                               <p className="text-sm font-medium italic text-text-dim border-l-2 border-accent3 pl-3">{module.input}</p>
                             </div>
                           )}
+
+                          {module.differentiators && module.differentiators.length > 0 && (
+                            <div className="rounded-md border border-border bg-surface/80 p-4">
+                              <p className="font-mono text-[9px] uppercase tracking-widest text-accent2 mb-3">Vs. Generic Wrapper</p>
+                              <ul className="space-y-3">
+                                {module.differentiators.map((diff, i) => (
+                                  <li key={i} className="flex gap-3 text-sm text-text-dim items-start">
+                                    <span className="text-accent2 mt-0.5">↳</span>
+                                    <span>{diff}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
                         </div>
 
-                        {module.differentiators && module.differentiators.length > 0 && (
-                          <div className="rounded-md border border-border bg-surface/80 p-4">
-                            <p className="font-mono text-[9px] uppercase tracking-widest text-accent2 mb-3">Vs. Generic Wrapper</p>
-                            <ul className="space-y-3">
-                              {module.differentiators.map((diff, i) => (
-                                <li key={i} className="flex gap-3 text-sm text-text-dim items-start">
-                                  <span className="text-accent2 mt-0.5">↳</span>
-                                  <span>{diff}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {/* Image strip — 2×2 for landscape (desktop), 4-col for portrait (mobile) */}
-                        <div className={`grid gap-3 ${
+                        {/* Image strip */}
+                        <div className={`w-full xl:w-3/5 grid gap-3 ${
                           module.landscape ? 'grid-cols-2' :
-                          module.images.length === 4 ? 'grid-cols-2 lg:grid-cols-4' :
-                          module.images.length === 3 ? 'grid-cols-1 sm:grid-cols-3' :
+                          module.images.length === 4 ? 'grid-cols-2 lg:grid-cols-4 xl:grid-cols-2' :
+                          module.images.length === 3 ? 'grid-cols-1 sm:grid-cols-3 xl:grid-cols-1' :
                           module.images.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
                           'grid-cols-1'
                         }`}>
                           {module.images.map((img, imgIdx) => (
-                            <div key={imgIdx} className="overflow-hidden rounded-md border border-border bg-surface2 relative group shadow-lg">
+                            <div key={imgIdx} className="overflow-y-auto overflow-x-hidden max-h-[600px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full">
                               <img
                                 src={img}
                                 alt={`${module.title} screen ${imgIdx + 1}`}
-                                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                                className="w-full h-auto object-contain"
                               />
                             </div>
                           ))}

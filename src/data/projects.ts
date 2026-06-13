@@ -93,9 +93,7 @@ export const projects: Project[] = [
       { label: 'Memory', value: 'Persistent · Nightly Filter' },
       { label: 'Network', value: 'Private Encrypted Mesh' },
     ],
-    links: {
-      github: 'https://github.com/Jatin23K/CORE-Sovereign-Orchestrator'
-    },
+    links: {},
     order: 0,
     homeOrder: 1,
     isVisible: true,
