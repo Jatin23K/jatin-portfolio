@@ -616,7 +616,7 @@ const CaseStudy = () => {
                                     <img
                                       src={img}
                                       alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
-                                      className="w-full h-full object-cover object-top"
+                                      className={`w-full ${module.landscape ? 'h-full object-cover object-top' : 'h-auto object-contain'}`}
                                     />
                                   </div>
                                 ))}
