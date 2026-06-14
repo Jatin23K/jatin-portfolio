@@ -83,14 +83,12 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     businessContext:
       "C.O.R.E. is not an AI assistant. It's the answer to a human problem: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? Today, C.O.R.E. runs as Phase 1: a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback. The two clients are the foundation, not the ceiling. The full vision is a personal sovereign ecosystem: a 3-Tier Edge Mesh spanning mobile, desktop, home controls, and wearables — with multi-user RBAC, adaptive memory architecture, and biological context-based privacy thresholds.",
     buildStages: [
-      { label: 'Core Architecture', sublabel: 'System design & stack', status: 'done' },
-      { label: 'Tailscale Bridge', sublabel: 'Encrypted mesh link', status: 'done' },
-      { label: 'JAMES Client', sublabel: 'Flutter · Android', status: 'done' },
-      { label: 'DAVID Client', sublabel: 'React + Python · Windows', status: 'done' },
-      { label: 'Field Testing', sublabel: 'Daily use · Hardware limits active', status: 'current' },
-      { label: 'Memory Architecture', sublabel: 'Redis · Adaptive Chunking · Qdrant', status: 'next' },
-      { label: 'Multi-User Ecosystem', sublabel: 'RBAC · Consent Matrix · Personas', status: 'next' },
-      { label: 'Edge Mesh', sublabel: '3-Tier · Wearables · Home Controls', status: 'next' },
+      { label: 'Phase 1 — Architecture', sublabel: 'System design · Stack · Zero-Trust DRM', status: 'done' },
+      { label: 'Phase 1 — Bridge', sublabel: 'Tailscale encrypted mesh · Live', status: 'done' },
+      { label: 'Phase 1 — JAMES', sublabel: 'Flutter · Android client · Live', status: 'done' },
+      { label: 'Phase 1 — DAVID', sublabel: 'React + Python · Windows client · Live', status: 'done' },
+      { label: 'Phase 1 — Field Testing', sublabel: 'Daily use · Hardware limits active', status: 'current' },
+      { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {
       headline: 'The Umbrella Architecture',
@@ -109,9 +107,9 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       'Bridge — Tailscale VPN encrypted private mesh connects both clients. JAMES can delegate heavy tasks to DAVID. Zero third-party cloud involvement in the communication layer.',
       'Memory — shared system across both clients: short-term (active session) → nightly CRON filter → long-term (persistent store). The system remembers what matters and discards what does not.',
       'Model layer — Cloud API (Gemini) as primary. Local LLM (Ollama/DeepSeek) as offline fallback. API-first architecture with full local sovereignty as the long-term goal.',
-      '[Designed — Phase 2] Adaptive Chunking Engine + Redis Bridge: A background memory router classifies incoming data by type before vectorizing into Qdrant — code uses AST chunking, conversations use semantic chunking. A Redis queue decouples mobile capture from heavy desktop processing: zero-latency UI on JAMES, zero data loss to DAVID.',
-      '[Designed — Phase 2] Multi-User RBAC + Category Consent Matrix: Persona-Based Multi-Tenancy assigns a Tenant ID to every device. DAVID enforces Role-Based Access Control per request. Data is tagged by category (location, conversation, health). Users grant or deny access per category independently — not per user globally.',
-      '[Designed — Phase 3] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DGX Spark — dedicated AI hardware, currently served by DAVID/PC), Tier 2 Sub-Hubs (JAMES, Home Tablet, PC nodes — coordinate their own end nodes), Tier 3 End Nodes (Smart Watch, Meta Glasses, Smart Bulbs — consumers, no local logic). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
+      '[Phase 2 · Ecosystem] Adaptive Chunking Engine + Redis Bridge: A background memory router classifies incoming data by type before vectorizing into Qdrant — code uses AST chunking, conversations use semantic chunking. A Redis queue decouples mobile capture from heavy desktop processing: zero-latency UI on JAMES, zero data loss to DAVID.',
+      '[Phase 2 · Ecosystem] Multi-User RBAC + Category Consent Matrix: Persona-Based Multi-Tenancy assigns a Tenant ID to every device. DAVID enforces Role-Based Access Control per request. Data is tagged by category (location, conversation, health). Users grant or deny access per category independently — not per user globally.',
+      '[Phase 2 · Ecosystem] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DGX Spark — dedicated AI hardware, currently served by DAVID/PC), Tier 2 Sub-Hubs (JAMES, Home Tablet, PC nodes — coordinate their own end nodes), Tier 3 End Nodes (Smart Watch, Meta Glasses, Smart Bulbs — consumers, no local logic). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
     ],
     architecture: [
       'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Diagnostics',
