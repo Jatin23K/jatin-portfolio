@@ -612,7 +612,7 @@ const CaseStudy = () => {
                             Array.from({ length: Math.ceil(module.images.length / 2) }).map((_, rowIdx) => (
                               <div key={rowIdx} className="grid grid-cols-2 gap-3">
                                 {module.images.slice(rowIdx * 2, rowIdx * 2 + 2).map((img, imgIdx) => (
-                                  <div key={imgIdx} className={`overflow-hidden rounded-md border border-border bg-surface2 relative shadow-lg ${module.landscape ? 'max-h-[280px]' : 'max-h-[420px]'}`}>
+                                  <div key={imgIdx} className={`overflow-hidden rounded-md border border-border bg-surface2 relative shadow-lg ${module.landscape ? 'max-h-[280px]' : ''}`}>
                                     <img
                                       src={img}
                                       alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
