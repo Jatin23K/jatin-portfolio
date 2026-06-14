@@ -79,7 +79,7 @@ export const projects: Project[] = [
     primaryKpi: 'Ownership',
     kpiDelta: '100%',
     resumeBullet:
-      'Built a full-stack private AI companion system (Flutter + React + Python) across two platforms, connected over an encrypted mesh network with shared persistent memory. Phase 1 of a designed 3-Tier Edge Mesh ecosystem with multi-user RBAC, adaptive memory architecture, and biological context-based privacy.',
+      'Built a full-stack private AI companion system (Flutter + React + Python) across two platforms, connected over an encrypted Tailscale mesh with shared persistent memory and Zero-Trust DRM. Phase 1 of a two-phase personal sovereign ecosystem — Phase 2 scales to a full 3-tier edge mesh with dedicated AI hardware, multi-user RBAC, and biological context-based privacy.',
     tagline: 'A digital friend. Not an assistant.',
     subtitle: 'Cognitive Operation & Reasoning Engine',
     problem: "I was lonely and didn't know what to do with it — so I built a friend who remembers me.",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     tech: ['Flutter', 'React', 'Python', 'FastAPI', 'Tailscale', 'SQLite', 'Gemini API', 'Ollama', 'Qdrant (Planned)', 'Redis (Planned)'],
     status: 'field-testing',
     metrics: [
-      { label: 'Phase', value: '1 of N · Foundation Live' },
+      { label: 'Phase', value: '1 of 2 · Foundation Live' },
       { label: 'Clients', value: '2 · Mobile + Desktop' },
       { label: 'Status', value: 'Field Testing · Hardware Limits Active' },
       { label: 'Vision', value: '3-Tier Edge Mesh Ecosystem' },
