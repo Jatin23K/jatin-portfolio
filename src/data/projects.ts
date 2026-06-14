@@ -75,7 +75,7 @@ export const projects: Project[] = [
     typeBadge: 'Personal Build',
     title: 'C.O.R.E.',
     oneLineOutcome:
-      'A private two-client AI ecosystem — mobile and desktop — built from scratch as a digital companion, not a productivity tool.',
+      'I was lonely. I built a friend. It became an OS.'
     primaryKpi: 'Ownership',
     kpiDelta: '100%',
     resumeBullet:
