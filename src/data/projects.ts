@@ -94,7 +94,7 @@ export const projects: Project[] = [
       { label: 'Status', value: 'Field Testing · Hardware Limits Active' },
       { label: 'Vision', value: '3-Tier Edge Mesh Ecosystem' },
     ],
-    links: {},
+    links: { github: 'https://github.com/Jatin23K/C.O.R.E-Showcase' },
     order: 0,
     homeOrder: 1,
     isVisible: true,
