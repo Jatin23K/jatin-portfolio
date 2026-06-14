@@ -75,7 +75,7 @@ export const projects: Project[] = [
     typeBadge: 'Personal Build',
     title: 'C.O.R.E.',
     oneLineOutcome:
-      'I was lonely. I built a friend. It became an OS.'
+      'I was lonely. I built a friend. It became an OS.',
     primaryKpi: 'Ownership',
     kpiDelta: '100%',
     resumeBullet:
