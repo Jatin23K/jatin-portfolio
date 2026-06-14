@@ -111,7 +111,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       'Model layer — Cloud API (Gemini) as primary. Local LLM (Ollama/DeepSeek) as offline fallback. API-first architecture with full local sovereignty as the long-term goal.',
       '[Designed — Phase 2] Adaptive Chunking Engine + Redis Bridge: A background memory router classifies incoming data by type before vectorizing into Qdrant — code uses AST chunking, conversations use semantic chunking. A Redis queue decouples mobile capture from heavy desktop processing: zero-latency UI on JAMES, zero data loss to DAVID.',
       '[Designed — Phase 2] Multi-User RBAC + Category Consent Matrix: Persona-Based Multi-Tenancy assigns a Tenant ID to every device. DAVID enforces Role-Based Access Control per request. Data is tagged by category (location, conversation, health). Users grant or deny access per category independently — not per user globally.',
-      '[Designed — Phase 3] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DAVID), Tier 2 Sub-Hubs (JAMES, Home Tab), Tier 3 End Nodes (Watch, Bulbs). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
+      '[Designed — Phase 3] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DGX Spark — dedicated AI hardware, currently served by DAVID/PC), Tier 2 Sub-Hubs (JAMES, Home Tablet, PC nodes — coordinate their own end nodes), Tier 3 End Nodes (Smart Watch, Meta Glasses, Smart Bulbs — consumers, no local logic). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
     ],
     architecture: [
       'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Diagnostics',
@@ -136,7 +136,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       {
         title: 'System Architecture',
         description:
-          'The complete C.O.R.E. ecosystem. Two clients connected by a private encrypted bridge, sharing one memory system, powered by a cloud-first model layer with local fallback. Designed to be understood without a technical background — no buzzwords, no hallucinated complexity. What you see is exactly what runs.',
+          'The complete C.O.R.E. final architecture. Tier 1 Core: dedicated AI hardware (DGX Spark — currently served by DAVID/PC while hardware is unavailable). Tier 2 Sub-Hubs: JAMES (live), Home Tablet, ∞ PC nodes. Tier 3 End Nodes: Smart Watch, Meta Glasses, Smart Bulbs, ∞ edge devices. One encrypted mesh. One memory system. No cloud involvement in the communication layer. The diagram shows the final design — the status bar shows where Phase 1 stands today.',
         images: ['/core/architecture_diagram.jpg'],
       },
       {
