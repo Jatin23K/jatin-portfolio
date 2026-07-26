@@ -31,25 +31,25 @@ const Home = () => {
       <ProjectsSection
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
-        label="CASE STUDIES / APPLIED DATA SCIENCE"
-        title="Applied Data Science"
-        subtitle="Predictive ML modeling, anomaly detection, cohort analytics, and automated SQL pipelines."
+        label="CASE STUDIES / PREDICTIVE ML & ANALYTICS"
+        title="Predictive ML & Analytics Pipelines"
+        subtitle="Predictive ML modeling, SHAP interpretability, anomaly detection, cohort analytics, and optimized SQL pipelines."
         listAriaLabel="ML systems"
       />
       <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="CASE STUDIES / AGENTIC ENGINEERING"
-        title="Agentic Systems & LLM Engineering"
-        subtitle="Deployed LLM orchestration, RAG pipelines, multi-agent workflows, and MCP server infrastructure."
+        label="CASE STUDIES / LLM & AGENTIC SYSTEMS"
+        title="Applied LLM Systems & Agentic Workflows"
+        subtitle="Deployed LLM evaluation pipelines, RAG vector retrieval, multi-agent workflows, and MCP server infrastructure."
         listAriaLabel="AI systems"
       />
       <ProjectsSection
         projects={pipelineProjects()}
         sectionId="projects-pipeline"
-        label="CASE STUDIES / SOVEREIGN BUILDS"
-        title="Sovereign Builds"
-        subtitle="Built for myself. Runs on my hardware. Exists outside any platform or subscription."
+        label="CASE STUDIES / SOVEREIGN EDGE SYSTEMS"
+        title="Sovereign Edge Systems"
+        subtitle="Hardware-constrained edge deployment, Zero-Trust DRM, and persistent memory architecture running outside any third-party platform."
         listAriaLabel="Sovereign builds"
       />
       <ContactSection />

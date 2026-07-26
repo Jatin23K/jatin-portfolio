@@ -13,25 +13,25 @@ const ProjectsPage = () => {
       <ProjectsSection
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
-        label="01 / Applied Data Science"
-        title="Applied Data Science"
-        subtitle="Predictive ML modeling, anomaly detection, cohort analytics, and automated SQL pipelines."
+        label="01 / Predictive ML & Analytics"
+        title="Predictive ML & Analytics Pipelines"
+        subtitle="Predictive ML modeling, SHAP interpretability, anomaly detection, cohort analytics, and optimized SQL pipelines."
         listAriaLabel="ML systems"
       />
       <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="02 / Agentic Engineering"
-        title="Agentic Systems & LLM Engineering"
-        subtitle="Deployed LLM orchestration, RAG pipelines, multi-agent workflows, and MCP server infrastructure."
+        label="02 / LLM & Agentic Systems"
+        title="Applied LLM Systems & Agentic Workflows"
+        subtitle="Deployed LLM evaluation pipelines, RAG vector retrieval, multi-agent workflows, and MCP server infrastructure."
         listAriaLabel="AI systems"
       />
       <ProjectsSection
         projects={pipelineProjects()}
         sectionId="projects-pipeline"
-        label="03 / Sovereign Builds"
-        title="Sovereign Builds"
-        subtitle="Built for myself. Runs on my hardware. Exists outside any platform or subscription."
+        label="03 / Sovereign Edge Systems"
+        title="Sovereign Edge Systems"
+        subtitle="Hardware-constrained edge deployment, Zero-Trust DRM, and persistent memory architecture running outside any third-party platform."
         listAriaLabel="Sovereign builds"
       />
     </main>
