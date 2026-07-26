@@ -279,6 +279,56 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       'False negatives on obfuscated language — Sophisticated legal teams write around common keywords. The LLM catches semantic violations that regex misses, but extremely unusual phrasing can still slip through at LOW confidence.',
     ],
     nextRelease: 'Firefox store submission and public Chrome Web Store listing.',
+    visualModules: [
+      {
+        title: 'DuckDuckGo Privacy Policy (SAFE Tier · 100/100)',
+        description: 'Clean, privacy-first service. Quick Scan returns a fast 92/100 SAFE verdict. Deep Scan evaluates all 6 pillars via the ensemble judge, confirms 6/6 safe pillars, clears soft retention warnings, and highlights zero-logging clauses on the live DOM.',
+        input: 'Target URL: duckduckgo.com/privacy',
+        differentiators: [
+          'Zero False-Positives: Deep Scan corroboration pass prevents clean policies from being penalized.',
+          'Live DOM Grounding: Highlights DuckDuckGo\'s explicit zero-tracking guarantee directly on the page.',
+          'Tier Parity: Both tiers accurately classify the service as SAFE.'
+        ],
+        paired: true,
+        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        images: [
+          '/tldr/ddg_quick.png',
+          '/tldr/ddg_deep.png'
+        ]
+      },
+      {
+        title: 'LinkedIn User Agreement (OKAY Tier · 70/100)',
+        description: 'Standard enterprise platform terms. Quick Scan returns a cautionary 42/100 RISKY verdict. Deep Scan filters out 2 soft boilerplate flags, verifies 2 true high-risk clauses (AI Training & Content Sublicensing) with HIGH confidence, and accurately raises the verdict to 70/100 OKAY.',
+        input: 'Target URL: linkedin.com/legal/user-agreement',
+        differentiators: [
+          'False-Positive Suppression: Dual-model corroborator + Rule D7 filtered out weak retention/dark-pattern flags.',
+          'Verbatim Citation: Pulls exact 3.1 Content License text and highlights it live on the page.',
+          'Clear Tier Progression: Demonstrates why Deep Scan exists — to turn quick caution into precise legal analysis.'
+        ],
+        paired: true,
+        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        images: [
+          '/tldr/linkedin_quick.png',
+          '/tldr/linkedin_deep.png'
+        ]
+      },
+      {
+        title: 'TikTok Terms of Service (RISKY Tier · 20/100)',
+        description: 'High-risk consumer platform terms. Both Quick Scan and Deep Scan agree 100% on extreme risk (20/100 RISKY), flagging perpetual sublicensable content licenses, AI model training, and broad liability waivers.',
+        input: 'Target URL: tiktok.com/legal/page/us/terms-of-service/en',
+        differentiators: [
+          'Unanimous Consensus: Both single-pass Flash and dual-model Ensemble catch major privacy violations.',
+          'Hard-Violation Detection: Catches forced arbitration and sublicensable license clauses deterministically.',
+          'Verbatim DOM Evidence: Highlights exact content grant text live in TikTok\'s document DOM.'
+        ],
+        paired: true,
+        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        images: [
+          '/tldr/tiktok_quick.png',
+          '/tldr/tiktok_deep.png'
+        ]
+      }
+    ],
     businessPotential: {
       summary: 'Privacy literacy is a growing consumer concern and a regulatory imperative. TLDR Shield sits at the intersection of both — a tool that makes the invisible visible.',
       productPrinciples: [
