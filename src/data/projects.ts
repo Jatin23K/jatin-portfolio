@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     id: 'tldr-shield',
     tier: 1,
-    typeBadge: 'Browser Extension',
+    typeBadge: 'Applied DS / ML',
     title: 'TLDR Shield',
     oneLineOutcome:
       'AI privacy scanner that scores any Terms & Conditions across 6 pillars in seconds — tested from DuckDuckGo (100/100 SAFE) to TikTok (20/100 RISKY) with 100% verbatim evidence and live DOM text highlighting.',
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   {
     id: 'launchmint-ai',
     tier: 2,
-    typeBadge: 'AI Product',
+    typeBadge: 'Applied DS Engine',
     title: 'LaunchMintAI',
     oneLineOutcome:
       'Forensic startup intelligence engine that compresses market validation into a single evidence-backed research pass.',
@@ -144,7 +144,7 @@ export const projects: Project[] = [
   {
     id: 'leap-axiom',
     tier: 2,
-    typeBadge: 'AI System',
+    typeBadge: 'Applied DS Copilot',
     title: 'AXIOM',
     oneLineOutcome:
       'Multi-agent + RAG data copilot that moves from raw datasets to evidence-backed analytical recommendations.',
