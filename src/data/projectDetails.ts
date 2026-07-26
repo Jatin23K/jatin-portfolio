@@ -226,30 +226,90 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
   },
   'tldr-shield': {
     summary:
-      'TLDR Shield is a privacy risk scanner that converts long terms-and-conditions text into an actionable risk breakdown for end users.',
+      'TLDR Shield is a shipped Chrome extension that scans any Terms & Conditions page and returns a structured privacy risk score in seconds. It evaluates 6 privacy pillars — AI Training, Data Selling, Data Retention, Content Ownership, Dark Patterns, and Transparency — using an LLM pipeline with deterministic post-processing, confidence grading, and verbatim citation highlighting directly on the page. Validated across 6 real-world policies: TikTok (20/100), Spotify (35/100), Google (35/100), OpenAI (50/100), Meta (55/100), Signal (65/100).',
     businessContext:
-      'Users almost never read policy documents, and teams building privacy-first products need a fast way to explain risk clearly.',
+      'Nobody reads Terms & Conditions. That is not laziness — it is a rational response to documents that are deliberately long, dense, and written by lawyers for lawyers. The result is that users unknowingly sign away rights to their data, their content, and their legal recourse every time they click "I Agree." TLDR Shield solves this by acting as an always-on privacy advocate: scan the policy you are about to agree to, get a score, and see exactly which clauses are the problem — before you sign.',
+    buildStages: [
+      { label: 'Pillar Design', sublabel: 'Define 6 privacy pillars · scoring rubric · confidence model', status: 'done' },
+      { label: 'LLM Pipeline', sublabel: 'Chunking · NVIDIA NIM · prompt engineering · extraction', status: 'done' },
+      { label: 'Post-Processing', sublabel: 'Citation verification · confidence grading · penalty scoring', status: 'done' },
+      { label: 'Chrome Extension', sublabel: 'Content script · panel UI · mark.js highlighting · cache layer', status: 'done' },
+      { label: 'Credibility Validation', sublabel: '6-document test · TikTok → Signal · HIGH confidence across all', status: 'done' },
+      { label: 'Firefox + Deployment', sublabel: 'Render backend · Firefox port · public distribution', status: 'current' },
+    ],
     approach: [
-      'Capture policy text from browser context and normalize clauses into a structured document model.',
-      'Score each clause against six privacy pillars with prompt-constrained evaluation and deterministic post-processing.',
-      'Generate a short decision summary that highlights highest-risk clauses first.',
+      'Six-Pillar Scoring Framework — Every policy is evaluated against six independently scored privacy pillars: AI Training (does the service train models on your data?), Data Selling (is your data shared with third parties for commercial purposes?), Data Retention (how long is your data kept after deletion?), Content Ownership (do you retain rights to what you create?), Dark Patterns (arbitration clauses, class action waivers, liability caps), and Transparency (are policy changes clearly communicated?). Each pillar carries its own penalty weight — Dark Patterns costs up to 20 points, all others up to 15. The final 0–100 score maps to SAFE (90+), OKAY (50–89), or RISKY (<50).',
+      'LLM Pipeline with Deterministic Post-Processing — The policy text is extracted via Readability, stripped of cookie/GDPR boilerplate, and chunked into overlapping segments. Each chunk is sent to the NVIDIA NIM inference API with a structured prompt that forces the model to return a JSON object per pillar: violation (boolean), citation (verbatim text), and confidence (HIGH/MEDIUM/LOW). The output is then run through a deterministic post-processing layer that checks citation groundedness, applies confidence scoring, and merges results across chunks.',
+      'Three-Tier Confidence System — HIGH confidence: the citation is found verbatim in the document and matches a hard-coded violation pattern (e.g. binding arbitration, class action waiver, sublicensable license). MEDIUM confidence: the LLM identified a violation and provided a citation that is grounded in the document but not exactly verbatim. LOW confidence: the LLM flagged something but the citation cannot be verified on the page — applies a reduced half-penalty instead of full, and displays a soft warning instead of a RISKY badge.',
+      'Hard Violation Detection as a Safety Net — In parallel with the LLM, a regex-based hard violation detector scans the full text for legally unambiguous patterns: mandatory arbitration clauses, class action waivers, liability caps below $500, statute of limitations reductions, data broker language. If the hard detector fires but the LLM missed it, the violation is forcibly inserted. This prevents the LLM from being talked out of a real violation by clever lawyerly framing.',
+      'Verbatim Citation Highlighting — When the user clicks a pillar, the cited text is highlighted directly on the live policy page using mark.js. The extension normalizes typographic variants (en-dashes, curly quotes, non-breaking spaces) before searching the DOM to handle the mismatch between server-extracted text and browser-rendered Unicode. If highlighting fails on a JavaScript-rendered SPA (e.g. Spotify), the citation box still shows the verbatim text.',
     ],
     architecture: [
-      'Browser extension UI for intake and result rendering.',
-      'Policy parsing and chunking service.',
-      'NVIDIA NIM-powered evaluation layer with rule-based score calibration.',
+      'Chrome Extension (content.js + background.js): Extracts policy text via Readability, manages the floating scan panel, renders pillars and citations, highlights text via mark.js.',
+      'Backend (server.ts on Render): Receives text, strips boilerplate, chunks into overlapping segments, sends each chunk to the LLM, merges results.',
+      'LLM Layer (NVIDIA NIM — meta/llama-3.1-70b-instruct): Evaluates each chunk against all 6 pillars. Returns structured JSON per pillar.',
+      'Post-Processing (postprocess.ts): updatePillarConfidence() checks citation groundedness. applyConsistencyCrossCheck() prevents weak LLM output from overriding strong hard-detector signals.',
+      'Scoring (scoring.ts): PILLAR_PENALTY table maps each pillar to full/reduced penalty. Final score = 100 minus all deductions.',
+      'Cache Layer: Server-side LRU cache with version gate (CACHE_VERSION). Any cache entry from a previous build is automatically rejected to prevent stale results.',
     ],
+    evaluation: {
+      summary: '6 real-world policy documents tested after completion. All scores and confidence levels are from clean-cache scans with no manual intervention.',
+      metrics: [
+        { metric: 'TikTok ToS', final: '20 / 100 · RISKY', delta: '5/5 pillars flagged HIGH confidence' },
+        { metric: 'Spotify ToS', final: '35 / 100 · RISKY', delta: '4/5 pillars flagged HIGH confidence' },
+        { metric: 'Google ToS', final: '35 / 100 · RISKY', delta: '4/5 pillars flagged HIGH confidence' },
+        { metric: 'OpenAI ToS', final: '50 / 100 · OKAY', delta: 'AI Training flagged HIGH, data selling SAFE' },
+        { metric: 'Meta Privacy Policy', final: '55 / 100 · OKAY', delta: 'AI Training + Data Selling HIGH confidence' },
+        { metric: 'Signal ToS', final: '65 / 100 · OKAY', delta: '2 flags (retention + dark patterns), rest SAFE' },
+      ],
+      validationStrategy: 'Each document scanned with cache cleared. Results checked for: (1) score differentiation — no two policies should score identically, (2) confidence quality — violations should be HIGH or MEDIUM on documents with known clauses, (3) citation accuracy — verbatim text highlighted on the page, (4) no false positives — Signal should not be flagged for pillars that its policy explicitly addresses.',
+    },
     milestones: [
-      'Scoring rubric finalized and tested on representative samples.',
-      'Core extension workflow stabilized from capture to score display.',
-      'Explainability panel under active iteration.',
+      'Shipped Chrome extension: policy extraction → LLM evaluation → scored result in under 30 seconds.',
+      'Six-pillar scoring framework with per-pillar penalty weights and three-tier confidence grading.',
+      'Hard violation detection layer catching arbitration, class action waivers, and liability caps deterministically.',
+      'Citation highlighting working on live policy pages via mark.js with typographic normalization.',
+      'Cache versioning system: stale results auto-rejected when pipeline logic changes.',
+      '6-document validation test passed: TikTok (20) → Signal (65) — correct scores, correct confidence levels, verbatim citations.',
     ],
     risks: [
-      'Policy language ambiguity can produce false confidence without robust confidence signals.',
-      'Score drift risk when policy patterns evolve.',
+      'LLM citation paraphrasing — The LLM sometimes returns a slightly reworded version of the clause rather than verbatim text. Solved by the three-tier confidence system: paraphrased citations are downgraded to LOW confidence and carry reduced penalties, rather than being treated as full violations.',
+      'JavaScript-rendered pages — Spotify and similar SPA pages render via React. The server extracts the text correctly, but mark.js cannot highlight it in the live DOM. Mitigated by typographic normalization and word-window sliding search. Residual cases show a soft warning in the citation box.',
+      'Regulatory drift — Privacy laws and common policy patterns evolve. The hard violation patterns and LLM prompts need periodic review as new clause types emerge (e.g. biometric data collection, cross-device tracking).',
+      'False negatives on obfuscated language — Sophisticated legal teams write around common keywords. The LLM catches semantic violations that regex misses, but extremely unusual phrasing can still slip through at LOW confidence.',
     ],
-    nextRelease: 'Public demo with confidence banding and source-level evidence trace.',
+    nextRelease: 'Firefox store submission and public Chrome Web Store listing.',
+    businessPotential: {
+      summary: 'Privacy literacy is a growing consumer concern and a regulatory imperative. TLDR Shield sits at the intersection of both — a tool that makes the invisible visible.',
+      productPrinciples: [
+        {
+          title: 'Evidence-First, Not Opinion-First',
+          description: 'Every flag in TLDR Shield is backed by a verbatim citation from the actual document. There is no opinion, no heuristic, no vague warning. The user sees exactly what the company wrote and exactly why it is a problem.',
+        },
+        {
+          title: 'Differentiated Scoring',
+          description: 'TikTok scores 20. Signal scores 65. Google scores 35. OpenAI scores 50. The tool produces meaningfully different results for meaningfully different policies — not a uniform "everything is risky" alarm.',
+        },
+        {
+          title: 'Confidence Transparency',
+          description: 'The system knows what it knows and what it does not. HIGH confidence = verbatim evidence. LOW confidence = half-penalty and a soft warning. Users are never misled by false certainty.',
+        },
+      ],
+      model: {
+        b2c: 'Free Chrome extension for individual users. Premium tier: historical scan tracking, company comparison dashboard, policy change alerts when a site updates its terms.',
+        b2b: 'API access for privacy compliance teams, legal departments, and EdTech platforms. Embed TLDR Shield into procurement workflows to auto-scan vendor ToS before contract sign-off.',
+      },
+      roadmap: [
+        { level: '01', title: 'Current — Chrome Extension', description: 'Shipped. Six pillars, verbatim citations, confidence grading, cache versioning. Validated on 6 real-world policies.', isCurrent: true },
+        { level: '02', title: 'Firefox + Public Store', description: 'Firefox port complete. Pending Web Store submission and public distribution.' },
+        { level: '03', title: 'Policy Change Alerts', description: 'Re-scan trigger when a policy URL returns a new document hash. Notify the user when terms materially change.' },
+        { level: '04', title: 'Company Comparison Dashboard', description: 'Compare scores across companies side-by-side. Filter by pillar. See which sector has the worst data practices.' },
+      ],
+      vision: 'Every time someone clicks "I Agree," they should know what they are agreeing to. TLDR Shield makes that possible without requiring anyone to become a lawyer.',
+      closing: 'The product is not a privacy opinion. It is a privacy audit — automated, grounded, and honest about its own confidence.',
+    },
   },
+
   'launchmint-ai': {
     summary:
       'LaunchMintAI is a forensic startup intelligence engine that compresses market validation into a single evidence-backed research pass. It stress-tests startup ideas with market signals, competitive positioning, and adversarial prompts before teams commit build time.',
