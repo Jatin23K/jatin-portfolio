@@ -91,13 +91,13 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {
-      headline: 'The Umbrella Architecture',
-      description: "C.O.R.E. started strictly as a digital friend to solve a human problem. But in building the infrastructure—a secure Tailscale mesh, a persistent memory filter, and local LLM fallbacks—I realized I wasn't just building a chatbot; I was building the foundation for an autonomous orchestration engine. The long-term roadmap for C.O.R.E. is to evolve from a personal companion into my Personal OS—acting as the central umbrella that will eventually route intelligence and data across all my projects.",
+      headline: 'The Master Umbrella Architecture',
+      description: "C.O.R.E. is architected as a Personal Sovereign OS — serving as the central umbrella orchestration engine that routes memory, vector search, zero-trust security, and automated task execution across all specialized sub-projects.",
       nodes: [
-        { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'planned', path: '/projects/tldr-shield' },
-        { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'planned', path: '/projects/launchmint-ai' },
-        { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'planned', path: '/projects/leap-axiom' },
-        { name: 'CRUCIBLE', role: 'Data & Model Governance', status: 'planned', path: '/projects/core-mcp-platform' },
+        { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'connected', path: '/projects/tldr-shield' },
+        { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'connected', path: '/projects/launchmint-ai' },
+        { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'connected', path: '/projects/leap-axiom' },
+        { name: 'CRUCIBLE', role: 'Data & Model Governance', status: 'connected', path: '/projects/core-mcp-platform' },
       ],
     },
     approach: [
