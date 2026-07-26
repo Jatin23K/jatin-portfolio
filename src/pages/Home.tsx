@@ -40,7 +40,7 @@ const Home = () => {
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
         label="CASE STUDIES / APPLIED DATA SCIENCE"
-        title="Applied ML & Data Engineering"
+        title="Autonomous AI & Agentic Systems"
         subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
         listAriaLabel="ML systems"
       />

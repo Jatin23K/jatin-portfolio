@@ -22,7 +22,7 @@ const ProjectsPage = () => {
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
         label="02 / Applied Data Science"
-        title="Applied ML & Data Engineering"
+        title="Autonomous AI & Agentic Systems"
         subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
         listAriaLabel="ML systems"
       />
