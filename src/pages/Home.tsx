@@ -29,20 +29,20 @@ const Home = () => {
       <SkillsSection skills={skills} />
       <VisionSection />
       <ProjectsSection
+        projects={traditionalDataSystems()}
+        sectionId="projects-ml"
+        label="CASE STUDIES / APPLIED DATA SCIENCE"
+        title="Applied ML & Data Engineering"
+        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
+        listAriaLabel="ML systems"
+      />
+      <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
         label="CASE STUDIES / CORE ENGINEERING"
         title="Autonomous AI & Agentic Systems"
         subtitle="Deployed LLM orchestration, RAG pipelines, and multi-agent workflows."
         listAriaLabel="AI systems"
-      />
-      <ProjectsSection
-        projects={traditionalDataSystems()}
-        sectionId="projects-ml"
-        label="CASE STUDIES / APPLIED DATA SCIENCE"
-        title="Autonomous AI & Agentic Systems"
-        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
-        listAriaLabel="ML systems"
       />
       <ProjectsSection
         projects={pipelineProjects()}

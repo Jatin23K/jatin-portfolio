@@ -11,20 +11,20 @@ const ProjectsPage = () => {
         canonicalPath="/projects"
       />
       <ProjectsSection
+        projects={traditionalDataSystems()}
+        sectionId="projects-ml"
+        label="01 / Applied Data Science"
+        title="Applied ML & Data Engineering"
+        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
+        listAriaLabel="ML systems"
+      />
+      <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="01 / Core Engineering"
+        label="02 / Core Engineering"
         title="Autonomous AI & Agentic Systems"
         subtitle="Deployed LLM orchestration, RAG pipelines, and multi-agent workflows."
         listAriaLabel="AI systems"
-      />
-      <ProjectsSection
-        projects={traditionalDataSystems()}
-        sectionId="projects-ml"
-        label="02 / Applied Data Science"
-        title="Autonomous AI & Agentic Systems"
-        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
-        listAriaLabel="ML systems"
       />
       <ProjectsSection
         projects={pipelineProjects()}
