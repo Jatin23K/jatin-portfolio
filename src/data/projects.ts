@@ -45,24 +45,24 @@ export const projects: Project[] = [
     typeBadge: 'Browser Extension',
     title: 'TLDR Shield',
     oneLineOutcome:
-      'AI privacy scanner that scores any Terms & Conditions across 6 pillars in seconds — tested against TikTok (20/100) to Signal (65/100) with verbatim evidence and clause-level explainability.',
+      'AI privacy scanner that scores any Terms & Conditions across 6 pillars in seconds — tested from DuckDuckGo (100/100 SAFE) to TikTok (20/100 RISKY) with 100% verbatim evidence and live DOM text highlighting.',
     primaryKpi: 'Review Time Reduction',
     kpiDelta: '~90%',
     resumeBullet:
-      'Shipped a Chrome extension that runs LLM-backed privacy risk analysis on any policy document — scoring 6 pillars with verbatim citations, confidence grading, and per-clause penalty logic. Validated across 6 real-world policies (TikTok 20/100 → Signal 65/100).',
+      'Shipped a Chrome extension that runs LLM-backed privacy risk analysis on any policy document — scoring 6 pillars with verbatim citations, confidence grading, and per-clause penalty logic. Validated across production policies (DuckDuckGo 100/100 → TikTok 20/100).',
     tagline: 'Privacy risk scanner for Terms & Conditions',
     problem: 'Nobody reads T&C documents. Privacy risks hidden in legalese go completely unnoticed.',
     solution:
       'Deployed Chrome extension that sends policy text to a cloud LLM pipeline — evaluating AI Training, Data Selling, Data Retention, Content Ownership, Dark Patterns, and Transparency. Returns a 0–100 risk score with verbatim citations highlighted directly on the page.',
-    impact: 'Privacy risk assessment in seconds instead of hours. Tested across 6 real-world policies: TikTok correctly scored 20/100 (5 RISKY pillars, HIGH confidence), Signal 65/100, Google 35/100, Meta 55/100, Spotify 35/100, OpenAI 50/100.',
-    tech: ['TypeScript', 'Node.js', 'Chrome Extension', 'LLM Pipeline', 'NVIDIA NIM', 'Render', 'Prompt Engineering'],
+    impact: 'Privacy risk assessment in seconds instead of hours. Validated across 6 production policies: DuckDuckGo 100/100 SAFE, LinkedIn 70/100 OKAY, Signal 65/100 OKAY, OpenAI 50/100 OKAY, Apple 50/100 OKAY, Microsoft 35/100 RISKY, TikTok 20/100 RISKY.',
+    tech: ['TypeScript', 'Node.js', 'Chrome Extension', 'Google Gemini 2.5', 'Firestore', 'Render', 'Express'],
     status: 'shipped',
     metrics: [
       { label: 'Risk Pillars', value: '6' },
-      { label: 'Policies Validated', value: '6 Real-World' },
+      { label: 'DuckDuckGo Score', value: '100 / 100 · SAFE' },
+      { label: 'LinkedIn Score', value: '70 / 100 · OKAY' },
       { label: 'TikTok Score', value: '20 / 100 · RISKY' },
-      { label: 'Signal Score', value: '65 / 100 · OKAY' },
-      { label: 'Review Time Reduction', value: '~90%' },
+      { label: 'Review Time Saved', value: '~90%' },
     ],
     links: {
       github: 'https://github.com/Jatin23K/TLDR-Shield',
