@@ -14,16 +14,16 @@ const ProjectsPage = () => {
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
         label="01 / Applied Data Science"
-        title="Applied ML & Data Engineering"
-        subtitle="Traditional machine learning models, anomaly detection, and automated SQL reporting."
+        title="Applied Data Science"
+        subtitle="Predictive ML modeling, anomaly detection, cohort analytics, and automated SQL pipelines."
         listAriaLabel="ML systems"
       />
       <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="02 / Core Engineering"
-        title="Autonomous AI & Agentic Systems"
-        subtitle="Deployed LLM orchestration, RAG pipelines, and multi-agent workflows."
+        label="02 / Agentic Engineering"
+        title="Agentic Systems & LLM Engineering"
+        subtitle="Deployed LLM orchestration, RAG pipelines, multi-agent workflows, and MCP server infrastructure."
         listAriaLabel="AI systems"
       />
       <ProjectsSection
