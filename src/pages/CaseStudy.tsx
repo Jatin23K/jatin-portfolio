@@ -610,29 +610,16 @@ const CaseStudy = () => {
                           {/* Paired mode: chunk images into pairs */}
                           {module.paired ? (
                             Array.from({ length: Math.ceil(module.images.length / 2) }).map((_, rowIdx) => (
-                              <div key={rowIdx} className="grid grid-cols-2 gap-3 items-start">
-                                {module.images.slice(rowIdx * 2, rowIdx * 2 + 2).map((img, imgIdx) => {
-                                  // Quick Scan (even index) = portrait panel → center with padding
-                                  // Deep Scan (odd index)  = landscape full-page → cover from top
-                                  const isQuick = imgIdx % 2 === 0;
-                                  return (
-                                    <div
-                                      key={imgIdx}
-                                      className="overflow-hidden rounded-md border border-border bg-surface2 shadow-lg flex items-center justify-center"
-                                      style={{ height: '380px' }}
-                                    >
-                                      <img
-                                        src={img}
-                                        alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
-                                        className={`rounded-sm ${
-                                          isQuick
-                                            ? 'h-full w-auto object-contain'       // portrait: full height, natural width
-                                            : 'w-full h-full object-cover object-top' // landscape: fill frame from top
-                                        }`}
-                                      />
-                                    </div>
-                                  );
-                                })}
+                              <div key={rowIdx} className="grid grid-cols-2 gap-3">
+                                {module.images.slice(rowIdx * 2, rowIdx * 2 + 2).map((img, imgIdx) => (
+                                  <div key={imgIdx} className={`overflow-y-auto overflow-x-hidden max-h-[650px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full ${module.landscape ? 'max-h-[280px]' : ''}`}>
+                                    <img
+                                      src={img}
+                                      alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
+                                      className={`w-full ${module.landscape ? 'h-full object-cover object-top' : 'h-auto object-contain'}`}
+                                    />
+                                  </div>
+                                ))}
                               </div>
                             ))
                           ) : (

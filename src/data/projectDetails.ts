@@ -293,7 +293,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         pairedLabels: ['⚡ QUICK SCAN · 85/100 SAFE', '🔬 DEEP SCAN · 100/100 SAFE · 6/6 Pillars'],
         images: [
           '/tldr/proton_quick.png',
-          '/tldr/proton_deep.png'
+          '/tldr/proton_deep_composite.png'
         ]
       },
       {
@@ -309,7 +309,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         pairedLabels: ['⚡ QUICK SCAN · 50/100 OKAY (Cautious)', '🔬 DEEP SCAN · 50/100 OKAY · 3 Hazards'],
         images: [
           '/tldr/notion_quick.png',
-          '/tldr/notion_deep.png'
+          '/tldr/notion_deep_composite.png'
         ]
       },
       {
@@ -324,8 +324,8 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         paired: true,
         pairedLabels: ['⚡ QUICK SCAN · 20/100 RISKY · −80 pts', '🔬 DEEP SCAN · 20/100 RISKY · 5/6 Pillars Flagged'],
         images: [
-          '/tldr/tiktok_quick.png',
-          '/tldr/tiktok_deep.png'
+          '/tldr/tiktok_quick_composite.png',
+          '/tldr/tiktok_deep_composite.png'
         ]
       }
     ],
