@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ExternalLink, Network, Server } from 'lucide-react'
 import { RouteMeta } from '../components/seo/RouteMeta'
@@ -5,6 +6,74 @@ import { projectDetails } from '../data/projectDetails'
 import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
 import { getProjectById, shouldShowProjectAction } from '../utils/projectSelectors'
+
+/* ─── Scrollable Image Frame with Scroll Down Prompt ────────── */
+const ScrollableImageFrame = ({
+  src,
+  alt,
+  maxHeight = 'max-h-[580px]',
+  landscape = false,
+}: {
+  src: string;
+  alt: string;
+  maxHeight?: string;
+  landscape?: boolean;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState(false);
+
+  const checkScroll = () => {
+    if (!containerRef.current) return;
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+    // Show button if content height exceeds container by at least 25px and not scrolled near bottom
+    setCanScroll(scrollHeight - clientHeight > 25 && scrollTop < scrollHeight - clientHeight - 30);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, [src]);
+
+  const handleScrollDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ top: 350, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className={`relative group rounded-md border border-border bg-surface2 shadow-lg overflow-hidden ${landscape ? 'max-h-[280px]' : ''}`}>
+      <div
+        ref={containerRef}
+        onScroll={checkScroll}
+        className={`${maxHeight} overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-accent2/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-accent2/80`}
+      >
+        <img
+          src={src}
+          alt={alt}
+          onLoad={checkScroll}
+          className={`w-full ${landscape ? 'h-full object-cover object-top' : 'h-auto object-contain block'}`}
+        />
+      </div>
+
+      {/* Floating Scroll Down Prompt Button */}
+      {canScroll && (
+        <button
+          type="button"
+          onClick={handleScrollDown}
+          className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider bg-surface/90 text-accent2 border border-accent2/50 rounded-full shadow-xl backdrop-blur-md hover:bg-accent2 hover:text-surface transition-all duration-200 animate-bounce group-hover:animate-none cursor-pointer"
+          title="Click to scroll down"
+        >
+          <span>Scroll Down</span>
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+};
 
 /* ─── Timeline list ──────────────────────────────────────────── */
 const TimelineList = ({ items }: { items: string[] }) => (
@@ -559,13 +628,12 @@ const CaseStudy = () => {
                         <p className="text-sm leading-relaxed text-text-dim">{module.description}</p>
                         <div className={`grid gap-4 ${module.images.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                           {module.images.map((img, imgIdx) => (
-                            <div key={imgIdx} className="overflow-hidden rounded-md border border-border bg-surface2 relative group shadow-lg">
-                              <img
-                                src={img}
-                                alt={`${module.title} ${imgIdx + 1}`}
-                                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01]"
-                              />
-                            </div>
+                            <ScrollableImageFrame
+                              key={imgIdx}
+                              src={img}
+                              alt={`${module.title} ${imgIdx + 1}`}
+                              maxHeight="max-h-[650px]"
+                            />
                           ))}
                         </div>
                       </div>
@@ -612,13 +680,13 @@ const CaseStudy = () => {
                             Array.from({ length: Math.ceil(module.images.length / 2) }).map((_, rowIdx) => (
                               <div key={rowIdx} className="grid grid-cols-2 gap-3">
                                 {module.images.slice(rowIdx * 2, rowIdx * 2 + 2).map((img, imgIdx) => (
-                                  <div key={imgIdx} className={`overflow-y-auto overflow-x-hidden max-h-[650px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full ${module.landscape ? 'max-h-[280px]' : ''}`}>
-                                    <img
-                                      src={img}
-                                      alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
-                                      className={`w-full ${module.landscape ? 'h-full object-cover object-top' : 'h-auto object-contain'}`}
-                                    />
-                                  </div>
+                                  <ScrollableImageFrame
+                                    key={imgIdx}
+                                    src={img}
+                                    alt={`${module.title} screen ${rowIdx * 2 + imgIdx + 1}`}
+                                    landscape={module.landscape}
+                                    maxHeight="max-h-[580px]"
+                                  />
                                 ))}
                               </div>
                             ))
@@ -632,13 +700,12 @@ const CaseStudy = () => {
                               'grid-cols-1'
                             }`}>
                               {module.images.map((img, imgIdx) => (
-                                <div key={imgIdx} className="overflow-y-auto overflow-x-hidden max-h-[600px] rounded-md border border-border bg-surface2 relative shadow-lg scroll-smooth [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-thumb]:rounded-full">
-                                  <img
-                                    src={img}
-                                    alt={`${module.title} screen ${imgIdx + 1}`}
-                                    className="w-full h-auto object-contain"
-                                  />
-                                </div>
+                                <ScrollableImageFrame
+                                  key={imgIdx}
+                                  src={img}
+                                  alt={`${module.title} screen ${imgIdx + 1}`}
+                                  maxHeight="max-h-[600px]"
+                                />
                               ))}
                             </div>
                           )}
