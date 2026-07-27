@@ -258,7 +258,7 @@ export const projects: Project[] = [
       { label: 'Evaluation Action', value: 'KEEP / DECAY / BIN' },
     ],
     links: {
-      github: 'https://github.com/Jatin23K/core_ecosystem_dgx',
+      github: 'https://github.com/Jatin23K/C.O.R.E.-Memory-Intelligence-Engine',
     },
     order: 4,
     isVisible: true,
