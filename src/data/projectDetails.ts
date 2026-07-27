@@ -91,13 +91,13 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {
-      headline: 'The Master Umbrella Architecture',
-      description: "C.O.R.E. is architected as a Personal Sovereign OS — serving as the central umbrella orchestration engine that routes memory, vector search, zero-trust security, and automated task execution across all specialized sub-projects.",
+      headline: 'The Umbrella Architecture',
+      description: "C.O.R.E. started strictly as a digital friend to solve a human problem. But in building the infrastructure—a secure Tailscale mesh, a persistent memory filter, and local LLM fallbacks—I realized I wasn't just building a chatbot; I was building the foundation for an autonomous orchestration engine. The long-term roadmap for C.O.R.E. is to evolve from a personal companion into my Personal OS—acting as the central umbrella that will eventually route intelligence and data across all my projects.",
       nodes: [
-        { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'connected', path: '/projects/tldr-shield' },
-        { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'connected', path: '/projects/launchmint-ai' },
-        { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'connected', path: '/projects/leap-axiom' },
-        { name: 'CRUCIBLE', role: 'Data & Model Governance', status: 'connected', path: '/projects/core-mcp-platform' },
+        { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'planned', path: '/projects/tldr-shield' },
+        { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'planned', path: '/projects/launchmint-ai' },
+        { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'planned', path: '/projects/leap-axiom' },
+        { name: 'CRUCIBLE', role: 'Data & Model Governance', status: 'planned', path: '/projects/core-mcp-platform' },
       ],
     },
     approach: [
@@ -253,16 +253,16 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       'Cache Layer: Redis (L1) + Firestore (L2) with tier-scoped keys (`urlHash:tier`) and version gate (`CACHE_VERSION`). Any cache entry from a previous pipeline version is automatically rejected to prevent stale results.',
     ],
     evaluation: {
-      summary: '6 real-world policy documents tested on live production browser extension scans. All scores, confidence levels, and verbatim citations were verified in live DOM testing.',
+      summary: '3 real-world policy documents tested across 6 live production scans (Quick + Deep each). All scores, confidence levels, and verbatim citations were verified on live pages with the shipped Chrome extension.',
       metrics: [
-        { metric: 'DuckDuckGo Privacy Policy', final: '100 / 100 · SAFE', delta: '6/6 safe pillars, zero-logging citation verified' },
-        { metric: 'LinkedIn User Agreement', final: '70 / 100 · OKAY', delta: 'AI Training + Content Ownership confirmed HIGH confidence' },
-        { metric: 'OpenAI Terms of Use', final: '50 / 100 · OKAY', delta: 'AI Training flagged HIGH, opt-out mechanism identified' },
-        { metric: 'Apple Media Terms', final: '50 / 100 · OKAY', delta: 'Data Selling + Ownership + Dark Patterns ($250 cap) confirmed' },
-        { metric: 'Microsoft Services Agreement', final: '35 / 100 · RISKY', delta: 'Copilot AI terms + Xbox data sharing flagged' },
-        { metric: 'TikTok Terms of Service', final: '20 / 100 · RISKY', delta: '5/5 pillars flagged HIGH confidence, perpetual sublicensable license' },
+        { metric: 'Proton Mail Privacy Policy · Quick Scan', final: '85 / 100 · SAFE', delta: '1 flag: IP log retention (data retention pillar) — correctly identified as the only risk in an otherwise privacy-first policy' },
+        { metric: 'Proton Mail Privacy Policy · Deep Scan', final: '100 / 100 · SAFE', delta: '6/6 pillars clean — ensemble confirmed no AI training, no data selling, end-to-end encryption verified' },
+        { metric: 'Notion Privacy Policy · Quick Scan', final: '50 / 100 · OKAY (Cautious)', delta: '3 flags: data selling, vague retention, dark patterns — targeted advertising sharing confirmed' },
+        { metric: 'Notion Privacy Policy · Deep Scan', final: '50 / 100 · OKAY (Cautious)', delta: '3 Hazards · Data Selling flagged HIGH confidence with verbatim citation grounded on live page' },
+        { metric: 'TikTok Terms of Service · Quick Scan', final: '20 / 100 · RISKY', delta: '5 flags: AI training, data selling, retention, content ownership, dark patterns — −80 pts total' },
+        { metric: 'TikTok Terms of Service · Deep Scan', final: '20 / 100 · RISKY', delta: '5/6 pillars RISKY at HIGH confidence — verbatim $100 liability cap cited and highlighted live on TikTok ToS page' },
       ],
-      validationStrategy: 'Each document scanned with cache cleared. Results checked for: (1) score differentiation — no two policies should score identically, (2) confidence quality — violations should be HIGH or MEDIUM on documents with known clauses, (3) citation accuracy — verbatim text highlighted on the page, (4) no false positives — DuckDuckGo should not be flagged for pillars that its policy explicitly addresses.',
+      validationStrategy: 'Each document scanned fresh (Redis cache cleared via CACHE_VERSION bump to v7). Verified: (1) score correctness — Proton SAFE, Notion OKAY, TikTok RISKY, (2) confidence quality — all violations HIGH/MEDIUM, (3) citation accuracy — verbatim text highlighted on live DOM, (4) shared_cache write confirmed — 6 documents in Firestore ai-studio-... database after scans.',
     },
     milestones: [
       'Shipped Chrome extension: policy extraction → LLM evaluation → scored result in under 30 seconds.',
@@ -281,48 +281,48 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     nextRelease: 'Firefox store submission and public Chrome Web Store listing.',
     visualModules: [
       {
-        title: 'DuckDuckGo Privacy Policy (SAFE Tier · 100/100)',
-        description: 'Clean, privacy-first service. Quick Scan returns a fast 92/100 SAFE verdict. Deep Scan evaluates all 6 pillars via the ensemble judge, confirms 6/6 safe pillars, clears soft retention warnings, and highlights zero-logging clauses on the live DOM.',
-        input: 'Target URL: duckduckgo.com/privacy',
+        title: 'Proton Mail Privacy Policy — 🟢 SAFE (85 → 100 / 100)',
+        description: 'Privacy-first email service. Quick Scan flags one low-severity data retention risk (IP log retention), scoring 85/100 SAFE. Deep Scan\'s ensemble model verifies all 6 pillars — no AI training, no data selling, end-to-end encryption throughout — and upgrades to a clean 100/100 SAFE with 6/6 Safe Pillars confirmed.',
+        input: 'Target URL: proton.me/legal/privacy',
         differentiators: [
-          'Zero False-Positives: Deep Scan corroboration pass prevents clean policies from being penalized.',
-          'Live DOM Grounding: Highlights DuckDuckGo\'s explicit zero-tracking guarantee directly on the page.',
-          'Tier Parity: Both tiers accurately classify the service as SAFE.'
+          'Tier Upgrade: Deep Scan verifies the single Quick Scan flag as non-critical, upgrading from 85 to 100/100.',
+          'Zero False-Positives: Ensemble confirms Proton\'s explicit no-AI-training guarantee verbatim.',
+          'Trust Baseline: Proton is used as the benchmark SAFE policy — anything scoring lower on the same pillars is correctly penalised.'
         ],
         paired: true,
-        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        pairedLabels: ['⚡ QUICK SCAN · 85/100 SAFE', '🔬 DEEP SCAN · 100/100 SAFE · 6/6 Pillars'],
         images: [
-          '/tldr/ddg_quick.png',
-          '/tldr/ddg_deep.png'
+          '/tldr/proton_quick.png',
+          '/tldr/proton_deep.png'
         ]
       },
       {
-        title: 'LinkedIn User Agreement (OKAY Tier · 70/100)',
-        description: 'Standard enterprise platform terms. Quick Scan returns a cautionary 42/100 RISKY verdict. Deep Scan filters out 2 soft boilerplate flags, verifies 2 true high-risk clauses (AI Training & Content Sublicensing) with HIGH confidence, and accurately raises the verdict to 70/100 OKAY.',
-        input: 'Target URL: linkedin.com/legal/user-agreement',
+        title: 'Notion Privacy Policy — 🟡 OKAY (50 / 100)',
+        description: 'Standard SaaS productivity tool with genuine privacy risks. Both Quick and Deep Scan independently agree on 50/100 OKAY (Cautious), flagging data sharing with advertising partners for targeted ads, vague indefinite data retention, and dark patterns. Deep Scan\'s verbatim citation pulls the exact sharing clause and highlights it live on the Notion policy page.',
+        input: 'Target URL: privacycenter.notion.so/policies',
         differentiators: [
-          'False-Positive Suppression: Dual-model corroborator + Rule D7 filtered out weak retention/dark-pattern flags.',
-          'Verbatim Citation: Pulls exact 3.1 Content License text and highlights it live on the page.',
-          'Clear Tier Progression: Demonstrates why Deep Scan exists — to turn quick caution into precise legal analysis.'
+          'Dual Confirmation: Quick and Deep Scan independently reach the same 50/100 verdict — no ensemble correction needed.',
+          'HIGH Confidence Citation: Data selling flagged at HIGH confidence with verbatim text grounded on the live page.',
+          'Cautious Sub-Label: Score of 50 triggers the borderline CAUTIOUS badge — informing users this is a low-OKAY borderline case.'
         ],
         paired: true,
-        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        pairedLabels: ['⚡ QUICK SCAN · 50/100 OKAY (Cautious)', '🔬 DEEP SCAN · 50/100 OKAY · 3 Hazards'],
         images: [
-          '/tldr/linkedin_quick.png',
-          '/tldr/linkedin_deep.png'
+          '/tldr/notion_quick.png',
+          '/tldr/notion_deep.png'
         ]
       },
       {
-        title: 'TikTok Terms of Service (RISKY Tier · 20/100)',
-        description: 'High-risk consumer platform terms. Both Quick Scan and Deep Scan agree 100% on extreme risk (20/100 RISKY), flagging perpetual sublicensable content licenses, AI model training, and broad liability waivers.',
+        title: 'TikTok Terms of Service — 🔴 RISKY (20 / 100)',
+        description: 'High-risk consumer platform with aggressive legal terms. Both Quick and Deep Scan unanimously flag 5 of 6 pillars at HIGH confidence: AI model training license, data selling, indefinite retention, full content ownership grant (sublicensable, irrevocable), and dark patterns including a $100 maximum liability cap. Deep Scan cites and highlights the exact liability clause on the live TikTok ToS page.',
         input: 'Target URL: tiktok.com/legal/page/us/terms-of-service/en',
         differentiators: [
-          'Unanimous Consensus: Both single-pass Flash and dual-model Ensemble catch major privacy violations.',
-          'Hard-Violation Detection: Catches forced arbitration and sublicensable license clauses deterministically.',
-          'Verbatim DOM Evidence: Highlights exact content grant text live in TikTok\'s document DOM.'
+          'Unanimous Consensus: Quick and Deep Scan both return 20/100 — five independent HIGH-confidence violations.',
+          'Hard-Violation Detection: Sublicensable content license and $100 liability cap caught deterministically by the rule engine.',
+          'Live DOM Evidence: Verbatim liability cap clause highlighted in yellow directly on TikTok\'s Terms of Service page.'
         ],
         paired: true,
-        pairedLabels: ['⚡ QUICK SCAN (Fast Triage)', '🔬 DEEP SCAN (Ensemble Audit)'],
+        pairedLabels: ['⚡ QUICK SCAN · 20/100 RISKY · −80 pts', '🔬 DEEP SCAN · 20/100 RISKY · 5/6 Pillars Flagged'],
         images: [
           '/tldr/tiktok_quick.png',
           '/tldr/tiktok_deep.png'
