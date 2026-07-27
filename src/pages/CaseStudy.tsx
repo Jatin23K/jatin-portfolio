@@ -1,4 +1,3 @@
-import { useState, useRef, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ExternalLink, Network, Server } from 'lucide-react'
 import { RouteMeta } from '../components/seo/RouteMeta'
@@ -7,7 +6,7 @@ import { Badge } from '../components/ui/Badge'
 import { Button } from '../components/ui/Button'
 import { getProjectById, shouldShowProjectAction } from '../utils/projectSelectors'
 
-/* ─── Scrollable Image Frame with Scroll Down Prompt ────────── */
+/* ─── Scrollable Image Frame with Prominent Scrollbar ────────── */
 const ScrollableImageFrame = ({
   src,
   alt,
@@ -19,58 +18,17 @@ const ScrollableImageFrame = ({
   maxHeight?: string;
   landscape?: boolean;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canScroll, setCanScroll] = useState(false);
-
-  const checkScroll = () => {
-    if (!containerRef.current) return;
-    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    // Show button if content height exceeds container by at least 25px and not scrolled near bottom
-    setCanScroll(scrollHeight - clientHeight > 25 && scrollTop < scrollHeight - clientHeight - 30);
-  };
-
-  useEffect(() => {
-    checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
-  }, [src]);
-
-  const handleScrollDown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (containerRef.current) {
-      containerRef.current.scrollBy({ top: 350, behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className={`relative group rounded-md border border-border bg-surface2 shadow-lg overflow-hidden ${landscape ? 'max-h-[280px]' : ''}`}>
+    <div className={`rounded-md border border-border bg-surface2 shadow-lg overflow-hidden ${landscape ? 'max-h-[280px]' : ''}`}>
       <div
-        ref={containerRef}
-        onScroll={checkScroll}
-        className={`${maxHeight} overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#0f1115] [&::-webkit-scrollbar-thumb]:bg-accent2/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-accent2/80`}
+        className={`${maxHeight} overflow-y-auto overflow-x-hidden scroll-smooth [&::-webkit-scrollbar]:w-2.5 [&::-webkit-scrollbar-track]:bg-[#12121a] [&::-webkit-scrollbar-track]:rounded-r-md [&::-webkit-scrollbar-thumb]:bg-[#6b6b88] hover:[&::-webkit-scrollbar-thumb]:bg-accent2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border-2 [&::-webkit-scrollbar-thumb]:border-[#12121a]`}
       >
         <img
           src={src}
           alt={alt}
-          onLoad={checkScroll}
           className={`w-full ${landscape ? 'h-full object-cover object-top' : 'h-auto object-contain block'}`}
         />
       </div>
-
-      {/* Floating Scroll Down Prompt Button */}
-      {canScroll && (
-        <button
-          type="button"
-          onClick={handleScrollDown}
-          className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider bg-surface/90 text-accent2 border border-accent2/50 rounded-full shadow-xl backdrop-blur-md hover:bg-accent2 hover:text-surface transition-all duration-200 animate-bounce group-hover:animate-none cursor-pointer"
-          title="Click to scroll down"
-        >
-          <span>Scroll Down</span>
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      )}
     </div>
   );
 };
