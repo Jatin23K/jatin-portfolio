@@ -293,7 +293,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         pairedLabels: ['⚡ QUICK SCAN · 85/100 SAFE', '🔬 DEEP SCAN · 100/100 SAFE · 6/6 Pillars'],
         images: [
           '/tldr/proton_quick.png',
-          '/tldr/proton_deep_composite.png'
+          '/tldr/proton_deep.png'
         ]
       },
       {
@@ -309,7 +309,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         pairedLabels: ['⚡ QUICK SCAN · 50/100 OKAY (Cautious)', '🔬 DEEP SCAN · 50/100 OKAY · 3 Hazards'],
         images: [
           '/tldr/notion_quick.png',
-          '/tldr/notion_deep_composite.png'
+          '/tldr/notion_deep.png'
         ]
       },
       {
@@ -324,8 +324,8 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
         paired: true,
         pairedLabels: ['⚡ QUICK SCAN · 20/100 RISKY · −80 pts', '🔬 DEEP SCAN · 20/100 RISKY · 5/6 Pillars Flagged'],
         images: [
-          '/tldr/tiktok_quick_composite.png',
-          '/tldr/tiktok_deep_composite.png'
+          '/tldr/tiktok_quick.png',
+          '/tldr/tiktok_deep.png'
         ]
       }
     ],
@@ -556,34 +556,42 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     nextRelease:
       'Segment profiling charts (RFM box plots per cluster) and anomaly investigation report for the top 20 flagged customers.',
   },
-  'sql-analytics-engine': {
+  'core-memory-intelligence': {
     summary:
-      'Four analysts spent 16 combined hours every Monday producing revenue numbers that did not agree with each other. Finance said 7% growth, marketing said 6%, the CEO report said 8%. Strategic decisions were being made on conflicting data from inconsistent query logic.',
+      'Predictive Machine Learning engine that manages the lifecycle of conversational AI memories in a distributed Edge-to-Central architecture. Evaluates interaction depth, recall frequency, and sentiment decay to classify memories into KEEP, DECAY, or BIN actions — mathematically validated to cut cloud storage costs by 41.46%.',
     businessContext:
-      'Manual reporting is expensive and unreliable. When the same business question produces different answers depending on who ran the query, leadership stops trusting data entirely. The alternative is not more analysts — it is a single, scheduled, documented query library that everyone pulls from.',
+      'Continuous AI companion systems generate thousands of conversational memory payloads per user. Storing every routine greeting or low-value remark indefinitely on AWS S3 creates exponential storage cost inflation. Conversely, prematurely deleting important user history breaks companion trust. The engine optimizes this trade-off by predicting memory utility under 90% data sparsity.',
     approach: [
-      'Module 1 — Cohort Retention: Track which customers acquired in Month X are still buying in Month X+1, X+2, X+3. Uses DATE_TRUNC, self-join on cohort month, and a retention matrix as output. Answers: does this product create habits or one-time buyers?',
-      'Module 2 — RFM Scoring: Every customer scored 1–5 on Recency, Frequency, and Monetary using NTILE(5) window functions. Total score = R+F+M. Labels: 13–15 = Champion, 3–5 = Lost. Feeds directly into the segmentation project CRM.',
-      'Module 3 — Revenue Trend: Week-over-week growth rate using LAG(), 4-week rolling average using AVG() OVER (ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), revenue share by category using SUM() / SUM() OVER (). One query. One number. Scheduled weekly.',
-      'Module 4 — Query Optimisation: The same revenue trend query written two ways. Naive version: correlated subquery, full table scan, 4-minute runtime on 1M+ rows. Optimised version: CTE, indexed columns, materialised intermediate, 30-second runtime. EXPLAIN ANALYZE output shown side-by-side.',
+      'Feature Engineering: Transformed raw multi-tier interaction logs (RECALL, REFINE, INSPECT) into predictive decay signals: interaction_depth, temporal_decay_rate, recall_frequency, and initial_importance_score.',
+      'Predictive Model (Scikit-Learn): Trained a RandomForestClassifier with balanced class weighting to assign memory evaluation actions: KEEP (persistent storage), DECAY (compress/archive), or BIN (purge payload).',
+      'A/B Financial Simulation: Subjected model predictions to an empirical A/B financial simulation comparing a control strategy (indefinite S3 storage of 6,000 multimodal payloads) against the ML purge strategy, accounting for micro-cent inference compute costs.',
+      'Statistical Proof: Validated model classification validity via Chi-Square Test of Independence, producing p-value = 2.22e-267 to confirm learned system behavior over random chance.',
     ],
     architecture: [
-      'PostgreSQL database with e-commerce schema (orders, customers, products).',
-      'Four documented SQL modules, each with business question, query, and output format.',
-      'EXPLAIN ANALYZE benchmarks for Module 4 showing execution plan differences.',
-      'Scheduled query runner (cron or dbt) for Modules 1–3.',
+      'PostgreSQL Relational Storage: Relational schema enforcing hierarchical device origins, temporal causality, and behavioral data tagging.',
+      'Synthetic Data Pipeline: Poisson and Beta distribution generators producing 30,000 multi-tier memory records and 3,000 retrieval logs simulating real-world edge usage.',
+      'Scikit-Learn & joblib: Serialized model pipeline, scaler, and label encoders for lightweight edge and cloud inference deployment.',
     ],
+    evaluation: {
+      summary: 'Mathematically validated on 30,000 memory records and financial cost simulations.',
+      metrics: [
+        { metric: 'Cloud Storage Cost Reduction', final: '41.46%', delta: 'Net savings accounting for compute inference overhead' },
+        { metric: 'Chi-Square Statistical Test', final: 'p = 2.22e-267', delta: 'Mathematically proves non-random feature-driven classification' },
+        { metric: 'Inference Latency', final: '< 15 ms', delta: 'Optimized tree-based evaluation for micro-cent compute' },
+      ],
+    },
     milestones: [
-      'Database schema loaded and validated against Online Retail II dataset.',
-      'Module 1 (Cohort Retention) complete with retention matrix output.',
-      'Module 2 (RFM Scoring) complete — output table matches segmentation project format.',
+      'Full PostgreSQL relational schema and integrity contracts deployed.',
+      'Random Forest classifier trained and evaluated on 30,000 synthetic memory rows.',
+      'A/B financial simulation complete — 41.46% storage cost reduction verified.',
+      'Chi-Square hypothesis test passed (p-value 2.22e-267).',
     ],
     risks: [
-      'Cohort analysis correctness depends on clean first-purchase dates — data quality check is required before the query runs.',
-      'EXPLAIN ANALYZE results are environment-specific. Runtime benchmarks must be re-run on target infrastructure before publishing.',
+      'High False-Negative Tolerance Architecture — Storing low-value memory is cheap ($0.02/GB), but deleting high-value memory breaks user trust. Model is intentionally tuned to accept false-negatives rather than false-positives.',
+      'Edge Data Sparsity — 90% of memory records lack explicit user retrieval logs, requiring imputation and robust signal extraction from non-retrieved features.',
     ],
     nextRelease:
-      'All four modules complete with runtime benchmarks, business context documentation, and a scheduling configuration for weekly automation.',
+      'Integration with live C.O.R.E. Tailscale mesh for real-time edge memory pruning.',
   },
   'core-mcp-platform': {
     summary:

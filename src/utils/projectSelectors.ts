@@ -38,7 +38,7 @@ export const aiSystems = (): Project[] =>
   visibleProjects().filter((p) => ['tldr-shield', 'launchmint-ai', 'leap-axiom', 'mcp-server'].includes(p.id))
 
 export const traditionalDataSystems = (): Project[] =>
-  visibleProjects().filter((p) => ['churn-prediction', 'customer-segmentation', 'sql-analytics-engine'].includes(p.id))
+  visibleProjects().filter((p) => ['churn-prediction', 'customer-segmentation', 'core-memory-intelligence'].includes(p.id))
 
 export const pipelineProjects = (): Project[] =>
   visibleProjects().filter((p) => ['core-sovereign-bridge'].includes(p.id))
