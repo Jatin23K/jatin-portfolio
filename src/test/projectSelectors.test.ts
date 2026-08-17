@@ -12,16 +12,15 @@ import {
 describe('project selectors', () => {
   it('returns visible projects in numeric order', () => {
     const visible = visibleProjects()
-    expect(visible.length).toBe(7)
+    expect(visible.length).toBe(6)
     expect(visible.every((project) => project.isVisible)).toBe(true)
     expect(visible.map((project) => project.id)).toEqual([
       'tldr-shield',
+      'core-sovereign-bridge',
       'launchmint-ai',
       'leap-axiom',
-      'specialized-ml-project',
-      'sql-analytics-project',
-      'end-to-end-ml-project',
-      'core-mcp-platform',
+      'core-memory-intelligence',
+      'churn-prediction',
     ])
   })
 
@@ -31,7 +30,11 @@ describe('project selectors', () => {
     expect(featured.map((project) => project.id)).toEqual(homepage.map((project) => project.id))
     expect(homepage.length).toBe(3)
     expect(homepage.every((project) => project.featured)).toBe(true)
-    expect(homepage.map((project) => project.id)).toEqual(['tldr-shield', 'launchmint-ai', 'leap-axiom'])
+    expect(homepage.map((project) => project.id)).toEqual([
+      'tldr-shield',
+      'launchmint-ai',
+      'core-memory-intelligence',
+    ])
   })
 
   it('returns project by id', () => {
@@ -40,7 +43,7 @@ describe('project selectors', () => {
   })
 
   it('hides demo/github actions for planned cards', () => {
-    const project = projects.find((item) => item.id === 'specialized-ml-project')
+    const project = projects.find((item) => item.id === 'churn-prediction')
     expect(project).toBeDefined()
     if (!project) {
       return
@@ -52,7 +55,7 @@ describe('project selectors', () => {
   })
 
   it('hides case study action when caseStudyPublished is false', () => {
-    const project = projects.find((item) => item.id === 'specialized-ml-project')
+    const project = projects.find((item) => item.id === 'churn-prediction')
     expect(project).toBeDefined()
     if (!project) {
       return
@@ -62,4 +65,5 @@ describe('project selectors', () => {
     expect(shouldShowProjectAction(project, 'caseStudy')).toBe(false)
   })
 })
+
 

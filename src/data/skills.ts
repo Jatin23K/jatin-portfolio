@@ -1,6 +1,5 @@
 export interface Skill {
   name: string
-  level: number
   label: string
   proof: string
   category: 'data' | 'ml' | 'engineering' | 'ai'
@@ -9,51 +8,38 @@ export interface Skill {
 export const skills: Skill[] = [
   {
     name: 'AI & Agentic Systems',
-    level: 95,
-    label: 'Advanced',
-    proof: 'LLMs, RAG, Fine-tuning, Multi-agent orchestration. Scaling ideas into reality using AI.',
+    label: 'Primary',
+    proof: 'LLMs, RAG, multi-agent orchestration, shipped in TLDR Shield and LaunchMintAI',
     category: 'ai',
   },
   {
     name: 'System Architecture & Design',
-    level: 90,
-    label: 'Advanced',
-    proof: 'OOPs, DSA, system scaling, and structuring AI-generated code into robust pipelines.',
+    label: 'Primary',
+    proof: 'OOP, DSA, system scaling, C.O.R.E. ecosystem design, AXIOM architecture spec',
     category: 'engineering',
   },
   {
     name: 'SQL & Data Pipelines',
-    level: 85,
-    label: 'Advanced',
-    proof: 'Complex querying, window functions, query optimization, and data modeling.',
+    label: 'Strong',
+    proof: 'Complex querying, window functions, query optimization, data modeling',
     category: 'data',
   },
   {
-    name: 'Python (AI-Assisted)',
-    level: 80,
-    label: 'Advanced',
-    proof: 'Focus on architectural logic over manual syntax. Directing AI to build asynchronous OS components.',
+    name: 'Python & ML Pipelines',
+    label: 'Strong',
+    proof: 'FastAPI backends, scikit-learn pipelines, async workflows, production-style ML serving',
     category: 'engineering',
   },
   {
     name: 'Machine Learning',
-    level: 65,
-    label: 'Intermediate',
-    proof: 'Supervised & unsupervised learning, classification, clustering, regression.',
+    label: 'Working',
+    proof: 'Classification, clustering, regression, model evaluation, Memory Intelligence, Churn Prediction',
     category: 'ml',
   },
   {
     name: 'EDA & Statistics',
-    level: 65,
-    label: 'Intermediate',
-    proof: 'Statistical analysis, probability, data quality validation.',
+    label: 'Working',
+    proof: 'Statistical testing, probability, data quality validation, evaluation analysis',
     category: 'data',
-  },
-  {
-    name: 'MLOps & Model Ops',
-    level: 45,
-    label: 'Growing',
-    proof: 'Model validation, pipeline governance, serving, retraining triggers.',
-    category: 'engineering',
   },
 ]

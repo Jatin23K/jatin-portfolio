@@ -1,5 +1,4 @@
 import type { Skill } from '../../data/skills'
-import { useInView } from '../../hooks/useInView'
 
 interface SkillBarProps {
   skill: Skill
@@ -20,12 +19,11 @@ const proofToChips = (proof: string): string[] =>
     .filter((s) => s.length > 0)
 
 export const SkillBar = ({ skill }: SkillBarProps) => {
-  const { elementRef, isInView } = useInView<HTMLDivElement>({ threshold: 0.25 })
   const cat = categoryMeta[skill.category]
   const chips = proofToChips(skill.proof)
 
   return (
-    <div ref={elementRef} className="card-shell transition-all duration-200 hover:border-accent2/40">
+    <div className="card-shell transition-all duration-200 hover:border-accent2/40">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-text">{skill.name}</h3>
         <div className="flex shrink-0 items-center gap-2">
@@ -39,20 +37,8 @@ export const SkillBar = ({ skill }: SkillBarProps) => {
         </div>
       </div>
 
-      <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-surface2" role="presentation">
-        <div
-          className="h-full rounded-full bg-accent transition-all duration-1000 ease-out"
-          style={{ width: `${isInView ? skill.level : 0}%` }}
-          aria-hidden="true"
-        />
-      </div>
-
-      <div className="mt-2 flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim">{skill.level}%</span>
-      </div>
-
       {/* Proof chips */}
-      <div className="mt-3 flex flex-wrap gap-1.5">
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {chips.map((chip) => (
           <span
             key={chip}

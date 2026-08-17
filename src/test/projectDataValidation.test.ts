@@ -29,14 +29,15 @@ describe('project data validation', () => {
   })
 
   it('fails when published case study detail content is absent', () => {
-    const existing = projectDetails['core-mcp-platform']
-    delete (projectDetails as Partial<typeof projectDetails>)['core-mcp-platform']
+    const existing = projectDetails['tldr-shield']
+    delete (projectDetails as Partial<typeof projectDetails>)['tldr-shield']
 
     try {
       const errors = validateProjects(projects)
-      expect(errors).toContain('Published case study missing detail content: core-mcp-platform')
+      expect(errors).toContain('Published case study missing detail content: tldr-shield')
     } finally {
-      projectDetails['core-mcp-platform'] = existing
+      projectDetails['tldr-shield'] = existing
     }
   })
 })
+

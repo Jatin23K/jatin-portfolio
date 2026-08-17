@@ -8,12 +8,19 @@
   --surface2: #1a1a24;
   --border: #343449;
   --accent: #e8ff47;
+  --accent-rgb: 232, 255, 71;
   --accent2: #47c8ff;
   --accent3: #ff6b47;
   --accent4: #c47fff;
   --muted: #6b6b88;
   --text: #e8e8f0;
   --text-dim: #b2b2c8;
+
+  --color-accent: var(--accent);
+  --color-accent-rgb: var(--accent-rgb);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-text-dim: var(--text-dim);
 }
 
 * {

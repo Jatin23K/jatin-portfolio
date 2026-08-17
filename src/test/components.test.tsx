@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 import { Navigation } from '../components/layout/Navigation'
@@ -22,7 +21,7 @@ describe('component smoke tests', () => {
   })
 
   it('renders project card with planned state', () => {
-    const project = projects.find((item) => item.id === 'specialized-ml-project')
+    const project = projects.find((item) => item.id === 'churn-prediction')
     expect(project).toBeDefined()
     if (!project) {
       return
@@ -38,30 +37,26 @@ describe('component smoke tests', () => {
     expect(screen.queryByText('Website')).not.toBeInTheDocument()
   })
 
+
   it('renders skill bar proof chips', () => {
     render(<SkillBar skill={skills[0]} />)
 
-    // Proof text is now split into chips — assert individual tokens are present
-    expect(screen.getByText('13 modules - window functions')).toBeInTheDocument()
-    expect(screen.getByText('query optimization')).toBeInTheDocument()
-    expect(screen.getByText('transactions')).toBeInTheDocument()
+    expect(screen.getByText('LLMs')).toBeInTheDocument()
+    expect(screen.getByText('RAG')).toBeInTheDocument()
+    expect(screen.getByText('multi-agent orchestration')).toBeInTheDocument()
   })
 
-  it('shows missing formspree feedback when form id is not configured', async () => {
-    const user = userEvent.setup()
-
+  it('renders contact section with email and social links', () => {
     render(
       <MemoryRouter>
         <ContactSection />
       </MemoryRouter>,
     )
 
-    await user.type(screen.getByLabelText('Name'), 'Jatin')
-    await user.type(screen.getByLabelText('Email'), 'jatin@example.com')
-    await user.type(screen.getByLabelText('Message'), 'Hello there')
-    await user.click(screen.getByRole('button', { name: 'Send Message ->' }))
-
-    expect(screen.getByText('Form is not configured yet. Email me directly.')).toBeInTheDocument()
+    expect(screen.getByText('jatinkumar20802@gmail.com')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'LinkedIn' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'GitHub' })).toBeInTheDocument()
   })
+
 })
 

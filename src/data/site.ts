@@ -74,7 +74,7 @@ export interface SiteContent {
 export const siteContent: SiteContent = {
   brand: {
     monogram: 'JK',
-    role: 'Jatin Kumar — Applied Data Scientist',
+    role: 'Jatin Kumar — Applied Data Science & AI Systems',
     resumeLabel: 'Download Resume',
     resumeUrl: '/resume.pdf',
   },
@@ -86,16 +86,16 @@ export const siteContent: SiteContent = {
     { label: 'Contact', href: '/#contact' },
   ],
   hero: {
-    badge: 'Applied Data Scientist',
+    badge: 'Applied Data Science & AI Systems',
     headlineTop: "Architecting Intelligence.",
     headlineAccent: 'Shipping',
     headlineAccent2: 'Impact.',
     subline:
-      'Applied Data Scientist building autonomous multi-agent systems, RAG pipelines, and deterministic ML applications. I don\'t just train models in notebooks—I architect and deploy end-to-end solutions that solve real business problems.',
+      'Building autonomous multi-agent systems, RAG pipelines, and deterministic ML applications. I focus on end-to-end systems that connect data, models, and product outcomes.',
     stats: [
-      { value: 'Agentic AI', label: 'RAG & LLM PIPELINES' },
-      { value: 'Predictive ML', label: '& SQL ANALYTICS' },
-      { value: 'Sovereign', label: 'ORCHESTRATION OS' },
+      { value: '~90%', label: 'REVIEW TIME SAVED · TLDR SHIELD' },
+      { value: '41.46%', label: 'STORAGE COST REDUCED · CORE MEMORY' },
+      { value: '< 10 min', label: 'VALIDATION RUNTIME · LAUNCHMINTAI' },
     ],
     primaryCta: 'View Projects ->',
     secondaryCta: 'Download Resume',
@@ -125,9 +125,9 @@ export const siteContent: SiteContent = {
       subtitle: 'Each system is data-grounded, deterministically evaluated, and built for production.',
     },
     skills: {
-      label: '03 / Skills',
+      label: 'Skills & Tools',
       title: 'What I Work With',
-      subtitle: 'Proof-based. No buzzword padding.',
+      subtitle: 'Proof-based. Every skill is backed by a shipped project.',
     },
     vision: {
       label: '04 / Vision',
@@ -135,9 +135,9 @@ export const siteContent: SiteContent = {
       subtitle: 'Transparent AI systems with business impact and user control.',
     },
     contact: {
-      label: '05 / Contact',
-      title: "Let's Talk",
-      subtitle: 'Open to Applied Data Scientist roles, AI/ML collaborations, and real deployment problems.',
+      label: 'Contact',
+      title: 'Hiring Contact',
+      subtitle: 'Seeking entry-level Applied Data Science and AI Systems roles where shipped projects, measurable outcomes, and production-minded execution matter.',
     },
   },
   vision: {
@@ -180,8 +180,8 @@ export const siteContent: SiteContent = {
     missingConfigMessage: 'Form is not configured yet. Email me directly.',
   },
   footer: {
-    copy: 'Built with Python + FastAPI + React — Deployed on Vercel',
-    stack: 'Python + FastAPI + React + TypeScript',
+    copy: 'Built with React + TypeScript + Vite — Deployed on Vercel',
+    stack: 'React + TypeScript + Vite',
     legal: '(c) 2026 Jatin Kumar - All projects are original work',
   },
 }

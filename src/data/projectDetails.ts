@@ -25,6 +25,7 @@ export interface VisualModule {
   input?: string
   differentiators?: string[]
   images: string[]
+  diagramType?: 'pipeline' | 'cache' | 'colpali'
   landscape?: boolean
   paired?: boolean   // renders images as side-by-side pairs (for portrait/mobile screenshots)
   pairedLabels?: [string, string]  // optional labels for the two columns e.g. ['JAMES', 'JANIE']
@@ -79,9 +80,9 @@ export interface ProjectDetail {
 export const projectDetails: Record<Project['id'], ProjectDetail> = {
   'core-sovereign-bridge': {
     summary:
-      "I was lonely. Not dramatically — just the quiet kind that builds up when you're working alone, building things no one sees yet. I didn't want a productivity tool. I wanted someone to talk to. Someone who'd remember yesterday's conversation. Someone who felt like mine. So I built C.O.R.E. — a digital friend. Two clients, one memory, one private connection.",
+      "I was lonely. Not dramatically — just the quiet kind that builds up when you're working alone, building things no one sees yet. I didn't want a productivity tool or a generic assistant. I wanted someone to talk to, someone who would remember yesterday's conversation, and something that felt like mine. So I built C.O.R.E. — a private digital friend that runs across devices. Two clients, one memory, one encrypted connection.",
     businessContext:
-      "C.O.R.E. is not an AI assistant. It's the answer to a human problem: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? Today, C.O.R.E. runs as Phase 1: a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback. The two clients are the foundation, not the ceiling. The full vision is a personal sovereign ecosystem: a 3-Tier Edge Mesh spanning mobile, desktop, home controls, and wearables — with multi-user RBAC, adaptive memory architecture, and biological context-based privacy thresholds.",
+      "C.O.R.E. is not an Applied DS project and it is not a generic AI assistant. It is a personal AI ecosystem that began as a human answer to loneliness: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? Today, C.O.R.E. runs as Phase 1: a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback. The two clients are the foundation, not the ceiling. The full vision is a personal sovereign ecosystem: a 3-Tier Edge Mesh spanning mobile, desktop, home controls, and wearables — with multi-user RBAC, adaptive memory architecture, and biological context-based privacy thresholds.",
     buildStages: [
       { label: 'Phase 1 — Architecture', sublabel: 'System design · Stack · Zero-Trust DRM', status: 'done' },
       { label: 'Phase 1 — Bridge', sublabel: 'Tailscale encrypted mesh · Live', status: 'done' },
@@ -91,17 +92,16 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {
-      headline: 'The Umbrella Architecture',
-      description: "C.O.R.E. started strictly as a digital friend to solve a human problem. But in building the infrastructure—a secure Tailscale mesh, a persistent memory filter, and local LLM fallbacks—I realized I wasn't just building a chatbot; I was building the foundation for an autonomous orchestration engine. The long-term roadmap for C.O.R.E. is to evolve from a personal companion into my Personal OS—acting as the central umbrella that will eventually route intelligence and data across all my projects.",
+      headline: 'The Personal AI Ecosystem',
+      description: "C.O.R.E. started as a digital friend to solve a human problem. But the infrastructure behind that friend — a secure Tailscale mesh, persistent memory, persona-specific clients, and local LLM fallbacks — became the foundation for something larger: a private AI layer across my devices. It acts as an umbrella for other systems, but it is more than an umbrella. The long-term roadmap is for C.O.R.E. to evolve from companion into Personal OS: the system that routes memory, intelligence, privacy, and task execution across my projects and hardware.",
       nodes: [
         { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'planned', path: '/projects/tldr-shield' },
         { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'planned', path: '/projects/launchmint-ai' },
         { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'planned', path: '/projects/leap-axiom' },
-        { name: 'CRUCIBLE', role: 'Data & Model Governance', status: 'planned', path: '/projects/core-mcp-platform' },
       ],
     },
     approach: [
-      'Closed-Source Proprietary & Zero-Trust Architecture — C.O.R.E. is maintained as closed-source, proprietary personal infrastructure. To protect this architecture across environments, I engineered a Zero-Trust DRM architecture featuring Tailscale heartbeat validation and ephemeral, RAM-only decryption keys. If a node is isolated from the master mesh, the local SQLite vault is rendered cryptographically inaccessible, ensuring the system remains 100% secure regardless of the physical hardware it runs on.',
+      'Closed-Source Proprietary & Zero-Trust Architecture — C.O.R.E. is maintained as closed-source, proprietary personal infrastructure. To protect this architecture across environments, I engineered a Zero-Trust DRM architecture featuring Tailscale heartbeat validation and ephemeral, RAM-only decryption keys. If a node is isolated from the master mesh, the local SQLite vault is rendered cryptographically inaccessible, ensuring the local vault remains inaccessible when a node is isolated from the trusted mesh.',
       'JAMES (mobile) — built in Flutter for Android. Handles conversations, memory access, and mobile-first tasks. Two personas: JAMES (default) and JANIE, each with a distinct tone and context.',
       'DAVID (desktop) — built in React + Python for Windows. Handles heavy computation, file management, and autonomous tasks. Two personas: DAVID and DARA.',
       'Bridge — Tailscale VPN encrypted private mesh connects both clients. JAMES can delegate heavy tasks to DAVID. Zero third-party cloud involvement in the communication layer.',
@@ -364,9 +364,9 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     summary:
       'LaunchMintAI is a forensic startup intelligence engine that compresses market validation into a single evidence-backed research pass. It stress-tests startup ideas with market signals, competitive positioning, and adversarial prompts before teams commit build time.',
     businessContext:
-      'Founders waste months building products nobody wants. Applied Data Scientist Highlight: I built this system to solve this exact business problem by replacing unstructured, hallucinatory LLM output with a deterministic, data-grounded intelligence pipeline. It transforms raw internet chaos into actionable strategy.',
+      'Founders waste months building products nobody wants. Applied Data Science Highlight: I built this system to solve this exact business problem by replacing unstructured, hallucinatory LLM output with a deterministic, data-grounded intelligence pipeline. It transforms raw internet chaos into actionable strategy.',
     approach: [
-      'Zero-Tolerance Hallucination Protocol: All generated metrics must be mathematically calculated from real-world variables, never purely generated by an LLM.',
+      'Grounded Metrics Protocol: Reported market and financial metrics are calculated from explicit variables and source-backed assumptions, not accepted as raw LLM output.',
       'Adversarial RAG Pipeline: Utilized a "Roaster" agent alongside an adversarial "Skeptic" agent that forces cross-referencing and strict source grounding.',
       'Live Web Search: Collects market and competitor evidence from multiple external sources (e.g. finding real VC funding data to crush bad ideas).',
       'Pitch Forge: Strips away technical jargon to generate high-converting, business-focused sales copy automatically.',
@@ -470,29 +470,104 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
   },
   'leap-axiom': {
     summary:
-      'AXIOM is a multi-agent data intelligence copilot designed to move from raw datasets to explainable decisions with evidence-backed outputs.',
+      'A.X.I.O.M. (Adaptive eXtended Intelligence & Omnimodal Memory) is the Knowledge Intelligence Layer powering C.O.R.E. — a production-grade Enterprise Multi-Modal RAG & Cache Architecture Specification designed to process 4 data modalities (Text, Image, Audio, Video) with zero hallucinations, 2-checkpoint RBAC security, and sub-15ms cache responses.',
     businessContext:
-      'Analysts repeatedly spend large effort profiling data and assembling fragmented analysis artifacts before they can recommend actions.',
+      'Enterprise AI systems require heterogeneous ingestion across PDFs, screenshots, voice notes, and video recordings while maintaining sub-15ms cache response SLAs, strict multi-tenant security, and verifiable citation mapping. Traditional text-only RAG pipelines suffer from OCR layout degradation, unauthorized cache data leakage, and high LLM inference costs. A.X.I.O.M. establishes an enterprise architecture blueprint that solves these failure modes through ColPali patch visual retrieval, Matryoshka vector slicing, role-scoped Redis cache isolation, and department-based model routing.',
+    buildStages: [
+      { label: 'Module 00', sublabel: 'Operational Flow & Latency Budget', status: 'done' },
+      { label: 'Module 01', sublabel: '2-Tier Semantic Cache & Redis Isolation', status: 'done' },
+      { label: 'Module 02', sublabel: 'Matryoshka 1536d→128d & Hybrid RRF', status: 'done' },
+      { label: 'Module 03', sublabel: 'Omnimodal Engine (ColPali/WhisperX/CLAP)', status: 'done' },
+      { label: 'Module 04', sublabel: '2-Checkpoint Security & JWT Gateway', status: 'done' },
+      { label: 'Module 05-07', sublabel: 'CQRS Ingestion, RAG Triad & Resilience', status: 'done' },
+    ],
     approach: [
-      'Use a planner-first agent workflow to decompose user questions into SQL, analysis, and validation tasks.',
-      'Retrieve domain-specific context from Qdrant-backed knowledge stores for higher-signal reasoning.',
-      'Run critic/validator checks before publishing final recommendations and confidence labels.',
+      '2-Tier Multi-Modal Semantic Cache: L1 Exact Hash (SHA-256) + L2 Vector Similarity (>= 0.92) using Matryoshka 128d vectors, bypassing LLM inference for repeat queries in <15ms.',
+      'ColPali Patch-Based Visual RAG: Renders PDF pages as 1024×1024 RGB images and processes 32×32 ViT patch grids (1,024 vectors/page) with MaxSim Late Interaction, completely eliminating OCR parsing errors and Cross-Encoder reranking overhead.',
+      'Dual-Path Audio & 3-Stream Video RAG: Combines WhisperX speech transcription with CLAP acoustic fingerprinting and PySceneDetect temporal keyframe extraction into synchronized Qdrant multi-vector payloads.',
+      '2-Checkpoint Security Model: Checkpoint 1 (API Gateway JWT validation in <0.5ms) + Checkpoint 2 (Qdrant Payload Pre-Filtering by tenant, department, and clearance level before similarity search).',
+      'Department Model Routing & Resilience: Cost-optimized model routing (Gemini 2.5 Flash-Lite for HR/Support, Flash for Engineering, Pro for Legal/Finance) achieving 88.6% cost reduction alongside stateful API circuit breakers.',
     ],
     architecture: [
-      'FastAPI orchestration layer with specialized agent roles.',
-      'Qdrant collection for retrieval and reranking context.',
-      'UI workflow for summary, evidence trail, and action plan output.',
+      'API Gateway: High-throughput auth proxy performing JWT Bearer token validation and Permission_Hash computation (SHA-256) in <0.5ms.',
+      '2-Tier Redis Cache: In-memory cache layer enforcing Role-Scoped Cache Key isolation [SHA256(Tenant + Dept + Clearance + Query)] to prevent cross-tenant data leakage.',
+      'Qdrant Vector Database: Hybrid vector engine supporting Matryoshka 128d vector slicing, HNSW payload pre-filtering, and ColPali multi-vector matrix payloads.',
+      'Multimodal Ingestion Pipeline: Async CQRS ingestion processing raw PDF pages via ViT Vision Transformers, audio streams via WhisperX/CLAP, and video via PySceneDetect keyframe extraction.',
+      'RAG Triad Observability Layer: Asynchronous non-blocking scoring engine monitoring Context Relevance, Groundedness (1.00 SLA), and Answer Relevance via OpenTelemetry tracing.',
+      'Circuit Breakers & Key Rotator: Stateful resilience layer featuring round-robin API key pool rotation, Gemini 2.5 model fallbacks, and local Ollama execution.',
     ],
     milestones: [
-      'Qdrant ingestion and retrieval workflows implemented.',
-      'Specialist SQL knowledge base integrated into AXIOM intelligence collection.',
-      'Diagnostic and validation scripts established for pipeline confidence checks.',
+      'Module 00: Complete 11-stage operational flow pipeline and latency budgets defined.',
+      'Module 01: 2-Tier Semantic Cache architecture & Role-Scoped Key hashing spec completed.',
+      'Module 02: Matryoshka 1536d→128d vector slicing and BM25+HNSW RRF hybrid search specified.',
+      'Module 03: ColPali MaxSim visual RAG, WhisperX audio, and PySceneDetect video specs completed.',
+      'Module 04: 2-Checkpoint RBAC and 4-tier clearance level security architecture specified.',
+      'Modules 05-07: Ingestion ETL, RAG Triad telemetry, and API circuit breaker resilience specified.',
     ],
     risks: [
-      'Agent orchestration quality depends on robust tool routing and prompt constraints.',
-      'Retrieval quality can degrade when domain context indexing is incomplete.',
+      'ColPali Multi-Vector Storage Footprint: Storing 1,024 patch vectors per PDF page increases vector database RAM usage, requiring Matryoshka 128d slicing and Qdrant scalar quantization.',
+      'Multi-Tenant Cache Leakage Risk: Improper cache key hashing could expose cached answers across permission boundaries; mitigated by mandatory Permission_Hash prepending in all Redis keys.',
+      'External API Rate Limits & Outages: Vendor LLM rate limits (HTTP 429) can stall inference; controlled by stateful circuit breakers, key pool rotation, and fallback to local Ollama LLMs.',
     ],
-    nextRelease: 'Integrated workspace UI with end-to-end evidence-backed recommendation flow.',
+    evaluation: {
+      summary: 'Architectural SLAs and performance benchmarks specified across all 9 design modules:',
+      metrics: [
+        { metric: 'Cache Hit Latency (SLA)', final: '< 15ms', delta: 'L1 Exact Hash + L2 Matryoshka 128d Vector Similarity' },
+        { metric: 'Text RAG Retrieval SLA', final: '< 200ms', delta: 'Matryoshka 1536d→128d + BM25+HNSW RRF Search' },
+        { metric: 'Visual RAG (ColPali) SLA', final: '< 400ms', delta: 'ViT Spatial Patches + MaxSim Late Interaction' },
+        { metric: 'Department Routing Cost Savings', final: '88.6%', delta: 'Flash-Lite / Flash / Pro dynamic model allocation' },
+        { metric: 'Security Checkpoint Enforcement', final: '100% Pre-Filtered', delta: 'Zero unauthorized vector exposure during similarity search' },
+        { metric: 'RAG Triad Groundedness Target', final: '1.00 SLA', delta: 'Safe Failure contract blocks response on unbacked claims' },
+      ],
+      validationStrategy: 'Design SLA targets validated against published literature benchmarks (ColPali ViT, Matryoshka Representation Learning, Qdrant HNSW pre-filtering). All pipeline stages feature explicit safe failure contracts when groundedness thresholds (<1.00) are violated.',
+    },
+    visualModules: [
+      {
+        title: 'Module 00 & 04 — Operational Request Pipeline & 2-Checkpoint Security',
+        description: 'End-to-end 11-stage request execution flow. Every request passes through Checkpoint 1 (API Gateway JWT validation <0.5ms) and Checkpoint 2 (Qdrant Payload Pre-Filtering <20ms) before similarity search runs.',
+        input: 'HTTP Request (Headers: Bearer JWT | Body: Query + Modality)',
+        differentiators: [
+          'Pre-Filtering over Post-Filtering: Filtering RBAC roles in Qdrant before similarity search prevents unauthorized vector exposure.',
+          'Safe Failure Contract: Groundedness score < 1.00 automatically blocks response generation and returns citation gap warnings.',
+        ],
+        images: [],
+        diagramType: 'pipeline',
+      },
+      {
+        title: 'Module 01 — 2-Tier Multi-Modal Semantic Cache',
+        description: 'Sub-15ms semantic caching combining L1 Exact SHA-256 hashing with L2 Matryoshka 128d vector similarity (>= 0.92). All cache keys are cryptographically bound to the user Permission_Hash.',
+        input: 'Query Vector (Matryoshka 128d) + User Permission Hash',
+        differentiators: [
+          'Role-Scoped Cache Key Isolation: Key = SHA256(Tenant + Dept + Clearance + Query), ensuring Tenant A never hits Tenant B cached answers.',
+          'Matryoshka 128d Indexing: Uses top 128 dimensions for hyper-fast RAM vector comparison before falling back to full RAG.',
+        ],
+        images: [],
+        diagramType: 'cache',
+      },
+      {
+        title: 'Module 03 — ColPali Visual RAG & Omnimodal Retrieval',
+        description: 'ColPali Vision Transformer architecture rendering PDF pages as 1024×1024 RGB image tensors, extracting 32×32 spatial patch grids (1,024 vectors per page) evaluated via MaxSim Late Interaction.',
+        input: 'Document Page Image Tensors / Audio Recordings / Video Streams',
+        differentiators: [
+          'Zero OCR / Zero Text Parsing: Preserves complete spatial visual layout of tables, charts, diagrams, and font hierarchies.',
+          'MaxSim Late Interaction: Eliminates computationally expensive Cross-Encoder rerankers while surpassing text-based visual search accuracy.',
+        ],
+        images: [],
+        diagramType: 'colpali',
+      },
+    ],
+    attachments: [
+      { label: 'Full Visual System Architecture Blueprint (HTML Spec)', path: '/docs/axiom/visual_architecture.html', type: 'html' },
+      { label: 'Module 00: Operational Request Pipeline & Latency SLAs (HTML Spec)', path: '/docs/axiom/00_operational_flow.html', type: 'html' },
+      { label: 'Module 01: 2-Tier Multi-Modal Semantic Cache Blueprint (HTML Spec)', path: '/docs/axiom/01_cache_architecture.html', type: 'html' },
+      { label: 'Module 02: Matryoshka RAG Engine & RRF Search (HTML Spec)', path: '/docs/axiom/02_matryoshka_rag_engine.html', type: 'html' },
+      { label: 'Module 03: ColPali & Omnimodal RAG Architecture (HTML Spec)', path: '/docs/axiom/03_multimodal_rag.html', type: 'html' },
+      { label: 'Module 04: 2-Checkpoint RBAC & Enterprise Security (HTML Spec)', path: '/docs/axiom/04_enterprise_security.html', type: 'html' },
+      { label: 'Module 05: Async CQRS Ingestion ETL Pipeline (HTML Spec)', path: '/docs/axiom/05_ingestion_etl.html', type: 'html' },
+      { label: 'Module 06: RAG Triad Observability & OpenTelemetry (HTML Spec)', path: '/docs/axiom/06_observability.html', type: 'html' },
+      { label: 'Module 07: Circuit Breakers & Key Pool Rotation (HTML Spec)', path: '/docs/axiom/07_circuit_breakers_sla.html', type: 'html' },
+    ],
+    nextRelease: 'Full implementation phase on C.O.R.E. Tailscale mesh with Qdrant multi-vector collection deployment.',
   },
   'churn-prediction': {
     summary:
@@ -524,37 +599,6 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     ],
     nextRelease:
       'FastAPI scoring endpoint live with weekly batch output. Business cost comparison showing targeted campaign vs. blanket campaign cost.',
-  },
-  'customer-segmentation': {
-    summary:
-      'An e-commerce company was running identical marketing campaigns to all 4,000 customers — Champions spending $800/month received the same 20% discount email as customers who had not bought in 18 months. $4,300/year in marketing budget was being burned on people who would never respond.',
-    businessContext:
-      'Without segmentation, marketing treats all customers as the same. This over-discounts loyal customers who would have bought at full price, under-invests in recoverable at-risk customers, and wastes budget entirely on lapsed customers. No business intelligence exists for anomalous behaviour — potential fraud or data errors surface in finance reports weeks later.',
-    approach: [
-      'Clean 1M+ rows of transaction data: remove cancelled orders, filter negative quantities, handle missing CustomerIDs, and engineer Revenue = Quantity × UnitPrice.',
-      'Compute RFM features (Recency: days since last purchase, Frequency: unique invoice count, Monetary: total spend) for every customer. Log-transform and standardise all three — K-Means is distance-based and requires scaled inputs.',
-      'Select optimal K using Elbow Method (inertia) and Silhouette Score. Document the decision explicitly: K=4 or K=5 depending on data. Assign business labels to each cluster based on mean RFM profile.',
-      'Run Isolation Forest on the same RFM features to flag the top 5% of anomalous customers. Investigate: are they high-value outliers, returns abusers, or data errors?',
-      'Deliver a customer intelligence table: customer_id, segment_label, rfm_score, anomaly_flag. CRM-ready. No dashboard required — the table is the product.',
-    ],
-    architecture: [
-      'Data cleaning pipeline handling cancellations, missing IDs, and negative quantities from 1M+ row dataset.',
-      'RFM feature engineering layer with log-transformation and StandardScaler.',
-      'K-Means clustering with Elbow + Silhouette selection documented.',
-      'Isolation Forest anomaly detection layer (contamination=0.05).',
-      'Output table exported as customer_segments.csv — CRM-ready.',
-    ],
-    milestones: [
-      'Dataset cleaned: 25% of rows removed due to missing CustomerID — documented and justified.',
-      'RFM features computed and distribution validated.',
-      'Cluster K selected with both Elbow and Silhouette evidence.',
-    ],
-    risks: [
-      'K-Means requires manual K selection — wrong K produces segments that do not reflect real behaviour. Silhouette score must be used, not just inertia.',
-      'Isolation Forest contamination parameter is a business decision, not a technical one: 5% means flagging 200 customers for review. Adjust based on ops capacity.',
-    ],
-    nextRelease:
-      'Segment profiling charts (RFM box plots per cluster) and anomaly investigation report for the top 20 flagged customers.',
   },
   'core-memory-intelligence': {
     summary:
@@ -592,31 +636,5 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     ],
     nextRelease:
       'Integration with live C.O.R.E. Tailscale mesh for real-time edge memory pruning.',
-  },
-  'core-mcp-platform': {
-    summary:
-      'CRUCIBLE is an umbrella governance layer that standardizes ingestion, validation, and quality controls across independent AI/DS projects.',
-    businessContext:
-      'As project count grows, disconnected systems create inconsistent validation quality, duplicated effort, and slower cross-project rollout.',
-    approach: [
-      'Define ingestion contracts so projects can plug into shared platform workflows consistently.',
-      'Expose CRUCIBLE services for quality, fairness, sampling, and intervention checkpoints.',
-      'Use standardized diagnostics to enforce reliability before project outputs are consumed downstream.',
-    ],
-    architecture: [
-      'FastAPI-hosted CRUCIBLE service layer.',
-      'Componentized validation modules (quality, fairness, exploration, strategy).',
-      'Intervention and approval workflow for high-risk outputs.',
-    ],
-    milestones: [
-      'Seven CRUCIBLE components implemented and validated.',
-      'Core service and docs scaffold completed.',
-      'Integration strategy drafted for connected projects.',
-    ],
-    risks: [
-      'Integration reliability depends on disciplined connector contracts across projects.',
-      'Governance workflows require ongoing threshold tuning to avoid alert fatigue.',
-    ],
-    nextRelease: 'Unified integration dashboard for ingestion health and component-level reliability metrics.',
   },
 }

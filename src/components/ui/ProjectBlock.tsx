@@ -41,17 +41,6 @@ export const ProjectBlock = ({ project, isFeatured = false }: ProjectBlockProps)
         </span>
       )}
 
-      {shouldShowProjectAction(project, 'demo') ? (
-        <Button
-          variant="outlined"
-          size="sm"
-          href={project.links.demo}
-          external
-          onClick={() => trackEvent('project_demo_click', { project_id: project.id })}
-        >
-          {'Website'}
-        </Button>
-      ) : null}
 
       {shouldShowProjectAction(project, 'github') ? (
         <Button

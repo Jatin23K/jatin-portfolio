@@ -2,19 +2,26 @@ import { siteContent } from '../../data/site'
 import { trackEvent } from '../../utils/analytics'
 import { Button } from '../ui/Button'
 
-/* ─── SQL syntax highlighter (no library) ─────────────────── */
-const SQL_KEYWORDS = new Set([
+/* ─── Code syntax highlighter (Python & SQL support) ─────────── */
+const CODE_KEYWORDS = new Set([
+  // Python keywords
+  'async', 'def', 'await', 'if', 'not', 'raise', 'return', 'from', 'import',
+  'in', 'for', 'is', 'and', 'or', 'try', 'except', 'pass', 'with', 'as', 'class',
+  // SQL keywords
   'SELECT', 'FROM', 'WHERE', 'GROUP', 'BY', 'ORDER', 'HAVING', 'JOIN',
-  'LEFT', 'RIGHT', 'INNER', 'OUTER', 'ON', 'AS', 'AND', 'OR', 'NOT',
-  'IN', 'IS', 'NULL', 'DISTINCT', 'LIMIT', 'OFFSET', 'WITH', 'CASE',
-  'WHEN', 'THEN', 'ELSE', 'END', 'OVER', 'PARTITION', 'INTERVAL',
-])
-const SQL_FUNCTIONS = new Set([
-  'SUM', 'COUNT', 'AVG', 'MAX', 'MIN', 'RANK', 'ROW_NUMBER', 'DENSE_RANK',
-  'CURRENT_DATE', 'COALESCE', 'CAST', 'CONCAT',
+  'LEFT', 'RIGHT', 'INNER', 'OUTER', 'ON', 'LIMIT', 'OFFSET',
 ])
 
-type TokenType = 'keyword' | 'function' | 'string' | 'number' | 'operator' | 'plain'
+const CODE_FUNCTIONS = new Set([
+  // Python built-in / domain functions & types
+  'orchestrate_workflow', 'decompose', 'gather', 'search', 'execute',
+  'check_hallucination', 'compile', 'OutputValidationException', 'Database',
+  'str', 'int', 'dict', 'list', 'set',
+  // SQL functions
+  'SUM', 'COUNT', 'AVG', 'MAX', 'MIN', 'RANK', 'ROW_NUMBER',
+])
+
+type TokenType = 'keyword' | 'function' | 'string' | 'number' | 'operator' | 'comment' | 'plain'
 
 interface Token {
   type: TokenType
@@ -25,25 +32,35 @@ const tokeniseLine = (line: string): Token[] => {
   const tokens: Token[] = []
   let i = 0
   while (i < line.length) {
-    if (line[i] === "'") {
+    // Comment
+    if (line[i] === '#') {
+      tokens.push({ type: 'comment', text: line.slice(i) })
+      break
+    }
+    // String (single or double quote)
+    if (line[i] === "'" || line[i] === '"') {
+      const quote = line[i]
       let j = i + 1
-      while (j < line.length && line[j] !== "'") j++
+      while (j < line.length && line[j] !== quote) j++
       tokens.push({ type: 'string', text: line.slice(i, j + 1) })
       i = j + 1
       continue
     }
+    // Identifiers & Keywords
     if (/[a-zA-Z_]/.test(line[i])) {
       let j = i
       while (j < line.length && /[\w]/.test(line[j])) j++
       const word = line.slice(i, j)
-      const upper = word.toUpperCase()
+      const isKeyword = CODE_KEYWORDS.has(word) || CODE_KEYWORDS.has(word.toUpperCase())
+      const isFunc = CODE_FUNCTIONS.has(word) || CODE_FUNCTIONS.has(word.toUpperCase())
       tokens.push({
-        type: SQL_KEYWORDS.has(upper) ? 'keyword' : SQL_FUNCTIONS.has(upper) ? 'function' : 'plain',
+        type: isKeyword ? 'keyword' : isFunc ? 'function' : 'plain',
         text: word,
       })
       i = j
       continue
     }
+    // Numbers
     if (/\d/.test(line[i])) {
       let j = i
       while (j < line.length && /[\d.]/.test(line[j])) j++
@@ -51,13 +68,14 @@ const tokeniseLine = (line: string): Token[] => {
       i = j
       continue
     }
-    if (/[(),.;*=><!]/.test(line[i])) {
+    // Operators / Punctuation
+    if (/[(),.;*=><!:+-]/.test(line[i])) {
       tokens.push({ type: 'operator', text: line[i] })
       i++
       continue
     }
     let j = i
-    while (j < line.length && !/[a-zA-Z_'0-9(),.;*=><!]/.test(line[j])) j++
+    while (j < line.length && !/[a-zA-Z_'"#0-9(),.;*=><!:+-]/.test(line[j])) j++
     tokens.push({ type: 'plain', text: line.slice(i, j) })
     i = j
   }
@@ -70,6 +88,7 @@ const tokenColour: Record<TokenType, string> = {
   string:   'var(--accent3)',
   number:   'var(--accent4)',
   operator: 'var(--muted)',
+  comment:  'var(--muted)',
   plain:    'var(--text)',
 }
 

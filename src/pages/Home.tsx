@@ -1,9 +1,9 @@
 import { ContactSection } from '../components/sections/Contact'
 import { RouteMeta } from '../components/seo/RouteMeta'
 import { Hero } from '../components/sections/Hero'
+import { ProofBoard } from '../components/sections/ProofBoard'
 import { ProjectsSection } from '../components/sections/Projects'
 import { SkillsSection } from '../components/sections/Skills'
-import { VisionSection } from '../components/sections/Vision'
 import { DataTerminalSection } from '../components/sections/DataTerminal'
 import { skills } from '../data/skills'
 import { homepageProjects, aiSystems, traditionalDataSystems, pipelineProjects } from '../utils/projectSelectors'
@@ -12,22 +12,15 @@ const Home = () => {
   return (
     <main>
       <RouteMeta
-        title="Jatin Kumar — Data Scientist & AI Engineer"
+        title="Jatin Kumar — Applied Data Science & AI Systems"
         description="Portfolio showcasing AI systems, data science execution, and business-focused product delivery."
         canonicalPath="/"
       />
       <Hero />
-      <ProjectsSection
+      <ProofBoard
         projects={homepageProjects()}
-        sectionId="projects-highlights"
-        label="02 / Executive Summary"
-        title="Proof Through Execution"
-        subtitle="Flagship work that demonstrates measurable data-science impact."
         showAllCta
       />
-      <DataTerminalSection />
-      <SkillsSection skills={skills} />
-      <VisionSection />
       <ProjectsSection
         projects={traditionalDataSystems()}
         sectionId="projects-ml"
@@ -39,9 +32,9 @@ const Home = () => {
       <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="CASE STUDIES / LLM & AGENTIC SYSTEMS"
-        title="Applied LLM Systems & Agentic Workflows"
-        subtitle="Deployed LLM evaluation pipelines, RAG vector retrieval, multi-agent workflows, and MCP server infrastructure."
+        label="CASE STUDIES / APPLIED AI & LLM ARCHITECTURE"
+        title="Applied LLM Systems & AI Architecture"
+        subtitle="Shipped LLM products, agentic evaluation pipelines, RAG retrieval systems, and architecture specs for production-grade AI infrastructure."
         listAriaLabel="AI systems"
       />
       <ProjectsSection
@@ -52,6 +45,8 @@ const Home = () => {
         subtitle="Hardware-constrained edge deployment, Zero-Trust DRM, and persistent memory architecture running outside any third-party platform."
         listAriaLabel="Sovereign builds"
       />
+      <SkillsSection skills={skills} />
+      <DataTerminalSection />
       <ContactSection />
     </main>
   )

@@ -15,14 +15,15 @@ describe('route smoke tests', () => {
   it('renders home route', async () => {
     renderAtPath('/')
 
-    expect(await screen.findByText("Building AI that's")).toBeInTheDocument()
+    expect(await screen.findByText('Architecting Intelligence.')).toBeInTheDocument()
   })
 
   it('renders projects route', async () => {
     renderAtPath('/projects')
 
-    expect(await screen.findByText('Reorderable Project Portfolio')).toBeInTheDocument()
+    expect(await screen.findByText('Predictive ML & Analytics Pipelines')).toBeInTheDocument()
   })
+
 
   it('renders about route', async () => {
     renderAtPath('/about')

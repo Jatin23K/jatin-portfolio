@@ -21,9 +21,9 @@ const ProjectsPage = () => {
       <ProjectsSection
         projects={aiSystems()}
         sectionId="projects-ai"
-        label="02 / LLM & Agentic Systems"
-        title="Applied LLM Systems & Agentic Workflows"
-        subtitle="Deployed LLM evaluation pipelines, RAG vector retrieval, multi-agent workflows, and MCP server infrastructure."
+        label="02 / Applied AI & LLM Architecture"
+        title="Applied LLM Systems & AI Architecture"
+        subtitle="Shipped LLM products, agentic evaluation pipelines, RAG retrieval systems, and architecture specs for production-grade AI infrastructure."
         listAriaLabel="AI systems"
       />
       <ProjectsSection
