@@ -91,7 +91,7 @@ export const siteContent: SiteContent = {
     headlineAccent: 'Shipping',
     headlineAccent2: 'Impact.',
     subline:
-      'Building autonomous multi-agent systems, RAG pipelines, and deterministic ML applications. I focus on end-to-end systems that connect data, models, and product outcomes.',
+      'Building RAG pipelines, predictive ML models, and production AI applications. I focus on end-to-end systems that connect data, models, and real business outcomes.',
     stats: [
       { value: '~90%', label: 'REVIEW TIME SAVED · TLDR SHIELD' },
       { value: '41.46%', label: 'STORAGE COST REDUCED · CORE MEMORY' },
@@ -99,7 +99,7 @@ export const siteContent: SiteContent = {
     ],
     primaryCta: 'View Projects ->',
     secondaryCta: 'Download Resume',
-    sqlSnippetTitle: 'Autonomous Agent Orchestration',
+    sqlSnippetTitle: 'Applied RAG & Grounding Pipeline',
     sqlSnippet: [
       'async def orchestrate_workflow(query: str, db: Database):',
       '    # 1. Strategic Decomposition',
@@ -164,6 +164,7 @@ export const siteContent: SiteContent = {
     title: 'Applied Data Science',
     subtitle: 'Models that ship, not just notebooks. Business outcomes from day one.',
     paragraphs: [
+      'As a self-directed builder, I don\'t wait for sandbox environments or formal assignments. I design, train, and deploy complete systems independently — combining classical predictive modeling with modern retrieval architecture.',
       'I close the loop — from problem definition and data exploration through to a deployed system with a measurable business outcome attached.',
       'My stack is Python, SQL, and ML pipelines served via FastAPI with retrieval-augmented AI layers where the problem demands it. Everything I build is designed to run in production, not just pass a test set.',
       'I focus on transparent AI — systems accountable to users, with clear data lineage, explainable outputs, and governance controls that hold up under scrutiny.',
