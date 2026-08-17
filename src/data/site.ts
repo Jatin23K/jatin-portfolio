@@ -80,7 +80,7 @@ export const siteContent: SiteContent = {
   },
   navigation: [
     { label: 'Executive Summary', href: '/#projects-highlights' },
-    { label: 'Projects', href: '/#projects-ai' },
+    { label: 'Projects', href: '/#projects-ml' },
     { label: 'Skills', href: '/#skills' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/#contact' },
