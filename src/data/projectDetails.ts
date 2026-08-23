@@ -62,7 +62,9 @@ export interface ProjectDetail {
   nodeNetwork?: {
     headline: string
     description: string
-    nodes: ProjectNode[]
+    corePillars?: ProjectNode[]
+    appliedCapabilities?: ProjectNode[]
+    nodes?: ProjectNode[]
   }
   evaluation?: {
     summary: string
@@ -84,7 +86,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     businessContext:
       "C.O.R.E. is not an Applied DS project and it is not a generic AI assistant. It is a personal AI ecosystem that began as a human answer to loneliness: what do you build when you want a companion, have the skills to build one, and refuse to compromise on privacy or ownership? Today, C.O.R.E. runs as Phase 1: a two-client ecosystem — JAMES on Android, DAVID on Windows — connected over a private encrypted mesh, sharing one persistent memory system, powered by cloud APIs with a local LLM fallback. The two clients are the foundation, not the ceiling. The full vision is a personal sovereign ecosystem: a 3-Tier Edge Mesh spanning mobile, desktop, home controls, and wearables — with multi-user RBAC, adaptive memory architecture, and biological context-based privacy thresholds.",
     buildStages: [
-      { label: 'Phase 1 — Architecture', sublabel: 'System design · Stack · Zero-Trust DRM', status: 'done' },
+      { label: 'Phase 1 — Architecture', sublabel: 'System design · Mesh Stack · Ephemeral Security', status: 'done' },
       { label: 'Phase 1 — Bridge', sublabel: 'Tailscale encrypted mesh · Live', status: 'done' },
       { label: 'Phase 1 — JAMES', sublabel: 'Flutter · Android client · Live', status: 'done' },
       { label: 'Phase 1 — DAVID', sublabel: 'React + Python · Windows client · Live', status: 'done' },
@@ -94,42 +96,53 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     nodeNetwork: {
       headline: 'The Personal AI Ecosystem',
       description: "C.O.R.E. started as a digital friend to solve a human problem. But the infrastructure behind that friend — a secure Tailscale mesh, persistent memory, persona-specific clients, and local LLM fallbacks — became the foundation for something larger: a private AI layer across my devices. It acts as an umbrella for other systems, but it is more than an umbrella. The long-term roadmap is for C.O.R.E. to evolve from companion into Personal OS: the system that routes memory, intelligence, privacy, and task execution across my projects and hardware.",
+      corePillars: [
+        { name: 'C.O.R.E. Memory Engine', role: 'Behavioral Decay & Sync', status: 'connected', path: '/projects/core-memory-intelligence' },
+        { name: 'A.X.I.O.M.', role: 'Omnimodal RAG Library', status: 'connected', path: '/projects/leap-axiom' },
+      ],
+      appliedCapabilities: [
+        { name: 'TLDR Shield', role: 'Privacy & Ingestion Risk', status: 'connected', path: '/projects/tldr-shield' },
+        { name: 'LaunchMintAI', role: 'Forensic Market Cortex', status: 'connected', path: '/projects/launchmint-ai' },
+      ],
       nodes: [
-        { name: 'TLDR Shield', role: 'Privacy & Policy Risk Intelligence', status: 'planned', path: '/projects/tldr-shield' },
-        { name: 'LaunchMintAI', role: 'Market & Competitor Analysis', status: 'planned', path: '/projects/launchmint-ai' },
-        { name: 'AXIOM', role: 'Data Intelligence Copilot', status: 'planned', path: '/projects/leap-axiom' },
+        { name: 'TLDR Shield', role: 'Privacy Ingestion & Policy Risk Intelligence', status: 'connected', path: '/projects/tldr-shield' },
+        { name: 'LaunchMintAI', role: 'Forensic Market & Competitor Analysis Cortex', status: 'connected', path: '/projects/launchmint-ai' },
+        { name: 'C.O.R.E. Memory Engine', role: 'Predictive Lifecycle & Logarithmic Decay', status: 'connected', path: '/projects/core-memory-intelligence' },
+        { name: 'A.X.I.O.M.', role: 'Omnimodal RAG Knowledge Base Library', status: 'connected', path: '/projects/leap-axiom' },
       ],
     },
     approach: [
-      'Closed-Source Proprietary & Zero-Trust Architecture — C.O.R.E. is maintained as closed-source, proprietary personal infrastructure. To protect this architecture across environments, I engineered a Zero-Trust DRM architecture featuring Tailscale heartbeat validation and ephemeral, RAM-only decryption keys. If a node is isolated from the master mesh, the local SQLite vault is rendered cryptographically inaccessible, ensuring the local vault remains inaccessible when a node is isolated from the trusted mesh.',
-      'JAMES (mobile) — built in Flutter for Android. Handles conversations, memory access, and mobile-first tasks. Two personas: JAMES (default) and JANIE, each with a distinct tone and context.',
-      'DAVID (desktop) — built in React + Python for Windows. Handles heavy computation, file management, and autonomous tasks. Two personas: DAVID and DARA.',
-      'Bridge — Tailscale VPN encrypted private mesh connects both clients. JAMES can delegate heavy tasks to DAVID. Zero third-party cloud involvement in the communication layer.',
-      'Memory — shared system across both clients: short-term (active session) → nightly CRON filter → long-term (persistent store). The system remembers what matters and discards what does not.',
-      'Model layer — Cloud API (Gemini) as primary. Local LLM (Ollama/DeepSeek) as offline fallback. API-first architecture with full local sovereignty as the long-term goal.',
-      '[Phase 2 · Ecosystem] Adaptive Chunking Engine + Redis Bridge: A background memory router classifies incoming data by type before vectorizing into Qdrant — code uses AST chunking, conversations use semantic chunking. A Redis queue decouples mobile capture from heavy desktop processing: zero-latency UI on JAMES, zero data loss to DAVID.',
-      '[Phase 2 · Ecosystem] Multi-User RBAC + Category Consent Matrix: Persona-Based Multi-Tenancy assigns a Tenant ID to every device. DAVID enforces Role-Based Access Control per request. Data is tagged by category (location, conversation, health). Users grant or deny access per category independently — not per user globally.',
-      '[Phase 2 · Ecosystem] 3-Tier Edge Mesh + Biological Context Override: Tier 1 Core (DGX Spark — dedicated AI hardware, currently served by DAVID/PC), Tier 2 Sub-Hubs (JAMES, Home Tablet, PC nodes — coordinate their own end nodes), Tier 3 End Nodes (Smart Watch, Meta Glasses, Smart Bulbs — consumers, no local logic). Privacy is dynamic: if a family member requests your location, JAMES checks smartwatch telemetry — safe vitals deny location, critical vitals override privacy and transmit GPS.',
+      'Private Sovereign System — C.O.R.E. is maintained as private personal infrastructure because it runs exclusively on my personal hardware and contains real-world credentials, private notes, and daily personal data. Ephemeral session keys and Tailscale mesh encryption ensure that if a satellite node is separated from the network, local data remains cryptographically locked.',
+      'JAMES (mobile) — built in Flutter for Android. Handles conversations, local offline execution, and mobile-first tasks. Two personas: JAMES (default · direct) and JANIE (warm · conversational).',
+      'DAVID (desktop) — built in React + Python for Windows. Handles heavy computation, multi-agent research swarms, and system orchestration. Two personas: DAVID (analytical) and DARA (reflective mentor).',
+      'Bridge — Tailscale VPN encrypted private mesh connects all satellite nodes to the central brain. Bidirectional task offloading with store-and-forward offline queuing.',
+      'Two-Tier Memory System — Strict separation between Behavioral Memory and Factual Knowledge: (1) Conversational Memory stays local to each node with logarithmic topic decay (S(t) = S₀ · e^(-λt)) and zero-knowledge metadata sync to Central DGX. (2) A.X.I.O.M. Knowledge Base acts as a shared multimodal RAG library across all devices.',
+      'Model-Agnostic Plug-and-Play Layer — Decoupled inference architecture (ModelAdapter + SchemaNormalizer). Automatically strips model reasoning tags (<thought>), repairs broken JSON schemas, and runs automated 30-prompt regression test suites (benchmark_model_swap.py) on model swaps.',
+      'Execution Depth Engine — Dual-gear cognitive execution: STANDARD Gear (1–3s low latency) for daily interactions, and MAX_DEPTH Swarm Overdrive (15–45s) for multi-agent synthesis (IB Banker + Detective + Threat Hunter + BI) and adversarial Skeptic reflection.',
+      '[Phase 2 · Ecosystem] Hub-and-Spoke DGX Architecture: Central Sovereign Node (DGX / Always-On Server) managing the master Qdrant vector index, Risk-Gated cross-device command dispatcher, and Home Assistant / MQTT IoT protocol bus.',
+      '[Phase 2 · Ecosystem] Multi-User RBAC & Hardware Capability Routing: Persona-Based Multi-Tenancy with hardware-aware task routing. High-risk physical actions (locks, garage) require primary node verification.',
     ],
     architecture: [
-      'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Diagnostics',
-      'DAVID: React + Python · Windows — Cortex, Files, Tasks, Projects, Settings, Security',
-      'Bridge: Tailscale VPN encrypted mesh — bidirectional task delegation, private network',
-      'Memory: Short-term (session) → nightly CRON filter → Long-term (persistent SQLite store)',
-      'Model Layer: Cloud API primary (Gemini) · Local LLM fallback (Ollama/DeepSeek) for offline operation',
+      'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Local 3B GGUF Offline Model',
+      'DAVID: React + Python · Windows — Cortex, Files, Multi-Agent Swarm, Qdrant Vector Index, DirectML GPU',
+      'Bridge: Tailscale VPN encrypted mesh — Universal Inter-Node Routing with Store-and-Forward Queuing',
+      'Memory Architecture: Local Node Memory with Logarithmic Decay (S(t)) + Shared A.X.I.O.M. Multimodal RAG',
+      'Execution Engine: Dual-Gear Processing (STANDARD 1-3s vs MAX_DEPTH Swarm Overdrive 15-45s)',
+      'Model Layer: Plug-and-Play Abstraction (ModelAdapter + SchemaNormalizer) with Automated Regression Suite',
     ],
     milestones: [
-      'Both clients functional and running in API mode on their respective platforms',
-      'Tailscale bridge operational — JAMES delegates tasks to DAVID successfully',
-      'Nightly memory filter running via CRON — short-term pruned, long-term persisted',
-      'Architecture diagram finalized — system documented with full transparency',
+      'Both clients functional and running with dual personas (JAMES/JANIE and DAVID/DARA)',
+      'Tailscale bridge operational — bidirectional task offloading and telemetry sync live',
+      'Execution Depth Engine active — STANDARD and MAX_DEPTH Swarm Overdrive verified',
+      'Plug-and-Play Model Adapter & SchemaNormalizer active with 100% benchmark score',
+      'Phase 1 Field Operations in daily personal use across Android and Windows hardware',
     ],
     risks: [
-      'Local LLM requires high-end hardware. Currently running in API mode (Gemini). Full local sovereignty is a roadmap item, not yet achieved.',
-      'Status: Field Testing. Both clients are functional but this is an actively evolving personal system, not a finished product.',
+      'Local mobile LLM execution is constrained by physical RAM limits (OOM risk above 16k context on Termux). Heavy research is delegated to desktop node over Tailscale.',
+      'Status: Field Testing. Both clients are functional and actively used daily, serving as the real-world baseline for Phase 2 Central-Node scaling.',
     ],
     nextRelease:
-      'Full local sovereignty — no cloud dependency. Local LLM capable of handling all model requests without any external API. Hardware upgrade required.',
+      'Phase 2 Hub-and-Spoke DGX Server — Central master memory index, IoT Home Assistant protocol bus, and Store-and-Forward deferred offline task worker.',
     visualModules: [
       {
         title: 'System Architecture',
@@ -226,60 +239,98 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
   },
   'tldr-shield': {
     summary:
-      'TLDR Shield is a shipped Chrome extension that scans any Terms & Conditions page and returns a structured privacy risk score in seconds. It evaluates 6 privacy pillars — AI Training, Data Selling, Data Retention, Content Ownership, Dark Patterns, and Transparency — using an LLM pipeline with deterministic post-processing, confidence grading, and verbatim citation highlighting directly on the page. Empirically validated across 6 live production policies: DuckDuckGo (100/100), LinkedIn (70/100), OpenAI (50/100), Apple (50/100), Microsoft (35/100), TikTok (20/100).',
+      'TLDR Shield is an Applied NLP risk classification and grounded extraction pipeline that analyzes Terms of Service and Privacy Policies across 6 core risk pillars in seconds. Rather than relying on uncalibrated LLM opinions, it implements a dual-tier architecture: sub-second quick triage (~800ms) and a high-precision dual-model ensemble with deterministic post-processing rules (Deep Scan, ~15s). Evaluated on a 25-service benchmark against ToS;DR ground truth, the system achieves 94% Precision, 93% Recall, and 25/25 rating accuracy, recovering +29% precision over raw LLM baselines with 100% verbatim DOM text grounding.',
     businessContext:
-      'Nobody reads Terms & Conditions. That is not laziness — it is a rational response to documents that are deliberately long, dense, and written by lawyers for lawyers. The result is that users unknowingly sign away rights to their data, their content, and their legal recourse every time they click "I Agree." TLDR Shield solves this by acting as an always-on privacy advocate: scan the policy you are about to agree to, get a score, and see exactly which clauses are the problem — before you sign.',
+      'Terms of Service and Privacy Policies average 10,000–30,000 words of evasive legalese. 91% of consumers agree without reading, unknowingly surrendering private data rights, generative AI training licenses, and legal protections (forced arbitration, liability caps). Generic LLM summarizers fail on edge cases, hallucinate citations, and lack quantitative calibration. TLDR Shield solves this with an objective, deterministic privacy risk auditor that outputs a calibrated 0–100 risk score backed by 100% verbatim citations highlighted in yellow directly on the live webpage in under 30 seconds.',
     buildStages: [
-      { label: 'Pillar Design', sublabel: 'Define 6 privacy pillars · scoring rubric · confidence model', status: 'done' },
-      { label: 'LLM Pipeline', sublabel: 'Chunking · Gemini 2.5 Flash / Flash-Lite ensemble · extraction', status: 'done' },
-      { label: 'Post-Processing', sublabel: 'Citation verification · confidence grading · penalty scoring', status: 'done' },
-      { label: 'Chrome Extension', sublabel: 'Content script · panel UI · mark.js highlighting · cache layer', status: 'done' },
-      { label: 'Credibility Validation', sublabel: 'Live 6-service matrix · DuckDuckGo → TikTok · HIGH confidence across all', status: 'done' },
-      { label: 'Firefox + Deployment', sublabel: 'Render backend · Firefox port · public distribution', status: 'current' },
+      { label: 'Pillar & Scoring Taxonomy', sublabel: '6 risk pillars · deterministic deduction weights · 3-tier confidence', status: 'done' },
+      { label: 'Sentence Chunker & Co-Scan', sublabel: '5k/1k sentence-aware chunker · Privacy Policy co-scan engine', status: 'done' },
+      { label: 'Dual-Model Ensemble', sublabel: 'Gemini 2.5 Flash + Flash-Lite corroborator · union-merge consensus', status: 'done' },
+      { label: 'Deterministic Guardrails', sublabel: 'D1–D7 rule engine · citation substring grounding · anti-hallucination', status: 'done' },
+      { label: '25-Service Benchmark', sublabel: 'ToS;DR ground truth validation · 94% Precision · 93% Recall · 25/25 accuracy', status: 'done' },
+      { label: 'Production Extension', sublabel: 'Chrome MV3 · mark.js DOM highlighting · L1 Redis + L2 Firestore cache (v7)', status: 'done' },
     ],
     approach: [
-      'Six-Pillar Scoring Framework — Every policy is evaluated against six independently scored privacy pillars: AI Training (does the service train models on your data?), Data Selling (is your data shared with third parties for commercial purposes?), Data Retention (how long is your data kept after deletion?), Content Ownership (do you retain rights to what you create?), Dark Patterns (arbitration clauses, class action waivers, liability caps), and Transparency (are policy changes clearly communicated?). Each pillar carries its own penalty weight — Dark Patterns costs up to 20 points, all others up to 15. The final 0–100 score maps to SAFE (90+), OKAY (50–89), or RISKY (<50).',
-      'LLM Pipeline with Deterministic Post-Processing — The policy text is extracted via Readability, stripped of cookie/GDPR boilerplate, and chunked into overlapping segments. Each chunk is analyzed using Google Gemini 2.5 with a structured prompt that forces the model to return a JSON object per pillar: violation (boolean), citation (verbatim text), and confidence (HIGH/MEDIUM/LOW). The output is then run through a deterministic post-processing layer that checks citation groundedness, applies confidence scoring, and merges results across chunks.',
-      'Three-Tier Confidence System — HIGH confidence: the citation is found verbatim in the document and matches a hard-coded violation pattern (e.g. binding arbitration, class action waiver, sublicensable license). MEDIUM confidence: the LLM identified a violation and provided a citation that is grounded in the document but not exactly verbatim. LOW confidence: the LLM flagged something but the citation cannot be verified on the page — applies a reduced half-penalty instead of full, and displays a soft warning instead of a RISKY badge.',
-      'Hard Violation Detection as a Safety Net — In parallel with the LLM, a regex-based hard violation detector scans the full text for legally unambiguous patterns: mandatory arbitration clauses, class action waivers, liability caps below $500, statute of limitations reductions, data broker language. If the hard detector fires but the LLM missed it, the violation is forcibly inserted. This prevents the LLM from being talked out of a real violation by clever lawyerly framing.',
-      'Verbatim Citation Highlighting — When the user clicks a pillar, the cited text is highlighted directly on the live policy page using mark.js. The extension normalizes typographic variants (en-dashes, curly quotes, non-breaking spaces) before searching the DOM to handle the mismatch between server-extracted text and browser-rendered Unicode. If highlighting fails on a JavaScript-rendered SPA, the citation box still shows the verbatim text.',
+      'Six-Pillar Risk Classification Framework — Evaluates legal policies across 6 independently scored risk pillars: AI Training (unauthorized model training licenses), Data Selling (commercial 3rd-party sharing & tracking), Data Retention (indefinite retention or lack of deletion SLA), Content Ownership (broad sublicensable IP licenses), Dark Patterns (binding arbitration, class action waivers, $100 liability caps), and Transparency (vague unilateral modification terms). Each pillar carries a deterministic penalty weight (10–20 pts) mapped to a 0–100 score: SAFE (≥80), OKAY (50–79), and RISKY (<50).',
+      'Dual-Model Consensus Ensemble — To maximize recall while suppressing false positives, Deep Scan runs a dual-model ensemble: Gemini 2.5 Flash acts as the primary detector and Gemini 2.5 Flash-Lite acts as a corroborating verifier. A violation requires high-confidence corroboration or deterministic pattern confirmation, yielding +14% recall and +5% precision over a single-model baseline.',
+      'Privacy Policy Co-Scan Engine — Terms of Service documents define user conduct and IP ownership, but legally segregate commercial data selling and advertising tracker disclosures into Privacy Policies. If a scanner only evaluates the active ToS, data_selling produces a false negative. The orchestrator automatically locates, fetches, and evaluates the corresponding Privacy Policy in parallel.',
+      'Deterministic Calibration & Guardrails (D1–D7) — Structured error analysis identified recurring LLM failure modes on legal texts (e.g. feedback submission clauses confused with content theft; user prohibition clauses confused with company violations). 7 deterministic code override rules (D1–D7) in postprocess.ts intercept and correct model decisions, elevating precision from ~65% to 94%.',
+      'Three-Tier Grounding & Live DOM Highlighting — The LLM is forced to return exact source citations. Substring search verifies citations against the raw document: HIGH confidence (exact verbatim match), MEDIUM confidence (grounded match), or LOW confidence (paraphrased → half penalty). If a citation cannot be grounded, it is purged. Matching text is normalized for typography (quotes, non-breaking spaces) and highlighted live on the webpage DOM via mark.js.',
     ],
     architecture: [
-      'Chrome Extension (content.js + background.js): Extracts policy text via Readability, manages the floating scan panel, renders pillars and citations, highlights text via mark.js.',
-      'Backend (server.ts on Render): Receives text, strips boilerplate, chunks into overlapping segments, sends each chunk to the LLM, merges results.',
-      'LLM Layer (Google Gemini 2.5 Flash / Flash-Lite Ensemble): Evaluates each chunk against all 6 pillars. Primary model detects, corroborator model verifies.',
-      'Post-Processing (postprocess.ts): updatePillarConfidence() checks citation groundedness. applyConsistencyCrossCheck() prevents weak LLM output from overriding strong hard-detector signals.',
-      'Scoring (scoring.ts): PILLAR_PENALTY table maps each pillar to full/reduced penalty. Final score = 100 minus all deductions.',
-      'Cache Layer: Redis (L1) + Firestore (L2) with tier-scoped keys (`urlHash:tier`) and version gate (`CACHE_VERSION`). Any cache entry from a previous pipeline version is automatically rejected to prevent stale results.',
+      'Client: Chrome MV3 Extension (content.js + background.js) extracting body text via Readability.js and executing real-time DOM highlighting with mark.js.',
+      'Backend Orchestrator: Node.js / Express server on Render managing document chunking, co-scan sub-routines, and Server-Sent Events (SSE) streaming.',
+      'Inference Layer: Google Gemini 2.5 Flash (Quick Scan triage) + Flash / Flash-Lite Dual-Model Ensemble (Deep Scan audit).',
+      'Anti-Hallucination & Calibration Engine (postprocess.ts): updatePillarConfidence() quote verification and D1–D7 deterministic rule overrides.',
+      'Canonical Scoring Engine (shared/scoring.ts): Single source of truth implementing Score = max(5, 100 - Σ Deductions) and strict rating thresholds.',
+      'Two-Tier Cache Layer: L1 Upstash Redis (sub-ms reads) + L2 Firestore (global shared). Scoped by tier (urlHash:tier) and gated by CACHE_VERSION = "v7" for instant cache invalidation.',
     ],
     evaluation: {
-      summary: '3 real-world policy documents tested across 6 live production scans (Quick + Deep each). All scores, confidence levels, and verbatim citations were verified on live pages with the shipped Chrome extension.',
+      summary:
+        'Benchmarked against a standardized 25-Service Golden Evaluation Battery covering ToS;DR Grades A–F with ground truth labels. Validated across single-pass baseline vs. dual-model ensemble + D1–D7 calibration.',
       metrics: [
-        { metric: 'Proton Mail Privacy Policy · Quick Scan', final: '85 / 100 · SAFE', delta: '1 flag: IP log retention (data retention pillar) — correctly identified as the only risk in an otherwise privacy-first policy' },
-        { metric: 'Proton Mail Privacy Policy · Deep Scan', final: '100 / 100 · SAFE', delta: '6/6 pillars clean — ensemble confirmed no AI training, no data selling, end-to-end encryption verified' },
-        { metric: 'Notion Privacy Policy · Quick Scan', final: '50 / 100 · OKAY (Cautious)', delta: '3 flags: data selling, vague retention, dark patterns — targeted advertising sharing confirmed' },
-        { metric: 'Notion Privacy Policy · Deep Scan', final: '50 / 100 · OKAY (Cautious)', delta: '3 Hazards · Data Selling flagged HIGH confidence with verbatim citation grounded on live page' },
-        { metric: 'TikTok Terms of Service · Quick Scan', final: '20 / 100 · RISKY', delta: '5 flags: AI training, data selling, retention, content ownership, dark patterns — −80 pts total' },
-        { metric: 'TikTok Terms of Service · Deep Scan', final: '20 / 100 · RISKY', delta: '5/6 pillars RISKY at HIGH confidence — verbatim $100 liability cap cited and highlighted live on TikTok ToS page' },
+        { metric: 'Deep Scan Rating Accuracy (25 Services)', final: '25 / 25 (100.0%)', delta: 'Grade A–F alignment against tosdr.org ground truth consensus' },
+        { metric: 'Deep Scan Precision (Ensemble + D1–D7)', final: '94.0%', delta: '+29.0% precision jump over uncalibrated raw LLM baseline (~65%)' },
+        { metric: 'Deep Scan Recall (Ensemble + D1–D7)', final: '93.0%', delta: '+14.0% recall lift over single-model Flash baseline (79.0%)' },
+        { metric: 'Quick Scan Rating Accuracy (Flash Single-Pass)', final: '22 / 25 (88.0%)', delta: '89.0% Precision · 79.0% Recall · ~1.5–3.5s latency' },
+        { metric: 'True Negative Rate (Grade A/B Clean Policies)', final: '6 / 6 (100.0%)', delta: 'Zero false positives on benchmark-clean services (DuckDuckGo, Proton, etc.)' },
+        { metric: 'Inference Latency Tiering', final: '~800ms / ~15s', delta: 'Quick Scan triage (~800ms) vs Deep Scan full-document ensemble (~15s)' },
       ],
-      validationStrategy: 'Each document scanned fresh (Redis cache cleared via CACHE_VERSION bump to v7). Verified: (1) score correctness — Proton SAFE, Notion OKAY, TikTok RISKY, (2) confidence quality — all violations HIGH/MEDIUM, (3) citation accuracy — verbatim text highlighted on live DOM, (4) shared_cache write confirmed — 6 documents in Firestore ai-studio-... database after scans.',
+      validationStrategy:
+        'Automated CLI test harness (eval/scan_full_battery.py) evaluated 25 real-world policy documents across ToS;DR grades A–F. Scans executed fresh with Redis/Firestore cache invalidation (CACHE_VERSION = "v7"). Verified: (1) Rating classification accuracy, (2) Grounding precision via 100% verbatim substring verification, (3) False-positive suppression on clean policies, (4) Live DOM highlighting across React/Vue single-page applications.',
+    },
+    errorAnalysis: [
+      'D1 (AI Training Constraint): Raw LLMs frequently flag standard IT data processing as AI training. Fix: Enforced keyword constraint requiring explicit "train", "fine-tune", or "machine learning" terms in cited clause.',
+      'D2 (User Prohibition Blocklist): LLMs misclassify user conduct bans ("You may not use automated bots to scrape...") as company privacy violations. Fix: Blocklist of prohibition-prefix patterns ("You may not", "Users shall not") automatically clears false flags.',
+      'D3 (Section-Scoped Transparency): Scoped policy subsections referencing a master document trigger false vagueness penalties. Fix: Detected section-scoping language to clear unnecessary transparency deductions.',
+      'D4 (Feedback vs. Content Disambiguation): LLMs confuse standard feedback assignment clauses ("Any feedback submitted becomes our property") with IP copyright theft on user media. Fix: Disambiguated incoming feedback terms from published user content licenses.',
+      'D5 (Privacy Policy Co-Scan Ingestion): Terms of Service agreements legally omit advertising/tracker data sharing disclosures. Fix: Parallel Co-Scan sub-routine automatically retrieves and audits companion Privacy Policy for data_selling.',
+      'D6 (Delinquency Retention Exception): LLMs flag debt collection/delinquent account retention as indefinite data hoarding. Fix: Detected delinquent-account exception clauses and cleared false retention penalties.',
+      'D7 (Quantitative Liability Cap Gate): Raw LLMs penalize standard generic limitation-of-liability boilerplate. Fix: Required an explicit numeric dollar cap string ("$100", "$250", "shall not exceed") before triggering Dark Patterns penalties.',
+    ],
+    dsPipeline: {
+      summary: 'End-to-end 7-stage Applied NLP classification, extraction, calibration, and grounding pipeline.',
+      components: [
+        { name: '1. DOM Extraction & Cleaning', detail: 'Readability.js extracts pristine document body while discarding navigation menus, cookie banners, and advertising boilerplate.' },
+        { name: '2. Two-Tier Cache Lookup', detail: 'Checks Upstash Redis L1 (sub-ms) and Firestore L2 (shared) using SHA256(text):tier hash keys gated by CACHE_VERSION = "v7".' },
+        { name: '3. Privacy Policy Co-Scan', detail: 'Detects ToS documents and automatically locates & fetches companion Privacy Policy in parallel for data_selling classification.' },
+        { name: '4. Sentence-Aware Chunking', detail: 'Splits text into 5,000-character windows with 1,000-character overlaps anchored strictly at sentence boundaries.' },
+        { name: '5. Dual-Model Consensus Inference', detail: 'Executes parallel evaluation using Gemini 2.5 Flash as primary detector and Gemini 2.5 Flash-Lite as corroborating verifier.' },
+        { name: '6. D1–D7 Deterministic Calibration', detail: 'Verifies citation groundedness, downgrades paraphrased quotes to LOW confidence (half penalty), and fires D1–D7 override rules.' },
+        { name: '7. Canonical Scoring & DOM Grounding', detail: 'Computes Score = max(5, 100 - Σ deductions), maps rating bands (SAFE/OKAY/RISKY), and highlights exact text live on DOM via mark.js.' },
+      ],
     },
     milestones: [
-      'Shipped Chrome extension: policy extraction → LLM evaluation → scored result in under 30 seconds.',
-      'Six-pillar scoring framework with per-pillar penalty weights and three-tier confidence grading.',
-      'Hard violation detection layer catching arbitration, class action waivers, and liability caps deterministically.',
-      'Citation highlighting working on live policy pages via mark.js with typographic normalization.',
-      'Cache versioning system: stale results auto-rejected when pipeline logic changes.',
-      '6-document validation test passed: TikTok (20) → Signal (65) — correct scores, correct confidence levels, verbatim citations.',
+      'Engineered 6-pillar legal risk classification taxonomy with deterministic linear deduction math.',
+      'Achieved 94% Precision, 93% Recall, and 25/25 Rating Accuracy across 25-service ToS;DR benchmark.',
+      'Designed D1–D7 deterministic calibration engine recovering +29% precision over raw LLMs.',
+      'Architected Privacy Policy Co-Scan engine solving ToS advertising disclosure segregation.',
+      'Shipped Chrome MV3 extension with mark.js typographic DOM highlighting and SSE streaming.',
+      'Deployed two-tier L1 Redis + L2 Firestore caching with version invalidation (CACHE_VERSION v7).',
     ],
     risks: [
-      'LLM citation paraphrasing — The LLM sometimes returns a slightly reworded version of the clause rather than verbatim text. Solved by the three-tier confidence system: paraphrased citations are downgraded to LOW confidence and carry reduced penalties, rather than being treated as full violations.',
-      'JavaScript-rendered pages — Spotify and similar SPA pages render via React. The server extracts the text correctly, but mark.js cannot highlight it in the live DOM. Mitigated by typographic normalization and word-window sliding search. Residual cases show a soft warning in the citation box.',
-      'Regulatory drift — Privacy laws and common policy patterns evolve. The hard violation patterns and LLM prompts need periodic review as new clause types emerge (e.g. biometric data collection, cross-device tracking).',
-      'False negatives on obfuscated language — Sophisticated legal teams write around common keywords. The LLM catches semantic violations that regex misses, but extremely unusual phrasing can still slip through at LOW confidence.',
+      'Obfuscated Lawyer Phrasing — Highly unusual or euphemistic legal phrasing can lower model confidence. Mitigated by dual-model union-merge and fallback regex triggers.',
+      'JavaScript-Rendered SPAs — Heavily obfuscated virtual DOM structures can complicate text highlighting. Mitigated by typographic normalization and word-window sliding search.',
+      'Regulatory & Clause Evolution — Emerging privacy regulations (e.g. biometric data, AI agent delegation) require prompt & rule maintenance over time.',
     ],
-    nextRelease: 'Firefox store submission and public Chrome Web Store listing.',
+    nextRelease: 'Public Chrome Web Store distribution & enterprise procurement ToS scan API.',
     visualModules: [
+      {
+        title: '25-Service Evaluation Benchmark & Error Analysis',
+        description: 'Empirical evaluation across 25 production legal documents covering ToS;DR Grades A–F. Deep Scan achieves 94% Precision and 93% Recall (+14% recall lift over single model), with 25/25 rating accuracy and 6/6 True Negative Rate on clean policies.',
+        input: 'Benchmark: 25 Production Policies · Ground Truth: ToS;DR Consensus (Grades A–F)',
+        differentiators: [
+          'Statistical Lift: Dual-model ensemble yields +14% Recall and +5% Precision over single-pass Flash.',
+          'Zero False Positives: 6/6 True Negative Rate on Grade A/B clean policies (DuckDuckGo, Proton, etc.).',
+          'Calibrated Accuracy: 25/25 perfect grade classification across all benchmark test cases.'
+        ],
+        paired: true,
+        pairedLabels: ['📊 OVERALL BENCHMARK PERFORMANCE', '📈 PER-SERVICE PRECISION & RECALL'],
+        images: [
+          '/tldr/eval_charts/chart1_overall.png',
+          '/tldr/eval_charts/chart2_per_service_deep.png'
+        ]
+      },
       {
         title: 'Proton Mail Privacy Policy — 🟢 SAFE (85 → 100 / 100)',
         description: 'Privacy-first email service. Quick Scan flags one low-severity data retention risk (IP log retention), scoring 85/100 SAFE. Deep Scan\'s ensemble model verifies all 6 pillars — no AI training, no data selling, end-to-end encryption throughout — and upgrades to a clean 100/100 SAFE with 6/6 Safe Pillars confirmed.',
@@ -328,6 +379,11 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
           '/tldr/tiktok_deep.png'
         ]
       }
+    ],
+    attachments: [
+      { label: 'Full 25-Service Evaluation Benchmark Report (Markdown)', path: 'https://github.com/Jatin23K/TLDR-Shield/blob/main/EVAL_REPORT.md', type: 'md' },
+      { label: 'Automated Evaluation Test Harness (Python)', path: 'https://github.com/Jatin23K/TLDR-Shield/blob/main/eval/scan_full_battery.py', type: 'other' },
+      { label: 'Raw 25-Service Evaluation Battery Logs (TXT)', path: 'https://github.com/Jatin23K/TLDR-Shield/blob/main/eval/results/battery_results.txt', type: 'other' },
     ],
     businessPotential: {
       summary: 'Privacy literacy is a growing consumer concern and a regulatory imperative. TLDR Shield sits at the intersection of both — a tool that makes the invisible visible.',

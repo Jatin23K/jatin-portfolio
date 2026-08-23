@@ -644,9 +644,9 @@ const CaseStudy = () => {
           </div>
           <p className="text-sm leading-relaxed text-text-dim mb-8">{detail.nodeNetwork.description}</p>
           
-          <div className="relative rounded-lg border border-border/50 bg-surface/30 p-8 flex flex-col md:flex-row items-center gap-8 md:gap-12 justify-center overflow-hidden">
+          <div className="relative rounded-lg border border-border/50 bg-surface/30 p-6 md:p-8 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 justify-center overflow-hidden">
             {/* Core Node */}
-            <div className="relative z-10 flex flex-col items-center">
+            <div className="relative z-10 flex flex-col items-center flex-shrink-0">
               <div className="h-20 w-20 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center shadow-[0_0_30px_rgba(var(--accent),0.2)]">
                 <Server className="h-8 w-8 text-accent" />
               </div>
@@ -654,35 +654,90 @@ const CaseStudy = () => {
               <p className="text-[10px] font-mono text-accent/70 uppercase">Central Orchestrator</p>
             </div>
 
-            <div className="relative z-10 flex flex-col gap-4">
-              {/* Future Nodes Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {detail.nodeNetwork.nodes.map((node) => {
-                  const content = (
-                    <div className={`flex flex-col items-center justify-center rounded-md border border-border/40 bg-surface2/50 p-4 min-w-[180px] h-full transition-colors ${node.path ? 'hover:border-accent/50 hover:bg-surface2' : 'hover:border-accent/30'}`}>
-                      <div className={`h-2 w-2 rounded-full mb-3 transition-colors ${node.path ? 'bg-muted group-hover:bg-accent/70' : 'bg-muted'}`}></div>
-                      <p className={`font-heading text-sm font-bold text-center transition-colors ${node.path ? 'text-text group-hover:text-accent' : 'text-text'}`}>{node.name}</p>
-                      <p className="text-[10px] text-text-dim text-center mt-1 font-mono uppercase">{node.role}</p>
-                    </div>
-                  );
+            <div className="relative z-10 flex flex-col gap-5 w-full max-w-2xl">
+              {/* Group 1: Core Engine Pillars */}
+              {detail.nodeNetwork.corePillars && detail.nodeNetwork.corePillars.length > 0 ? (
+                <div className="rounded-lg border border-border/40 bg-surface/40 p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-accent font-bold">
+                      [ Core Engine Pillars ]
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {detail.nodeNetwork.corePillars.map((node) => {
+                      const content = (
+                        <div className={`flex flex-col items-center justify-center rounded-md border border-border/40 bg-surface2/50 p-3.5 h-full transition-colors ${node.path ? 'hover:border-accent/50 hover:bg-surface2' : 'hover:border-accent/30'}`}>
+                          <div className={`h-2 w-2 rounded-full mb-2.5 transition-colors ${node.path ? 'bg-muted group-hover:bg-accent/70' : 'bg-muted'}`}></div>
+                          <p className={`font-heading text-sm font-bold text-center transition-colors ${node.path ? 'text-text group-hover:text-accent' : 'text-text'}`}>{node.name}</p>
+                          <p className="text-[9px] text-text-dim text-center mt-1 font-mono uppercase tracking-wide">{node.role}</p>
+                        </div>
+                      );
 
-                  return node.path ? (
-                    <Link to={node.path} key={node.name} className="group block h-full outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md">
-                      {content}
-                    </Link>
-                  ) : (
-                    <div key={node.name} className="block h-full">
-                      {content}
-                    </div>
-                  );
-                })}
-              </div>
-              
-              {/* Future Expansion Block */}
-              <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-border/40 bg-surface2/10 p-4 hover:border-accent/30 transition-colors">
-                <p className="font-heading text-sm font-bold text-text-dim text-center">Future Expansion</p>
-                <p className="text-[10px] text-text-dim/70 text-center mt-1 font-mono uppercase">Infinite Node Capacity</p>
-              </div>
+                      return node.path ? (
+                        <Link to={node.path} key={node.name} className="group block h-full outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md">
+                          {content}
+                        </Link>
+                      ) : (
+                        <div key={node.name} className="block h-full">
+                          {content}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+
+              {/* Group 2: Applied Capabilities */}
+              {detail.nodeNetwork.appliedCapabilities && detail.nodeNetwork.appliedCapabilities.length > 0 ? (
+                <div className="rounded-lg border border-border/40 bg-surface/40 p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent2 animate-pulse" />
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-accent2 font-bold">
+                      [ Applied Capabilities ]
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {detail.nodeNetwork.appliedCapabilities.map((node) => {
+                      const content = (
+                        <div className={`flex flex-col items-center justify-center rounded-md border border-border/40 bg-surface2/50 p-3.5 h-full transition-colors ${node.path ? 'hover:border-accent2/50 hover:bg-surface2' : 'hover:border-accent2/30'}`}>
+                          <div className={`h-2 w-2 rounded-full mb-2.5 transition-colors ${node.path ? 'bg-muted group-hover:bg-accent2/70' : 'bg-muted'}`}></div>
+                          <p className={`font-heading text-sm font-bold text-center transition-colors ${node.path ? 'text-text group-hover:text-accent2' : 'text-text'}`}>{node.name}</p>
+                          <p className="text-[9px] text-text-dim text-center mt-1 font-mono uppercase tracking-wide">{node.role}</p>
+                        </div>
+                      );
+
+                      return node.path ? (
+                        <Link to={node.path} key={node.name} className="group block h-full outline-none focus-visible:ring-2 focus-visible:ring-accent2 rounded-md">
+                          {content}
+                        </Link>
+                      ) : (
+                        <div key={node.name} className="block h-full">
+                          {content}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Future Expansion Block */}
+                  <div className="mt-3 flex flex-col items-center justify-center rounded-md border border-dashed border-border/40 bg-surface2/10 p-3 hover:border-accent/30 transition-colors">
+                    <p className="font-heading text-xs font-bold text-text-dim text-center">Future Expansion</p>
+                    <p className="text-[9px] text-text-dim/70 text-center mt-0.5 font-mono uppercase tracking-wide">Infinite Node Capacity</p>
+                  </div>
+                </div>
+              ) : (
+                /* Fallback for general nodes */
+                detail.nodeNetwork.nodes && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {detail.nodeNetwork.nodes.map((node) => (
+                      <div key={node.name} className="flex flex-col items-center justify-center rounded-md border border-border/40 bg-surface2/50 p-4">
+                        <p className="font-heading text-sm font-bold text-center text-text">{node.name}</p>
+                        <p className="text-[10px] text-text-dim text-center mt-1 font-mono uppercase">{node.role}</p>
+                      </div>
+                    ))}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </section>
