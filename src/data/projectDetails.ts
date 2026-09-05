@@ -90,7 +90,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       { label: 'Phase 1 — Bridge', sublabel: 'Tailscale encrypted mesh · Live', status: 'done' },
       { label: 'Phase 1 — JAMES', sublabel: 'Flutter · Android client · Live', status: 'done' },
       { label: 'Phase 1 — DAVID', sublabel: 'React + Python · Windows client · Live', status: 'done' },
-      { label: 'Phase 1 — Field Testing', sublabel: 'Completed · Hardware limits & battery mapped', status: 'done' },
+      { label: 'Phase 1 — Field Testing', sublabel: 'Active · Hardware limits & socket telemetry', status: 'current' },
       { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {

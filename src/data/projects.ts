@@ -98,7 +98,7 @@ export const projects: Project[] = [
       { label: 'Role', value: 'Umbrella Hub & Orchestrator' },
       { label: 'Topology', value: '2-Node Mesh (Android ↔ Windows)' },
       { label: 'Inference', value: 'Cloud API + Local Quantized Fallback' },
-      { label: 'Status', value: 'Phase 1 Field Tested · Architecture Validated' },
+      { label: 'Status', value: 'Field Testing · Hardware Profiling' },
     ],
     links: { github: 'https://github.com/Jatin23K/C.O.R.E-Showcase' },
     order: 5,
