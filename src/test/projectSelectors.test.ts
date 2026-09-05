@@ -15,11 +15,11 @@ describe('project selectors', () => {
     expect(visible.length).toBe(6)
     expect(visible.every((project) => project.isVisible)).toBe(true)
     expect(visible.map((project) => project.id)).toEqual([
-      'tldr-shield',
-      'launchmint-ai',
-      'leap-axiom',
       'core-memory-intelligence',
       'churn-prediction',
+      'launchmint-ai',
+      'tldr-shield',
+      'leap-axiom',
       'core-sovereign-bridge',
     ])
   })
@@ -31,9 +31,9 @@ describe('project selectors', () => {
     expect(homepage.length).toBe(3)
     expect(homepage.every((project) => project.featured)).toBe(true)
     expect(homepage.map((project) => project.id)).toEqual([
-      'tldr-shield',
-      'launchmint-ai',
       'core-memory-intelligence',
+      'launchmint-ai',
+      'tldr-shield',
     ])
   })
 
