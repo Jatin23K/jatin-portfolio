@@ -90,7 +90,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       { label: 'Phase 1 — Bridge', sublabel: 'Tailscale encrypted mesh · Live', status: 'done' },
       { label: 'Phase 1 — JAMES', sublabel: 'Flutter · Android client · Live', status: 'done' },
       { label: 'Phase 1 — DAVID', sublabel: 'React + Python · Windows client · Live', status: 'done' },
-      { label: 'Phase 1 — Field Testing', sublabel: 'Daily use · Hardware limits active', status: 'current' },
+      { label: 'Phase 1 — Field Testing', sublabel: 'Completed · Hardware limits & battery mapped', status: 'done' },
       { label: 'Phase 2 — The Ecosystem', sublabel: 'Memory · RBAC · Edge Mesh · DGX Sovereignty', status: 'next' },
     ],
     nodeNetwork: {
@@ -112,7 +112,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       ],
     },
     approach: [
-      '[Phase 1 · Field Testing] Private Sovereign Infrastructure — C.O.R.E. is maintained as private personal infrastructure running exclusively on personal hardware with real-world credentials, private notes, and daily personal telemetry. Ephemeral session keys and Tailscale mesh encryption ensure that local data remains cryptographically locked.',
+      '[Phase 1 · Field Testing] Private Sovereign Infrastructure — C.O.R.E. was evaluated as private personal infrastructure running on personal hardware with real-world credentials, private notes, and empirical hardware telemetry. Ephemeral session keys and Tailscale mesh encryption ensure that local data remains cryptographically locked.',
       '[Phase 1 · Field Testing] JAMES (Mobile Node) — Built in Flutter for Android. Handles mobile interaction, voice I/O, rapid dictation, and local tool execution with dual personas: JAMES (direct) and JANIE (warm).',
       '[Phase 1 · Field Testing] DAVID (Desktop Node) — Built in React + FastAPI for Windows. Handles heavy compute, OS automation, and multi-agent depth with dual personas: DAVID (analytical) and DARA (conversational).',
       '[Phase 1 · Field Testing] Sovereign Bridge — Encrypted Tailscale private mesh directly connecting Mobile ↔ PC for peer-to-peer task offloading with zero third-party proxy involvement.',

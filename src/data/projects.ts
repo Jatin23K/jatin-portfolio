@@ -85,7 +85,7 @@ export const projects: Project[] = [
     primaryKpi: 'Network Topology',
     kpiDelta: 'Encrypted Mesh',
     resumeBullet:
-      'Built a full-stack private AI companion ecosystem (Flutter + React + Python) across mobile and desktop, connected over an encrypted Tailscale mesh with shared persistent memory. Serves as the central umbrella operating layer orchestrating specialized Applied DS intelligence cortexes. Currently in daily personal field-testing.',
+      'Built a full-stack private AI companion ecosystem (Flutter + React + Python) across mobile and desktop, connected over an encrypted Tailscale mesh with shared persistent memory. Serves as the central umbrella operating layer orchestrating specialized intelligence cortexes. Phase 1 multi-device field testing completed across Android and Windows.',
     tagline: 'A private companion across devices. Not a generic assistant.',
     subtitle: 'Cognitive Operation & Reasoning Engine',
     problem: "I needed a sovereign, persistent companion across my phone and PC that runs on my hardware without sending my private life to corporate cloud platforms.",
@@ -98,7 +98,7 @@ export const projects: Project[] = [
       { label: 'Role', value: 'Umbrella Hub & Orchestrator' },
       { label: 'Topology', value: '2-Node Mesh (Android ↔ Windows)' },
       { label: 'Inference', value: 'Cloud API + Local Quantized Fallback' },
-      { label: 'Status', value: 'Field Testing · In Daily Use' },
+      { label: 'Status', value: 'Phase 1 Field Tested · Architecture Validated' },
     ],
     links: { github: 'https://github.com/Jatin23K/C.O.R.E-Showcase' },
     order: 1,
