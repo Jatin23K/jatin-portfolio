@@ -25,7 +25,7 @@ export interface VisualModule {
   input?: string
   differentiators?: string[]
   images: string[]
-  diagramType?: 'pipeline' | 'cache' | 'colpali'
+  diagramType?: 'pipeline' | 'cache' | 'colpali' | 'core-mesh'
   landscape?: boolean
   paired?: boolean   // renders images as side-by-side pairs (for portrait/mobile screenshots)
   pairedLabels?: [string, string]  // optional labels for the two columns e.g. ['JAMES', 'JANIE']
@@ -112,44 +112,51 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
       ],
     },
     approach: [
-      'Private Sovereign System — C.O.R.E. is maintained as private personal infrastructure because it runs exclusively on my personal hardware and contains real-world credentials, private notes, and daily personal data. Ephemeral session keys and Tailscale mesh encryption ensure that if a satellite node is separated from the network, local data remains cryptographically locked.',
-      'JAMES (mobile) — built in Flutter for Android. Handles conversations, local offline execution, and mobile-first tasks. Two personas: JAMES (default · direct) and JANIE (warm · conversational).',
-      'DAVID (desktop) — built in React + Python for Windows. Handles heavy computation, multi-agent research swarms, and system orchestration. Two personas: DAVID (analytical) and DARA (reflective mentor).',
-      'Bridge — Tailscale VPN encrypted private mesh connects all satellite nodes to the central brain. Bidirectional task offloading with store-and-forward offline queuing.',
-      'Two-Tier Memory System — Strict separation between Behavioral Memory and Factual Knowledge: (1) Conversational Memory stays local to each node with logarithmic topic decay (S(t) = S₀ · e^(-λt)) and zero-knowledge metadata sync to Central DGX. (2) A.X.I.O.M. Knowledge Base acts as a shared multimodal RAG library across all devices.',
-      'Model-Agnostic Plug-and-Play Layer — Decoupled inference architecture (ModelAdapter + SchemaNormalizer). Automatically strips model reasoning tags (<thought>), repairs broken JSON schemas, and runs automated 30-prompt regression test suites (benchmark_model_swap.py) on model swaps.',
-      'Execution Depth Engine — Dual-gear cognitive execution: STANDARD Gear (1–3s low latency) for daily interactions, and MAX_DEPTH Swarm Overdrive (15–45s) for multi-agent synthesis (IB Banker + Detective + Threat Hunter + BI) and adversarial Skeptic reflection.',
-      '[Phase 2 · Ecosystem] Hub-and-Spoke DGX Architecture: Central Sovereign Node (DGX / Always-On Server) managing the master Qdrant vector index, Risk-Gated cross-device command dispatcher, and Home Assistant / MQTT IoT protocol bus.',
-      '[Phase 2 · Ecosystem] Multi-User RBAC & Hardware Capability Routing: Persona-Based Multi-Tenancy with hardware-aware task routing. High-risk physical actions (locks, garage) require primary node verification.',
+      '[Phase 1 · Field Testing] Private Sovereign Infrastructure — C.O.R.E. is maintained as private personal infrastructure running exclusively on personal hardware with real-world credentials, private notes, and daily personal telemetry. Ephemeral session keys and Tailscale mesh encryption ensure that local data remains cryptographically locked.',
+      '[Phase 1 · Field Testing] JAMES (Mobile Node) — Built in Flutter for Android. Handles mobile interaction, voice I/O, rapid dictation, and local tool execution with dual personas: JAMES (direct) and JANIE (warm).',
+      '[Phase 1 · Field Testing] DAVID (Desktop Node) — Built in React + FastAPI for Windows. Handles heavy compute, OS automation, and multi-agent depth with dual personas: DAVID (analytical) and DARA (conversational).',
+      '[Phase 1 · Field Testing] Sovereign Bridge — Encrypted Tailscale private mesh directly connecting Mobile ↔ PC for peer-to-peer task offloading with zero third-party proxy involvement.',
+      '[Phase 1 · Field Testing] Plug-and-Play Model Layer — Provider-agnostic inference architecture (ModelAdapter + SchemaNormalizer) supporting Gemini, NVIDIA NIM, and local Ollama fallback with automated thought-tag stripping and JSON repair.',
+      '[Phase 1 · Field Testing] Dual-Gear Execution Depth — Low-latency STANDARD Gear (1–3s) for daily tasks and MAX_DEPTH Swarm Overdrive (15–45s) for multi-agent MCTS and adversarial reflection.',
+      '[Phase 2 · Target Vision] Hub-and-Spoke DGX Star Topology — Dedicated Central Sovereign Node (DGX / Always-On Server) managing the master Qdrant vector index, centralized risk evaluator, and IoT protocol bus.',
+      '[Phase 2 · Target Vision] Satellite Fleet & Store-and-Forward Queuing — Mobile, Home Tablet, and laptop nodes capture tasks locally (via 3B quantized model) and auto-sync via a deferred offline queue upon reconnecting to the Central Node.',
+      '[Phase 2 · Target Vision] IoT & Physical Control Bus — Risk-gated Home Assistant / MQTT integration. Low-risk ambient actions (lights, AC, curtains) auto-execute; high-risk actions (locks, payments) require primary node physical verification.',
     ],
     architecture: [
-      'JAMES: Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Local 3B GGUF Offline Model',
-      'DAVID: React + Python · Windows — Cortex, Files, Multi-Agent Swarm, Qdrant Vector Index, DirectML GPU',
-      'Bridge: Tailscale VPN encrypted mesh — Universal Inter-Node Routing with Store-and-Forward Queuing',
-      'Memory Architecture: Local Node Memory with Logarithmic Decay (S(t)) + Shared A.X.I.O.M. Multimodal RAG',
-      'Execution Engine: Dual-Gear Processing (STANDARD 1-3s vs MAX_DEPTH Swarm Overdrive 15-45s)',
-      'Model Layer: Plug-and-Play Abstraction (ModelAdapter + SchemaNormalizer) with Automated Regression Suite',
+      '[Phase 1 · Field Testing] Mobile Client (JAMES): Flutter · Android — Chat, Vault, Core Brain, Safe Tab, Dashboard, Voice STT/TTS (Hardware limits active).',
+      '[Phase 1 · Field Testing] Desktop Hub (DAVID): React + FastAPI · Windows — Cortex, Files, Multi-Agent Swarm, SQLite Memory Store, Local OS Control (Hardware limits active).',
+      '[Phase 1 · Field Testing] Sovereign Bridge: Tailscale VPN encrypted P2P mesh — Direct bidirectional Phone ↔ PC communication.',
+      '[Phase 1 · Field Testing] Inference Layer: Multi-provider abstraction (Gemini, NVIDIA NIM, Ollama) with SchemaNormalizer and automated regression checks.',
+      '[Phase 2 · Target] Central Sovereign Node: Dedicated always-on hardware hub (DGX Spark) hosting Master Qdrant Vector Index & Swarm Dispatcher.',
+      '[Phase 2 · Target] Satellite Node Fleet: Home Tablet, laptop nodes, and IoT relays connected to Central Node.',
+      '[Phase 2 · Target] Store-and-Forward Offline Queue: Local 3B GGUF model captures tasks offline and syncs with Central Node on reconnect.',
+      '[Phase 2 · Target] Two-Tier Memory at Scale: Node-local logarithmic decay (S(t)) + Central Shared A.X.I.O.M. Omnimodal RAG.',
     ],
     milestones: [
-      'Both clients functional and running with dual personas (JAMES/JANIE and DAVID/DARA)',
-      'Tailscale bridge operational — bidirectional task offloading and telemetry sync live',
-      'Execution Depth Engine active — STANDARD and MAX_DEPTH Swarm Overdrive verified',
-      'Plug-and-Play Model Adapter & SchemaNormalizer active with 100% benchmark score',
-      'Phase 1 Field Operations in daily personal use across Android and Windows hardware',
+      '[Phase 1 · Field Testing] Dual-client ecosystem functional with dual personas (JAMES/JANIE and DAVID/DARA)',
+      '[Phase 1 · Field Testing] Sovereign Tailscale mesh bridge operational — bidirectional mobile ↔ desktop task offloading',
+      '[Phase 1 · Field Testing] Execution Depth Engine active — STANDARD (1-3s) and MAX_DEPTH Swarm Overdrive verified',
+      '[Phase 1 · Field Testing] Provider-agnostic ModelAdapter & SchemaNormalizer active with 100% benchmark score',
+      '[Phase 1 · Field Testing] Daily personal field operations active across real Android and Windows hardware with limits logged',
     ],
     risks: [
       'Local mobile LLM execution is constrained by physical RAM limits (OOM risk above 16k context on Termux). Heavy research is delegated to desktop node over Tailscale.',
       'Status: Field Testing. Both clients are functional and actively used daily, serving as the real-world baseline for Phase 2 Central-Node scaling.',
     ],
     nextRelease:
-      'Phase 2 Hub-and-Spoke DGX Server — Central master memory index, IoT Home Assistant protocol bus, and Store-and-Forward deferred offline task worker.',
+      'Phase 2 Hub-and-Spoke DGX Architecture — Central Dedicated Hardware Hub (DGX Spark), Master Qdrant Vector Index, Store-and-Forward Offline Queuing, and Risk-Gated Home Assistant / MQTT IoT Bus.',
     visualModules: [
       {
-        title: 'System Architecture',
+        title: 'System Architecture (Phase 1 Baseline vs. Phase 2 Target)',
         description:
-          'The complete C.O.R.E. final architecture. Tier 1 Core: dedicated AI hardware (DGX Spark — currently served by DAVID/PC while hardware is unavailable). Tier 2 Sub-Hubs: JAMES (live), Home Tablet, ∞ PC nodes. Tier 3 End Nodes: Smart Watch, Meta Glasses, Smart Bulbs, ∞ edge devices. One encrypted mesh. One memory system. No cloud involvement in the communication layer. The diagram shows the final design — the status bar shows where Phase 1 stands today.',
-        images: ['/core/architecture_diagram.jpg'],
+          'Phase 1 (Field Testing · Hardware Limits Active): 2-Node Mesh connecting only Mobile (JAMES on Android) and PC (DAVID on Windows) directly over Tailscale. Phase 2 (Target Architecture): Dedicated standalone hardware Central Node (DGX Spark) that stays always-active on the Tailscale mesh, with Mobile, PC, Home Control Tablet, and IoT relays connecting as satellite nodes to the Central Node.',
+        images: [],
+        diagramType: 'core-mesh',
       },
+
+
+
+
       {
         title: 'JAMES vs JANIE — Backend Persona Engine',
         description:
@@ -241,7 +248,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     summary:
       'TLDR Shield is an Applied NLP risk classification and grounded extraction pipeline that analyzes Terms of Service and Privacy Policies across 6 core risk pillars in seconds. Rather than relying on uncalibrated LLM opinions, it implements a dual-tier architecture: sub-second quick triage (~800ms) and a high-precision dual-model ensemble with deterministic post-processing rules (Deep Scan, ~15s). Evaluated on a 25-service benchmark against ToS;DR ground truth, the system achieves 94% Precision, 93% Recall, and 25/25 rating accuracy, recovering +29% precision over raw LLM baselines with 100% verbatim DOM text grounding.',
     businessContext:
-      'Terms of Service and Privacy Policies average 10,000–30,000 words of evasive legalese. 91% of consumers agree without reading, unknowingly surrendering private data rights, generative AI training licenses, and legal protections (forced arbitration, liability caps). Generic LLM summarizers fail on edge cases, hallucinate citations, and lack quantitative calibration. TLDR Shield solves this with an objective, deterministic privacy risk auditor that outputs a calibrated 0–100 risk score backed by 100% verbatim citations highlighted in yellow directly on the live webpage in under 30 seconds.',
+      'Terms of Service and Privacy Policies average 10,000–30,000 words of evasive legalese. 91% of consumers agree without reading, unknowingly surrendering private data rights, generative AI training licenses, and legal protections (forced arbitration, liability caps). Generic LLM summarizers fail on edge cases, hallucinate citations, and lack quantitative calibration. TLDR Shield solves this with an objective, deterministic privacy risk auditor that outputs a calibrated 0–100 risk score backed by 100% verbatim citations highlighted in yellow directly on the live webpage in under 30 seconds. (Architecture Note: Deployed as an independent Applied DS product and also integrated as a specialized Privacy Ingestion Risk Cortex inside the C.O.R.E. Sovereign Ecosystem).',
     buildStages: [
       { label: 'Pillar & Scoring Taxonomy', sublabel: '6 risk pillars · deterministic deduction weights · 3-tier confidence', status: 'done' },
       { label: 'Sentence Chunker & Co-Scan', sublabel: '5k/1k sentence-aware chunker · Privacy Policy co-scan engine', status: 'done' },
@@ -420,7 +427,7 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     summary:
       'LaunchMintAI is a forensic startup intelligence engine that compresses market validation into a single evidence-backed research pass. It stress-tests startup ideas with market signals, competitive positioning, and adversarial prompts before teams commit build time.',
     businessContext:
-      'Founders waste months building products nobody wants. Applied Data Science Highlight: I built this system to solve this exact business problem by replacing unstructured, hallucinatory LLM output with a deterministic, data-grounded intelligence pipeline. It transforms raw internet chaos into actionable strategy.',
+      'Founders waste months building products nobody wants. Applied Data Science Highlight: I built this system to solve this exact business problem by replacing unstructured, hallucinatory LLM output with a deterministic, data-grounded intelligence pipeline. It transforms raw internet chaos into actionable strategy. (Architecture Note: Deployed as an independent Applied DS product and also integrated as a specialized Forensic Market & Competitor Analysis Cortex inside the C.O.R.E. Sovereign Ecosystem).',
     approach: [
       'Grounded Metrics Protocol: Reported market and financial metrics are calculated from explicit variables and source-backed assumptions, not accepted as raw LLM output.',
       'Adversarial RAG Pipeline: Utilized a "Roaster" agent alongside an adversarial "Skeptic" agent that forces cross-referencing and strict source grounding.',
@@ -445,8 +452,8 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     dsPipeline: {
       summary: 'The multi-disciplinary Applied Data Science and quantitative modeling layer that separates LaunchMintAI from an LLM prompt wrapper. Four quantitative pillars execute in parallel for every submitted startup concept.',
       components: [
-        { name: 'XGBoost Venture Classifier', detail: 'Trained on 189,970 historical startups from 11 relational Crunchbase tables (1995–2014 cohort) with cost-sensitive loss (scale_pos_weight=9.11). Delivers calibrated survival probabilities (0.9249 ROC-AUC, 0.7630 PR-AUC) and in-memory local SHAP TreeExplainer feature attributions.' },
-        { name: 'Vectorized Monte Carlo SDE Engine', detail: 'Executes 10,000 parallel stochastic financial lifecycles in pure NumPy 2D array vectorization (<35ms). Calculates path-dependent P10/P50/P90 cash trajectories, milestone runway ruin probabilities (P(ruin <= t)), and 95% Value at Risk (VaR).' },
+        { name: 'XGBoost Venture Classifier', detail: 'Trained on 189,970 historical startups from 11 relational Crunchbase tables (1995–2014 cohort) with cost-sensitive loss (scale_pos_weight=9.11). Delivers calibrated Day-0 survival probabilities (0.8512 ROC-AUC, 0.4789 PR-AUC) and in-memory local SHAP TreeExplainer feature attributions.' },
+        { name: 'Vectorized Monte Carlo SDE Engine', detail: 'Executes 10,000 parallel stochastic financial lifecycles in pure NumPy 2D array vectorization (<32ms). Calculates path-dependent P10/P50/P90 cash trajectories, milestone runway ruin probabilities (P(ruin <= t)), and 95% Value at Risk (VaR).' },
         { name: 'Aspect-Based Sentiment NLP (ABSA)', detail: 'Tokenizes customer reviews across Pricing Friction, Product Reliability/Bugs, and Customer Support Latency using VADER compound scoring to compute a weighted Competitor Vulnerability Index (CVI) and actionable kill strategies.' },
         { name: '3-Tier RAG Grounding & Skeptic Gate', detail: 'Enforces domain authority filtering (Statista, Gartner, Grand View) with deterministic regex CAGR/TAM math verification and an adversarial VC Skeptic agent that eliminates sycophancy.' },
       ]
@@ -454,23 +461,24 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     evaluation: {
       summary: 'Evaluated across both a holdout test set of 37,994 historical startups for predictive ML and an automated 30-prompt golden evaluation benchmark across 11 verticals for RAG Triad faithfulness.',
       metrics: [
-        { metric: 'XGBoost Holdout ROC-AUC', final: '0.9249', delta: '5-Fold CV: 0.9199' },
-        { metric: 'XGBoost PR-AUC (Imbalance)', final: '0.7630', delta: '9.11:1 Ratio' },
-        { metric: 'Optimal F1 Score (tau=0.825)', final: '0.7444', delta: 'Precision: 0.9222' },
-        { metric: 'Brier Loss (Calibration)', final: '0.0872', delta: 'Well-Calibrated' },
-        { metric: 'Monte Carlo 10k SDE Latency', final: '24–49ms', delta: 'NumPy SIMD' },
-        { metric: 'RAG Triad Groundedness', final: '97.8%', delta: '+35.0% Uplift' },
+        { metric: 'XGBoost Holdout ROC-AUC', final: '0.8512', delta: '5-Fold CV: 0.8497 ± 0.0017' },
+        { metric: 'XGBoost PR-AUC (Imbalance)', final: '0.4789', delta: '~5x Lift over 9.89% Base Rate' },
+        { metric: 'Optimal F1 Score (tau=0.600)', final: '0.4286', delta: 'Precision: 0.4211' },
+        { metric: 'Brier Loss (Calibration)', final: '0.1562', delta: 'Monotonic Across 6 Risk Tiers' },
+        { metric: 'Monte Carlo 10k SDE Latency', final: '< 32ms', delta: 'NumPy SIMD Vectorization' },
+        { metric: 'RAG Triad Groundedness', final: '95.8%', delta: '+29.3% Uplift (vs Baseline 66.4%)' },
         { metric: 'Hallucination Rate', final: '0.0%', delta: '-33.3% Reduction' },
-        { metric: 'Mean Inference Latency', final: '451ms', delta: '-74.7% Reduction' },
+        { metric: 'Mean Inference Latency', final: '385ms', delta: '-78.4% Reduction' },
       ],
       validationStrategy: 'Dual-path evaluation: (1) ML Validation: 5-Fold Stratified Cross-Validation on 189,970 historical startups with holdout test set (N=37,994). (2) RAG Triad Benchmark: 30 standardized startup ideas across 11 verticals measuring Faithfulness, Context Precision, and Hallucination Deltas against raw zero-shot baselines.',
     },
     errorAnalysis: [
-      'LLM Score Collapse: Single-prompt VC Roast collapsed all survival scores to 12–15% regardless of idea quality. Root cause: creative personas override numeric constraints. Fix: decoupled architecture — XGBoost calculates the calibrated probability, LLM only writes the verbal narrative, Python safety net guarantees numeric consistency. Result: 0.9249 ROC-AUC calibration across all 6 tiers.',
+      'Day-0 Target Leakage Remediation: Initial prototype models achieved an apparent 0.9249 ROC-AUC and 0.7630 PR-AUC. Rigorous forensic auditing revealed target leakage: post-formation variables (funding_total_usd, funding_rounds, milestone_count) were included in training features. Because startups that raised Series B/C survived by definition, the model was memorizing downstream capital events rather than predicting pre-seed survivability. Fix: Purged all temporal post-formation features, restricting inputs strictly to Day-0 observable variables (cohort year/quarter, geography, vertical category, initial founder count). Model performance settled at a robust, leak-free 0.8512 Holdout ROC-AUC and 0.4789 PR-AUC (~5x lift over 9.89% positive base rate with scale_pos_weight=9.11).',
+      'LLM Score Collapse: Single-prompt VC Roast collapsed all survival scores to 12–15% regardless of idea quality. Root cause: creative personas override numeric constraints. Fix: decoupled architecture — XGBoost calculates the calibrated probability, LLM only writes the verbal narrative, Python safety net guarantees numeric consistency. Result: calibrated probabilistic outputs across all 6 risk tiers.',
       'Source Quality Variance: Market data from web search varies in reliability by vertical. Low-signal niches (e.g., artisanal products) return SEO-heavy results with inflated TAM claims. Control: 3-tier domain waterfall prioritizes McKinsey/Gartner/Statista sources before falling back to general web; unverified numbers are flagged as pending verification.',
       'Numerical Incoherence in LLM Projections: Creative LLMs struggle with compounding CAGR growth rates. Control: all financial burn rates, runway insolvency points, and Value at Risk distributions are calculated deterministically via vectorized NumPy SDEs, bypassing LLM math entirely.',
     ],
-    nextRelease: 'Full interactive reports for both genuine and adversarial test ideas available in the Artifacts section above. 6 high-resolution DS evaluation charts (ROC-AUC, SHAP feature importance, Monte Carlo cash distributions, RAG Triad benchmark) available in the GitHub repository.',
+    nextRelease: 'Full interactive reports for both genuine and adversarial test ideas available in the Artifacts & Reports section below. 6 high-resolution DS evaluation charts (ROC-AUC, SHAP feature importance, Monte Carlo cash distributions, RAG Triad benchmark) available in the GitHub repository.',
     visualModules: [
       {
         title: 'VC Roast',

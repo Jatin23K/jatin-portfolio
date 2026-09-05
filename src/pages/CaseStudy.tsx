@@ -402,7 +402,7 @@ const AxiomArchitectureDiagram = () => {
 }
 
 /* ─── Visual Module Diagram Renderer ──────────────────────────── */
-const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali' }) => {
+const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali' | 'core-mesh' }) => {
   if (type === 'pipeline') {
     return (
       <div className="rounded-lg border border-border/70 bg-surface/90 p-5 shadow-lg space-y-3 font-mono text-xs w-full">
@@ -526,8 +526,297 @@ const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali
     )
   }
 
+  if (type === 'core-mesh') {
+    return (
+      <div className="rounded-xl border border-border/80 bg-[#07070c] p-6 md:p-8 shadow-2xl space-y-8 font-mono text-xs w-full text-text overflow-hidden relative">
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370f_1px,transparent_1px),linear-gradient(to_bottom,#1f29370f_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+
+        {/* 1. Header */}
+        <div className="relative z-10 text-center space-y-1 border-b border-border/40 pb-5">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-muted font-bold">System Architecture</p>
+          <h2 className="font-heading text-2xl md:text-3xl font-extrabold tracking-tight text-text">C.O.R.E.</h2>
+          <p className="text-[11px] text-text-dim tracking-wider">Cognitive Operation and Reasoning Engine</p>
+        </div>
+
+        {/* 2. Memory System */}
+        <div className="relative z-10 space-y-3">
+          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Memory System</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-center text-[10px]">
+            <div className="rounded-lg border border-border/60 bg-surface2/60 p-2.5">
+              <p className="font-bold text-text">Short-term</p>
+              <p className="text-muted text-[8px] mt-0.5">active session &middot; SQLite</p>
+            </div>
+            <div className="rounded-lg border border-border/60 bg-surface2/60 p-2.5">
+              <p className="font-bold text-text">Nightly Filter</p>
+              <p className="text-muted text-[8px] mt-0.5">automated CRON</p>
+            </div>
+            <div className="rounded-lg border border-border/60 bg-surface2/60 p-2.5">
+              <p className="font-bold text-text">Long-term</p>
+              <p className="text-muted text-[8px] mt-0.5">persistent store &middot; SQLite</p>
+            </div>
+            <div className="rounded-lg border border-accent2/40 bg-surface2/60 p-2.5">
+              <p className="font-bold text-accent2">Redis Bridge</p>
+              <p className="text-muted text-[8px] mt-0.5">Phase 2 &middot; Ecosystem</p>
+            </div>
+            <div className="rounded-lg border border-accent4/40 bg-surface2/60 p-2.5 col-span-2 sm:col-span-1">
+              <p className="font-bold text-accent4">Qdrant Vector</p>
+              <p className="text-muted text-[8px] mt-0.5">Phase 2 &middot; Ecosystem</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 3. Multi-User RBAC Bar */}
+        <div className="relative z-10 rounded-lg border border-border/50 bg-surface2/40 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-[9px]">
+          <span className="text-muted uppercase tracking-widest font-bold">Multi-User RBAC &middot; Phase 2 Ecosystem</span>
+          <div className="flex flex-wrap gap-1.5">
+            <span className="bg-black/50 border border-border/60 px-2 py-0.5 rounded text-text-dim">Tenant ID per Device</span>
+            <span className="bg-black/50 border border-border/60 px-2 py-0.5 rounded text-text-dim">Role-Based Access Control</span>
+            <span className="bg-black/50 border border-border/60 px-2 py-0.5 rounded text-text-dim">Category Consent Matrix</span>
+            <span className="bg-black/50 border border-border/60 px-2 py-0.5 rounded text-text-dim">Biological Context Override</span>
+          </div>
+        </div>
+
+        {/* 4. Tier 1 — Core */}
+        <div className="relative z-10 space-y-3">
+          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 1 &middot; Core</p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {/* DGX Spark Box */}
+            <div className="rounded-xl border border-amber-500/40 bg-surface2/60 p-4 sm:p-5 flex flex-col justify-between space-y-3">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded">
+                    Designed &middot; Final Tier 1
+                  </span>
+                </div>
+                <h4 className="font-heading text-lg font-bold text-amber-400">DGX Spark</h4>
+                <p className="text-[10px] text-text-dim mt-0.5">Dedicated AI Hardware &middot; Local Sovereign Brain</p>
+
+                <div className="mt-4 grid grid-cols-2 gap-1.5 text-[9px]">
+                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Full Local Inference</span>
+                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Zero Cloud Dependency</span>
+                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">All Sub-Hub Orchestration</span>
+                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Sovereign Memory</span>
+                </div>
+              </div>
+
+              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Hardware Limited &middot; On Roadmap</p>
+            </div>
+
+            {/* DAVID Box */}
+            <div className="rounded-xl border border-amber-500/70 bg-surface2/80 p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] uppercase tracking-widest text-amber-300 bg-amber-500/20 border border-amber-400/50 px-2 py-0.5 rounded font-bold">
+                    Field Testing &middot; Acting as Tier 1 Core
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded bg-amber-500/20 border border-amber-500 flex items-center justify-center text-[10px] text-amber-400">&diams;</div>
+                  <h4 className="font-heading text-lg font-bold text-text">DAVID</h4>
+                </div>
+                <p className="text-[10px] text-text-dim mt-0.5">Desktop PC &middot; Python + React &middot; Windows</p>
+
+                <div className="mt-3 flex flex-wrap gap-1 text-[9px]">
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Cortex</span>
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Files</span>
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Tasks</span>
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Projects</span>
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Settings</span>
+                  <span className="bg-black/60 border border-border/70 px-2 py-1 rounded text-text">Security</span>
+                </div>
+
+                <div className="mt-3 flex items-center gap-2 text-[9px]">
+                  <span className="text-muted">Personas:</span>
+                  <span className="px-2 py-0.5 rounded bg-red-950/60 border border-red-500/40 text-red-300 font-bold">DAVID</span>
+                  <span className="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold">DARA</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-[9px] text-amber-300 pt-2 border-t border-border/40">
+                <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
+                <span>Running &middot; API Mode &middot; Hardware Limited</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. Tailscale Encrypted Mesh Bar */}
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="w-full border-t border-cyan-500/30 flex items-center justify-center">
+            <span className="px-4 py-1.5 -mt-3.5 rounded-full bg-[#07070c] border border-cyan-500/50 text-cyan-400 text-[10px] font-bold tracking-widest shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+              TAILSCALE ENCRYPTED MESH
+            </span>
+          </div>
+        </div>
+
+        {/* 6. Tier 2 — Sub-Hubs */}
+        <div className="relative z-10 space-y-3">
+          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 2 &middot; Sub-Hubs</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* JAMES Box */}
+            <div className="rounded-xl border border-red-500/50 bg-surface2/80 p-4 flex flex-col justify-between space-y-3 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/30 px-2 py-0.5 rounded font-bold">
+                    Field Testing &middot; Live
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded bg-red-500/20 border border-red-500 flex items-center justify-center text-[10px] text-red-400">&shield;</div>
+                  <h4 className="font-heading text-base font-bold text-text">JAMES</h4>
+                </div>
+                <p className="text-[10px] text-text-dim mt-0.5">Mobile &middot; Flutter &middot; Android</p>
+
+                <div className="mt-3 flex flex-wrap gap-1 text-[8px]">
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Chat</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Vault</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Core Brain</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Safe Tab</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Dashboard</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Diagnostics</span>
+                </div>
+
+                <div className="mt-3 flex items-center gap-1.5 text-[9px]">
+                  <span className="text-muted">Personas:</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-950/60 border border-red-500/40 text-red-300 font-bold text-[8px]">JAMES</span>
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold text-[8px]">JANIE</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-[9px] text-emerald-400 pt-2 border-t border-border/40">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Running &middot; API Mode</span>
+              </div>
+            </div>
+
+            {/* Home Tablet */}
+            <div className="rounded-xl border border-border/60 bg-surface2/50 p-4 flex flex-col justify-between space-y-3">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] uppercase tracking-widest text-muted bg-surface border border-border px-2 py-0.5 rounded">
+                    Designed
+                  </span>
+                </div>
+                <h4 className="font-heading text-base font-bold text-text">Home Tablet</h4>
+                <p className="text-[10px] text-text-dim mt-0.5">Home Control Hub &middot; Smart Display</p>
+
+                <div className="mt-3 space-y-1 text-[9px] text-text-dim">
+                  <p className="text-muted text-[8px] uppercase tracking-wider">Planned Capabilities:</p>
+                  <div className="flex flex-wrap gap-1">
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Home Automation</span>
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Environment Control</span>
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Node Coordinator</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Phase 2 &middot; Ecosystem</p>
+            </div>
+
+            {/* Infinity PC Nodes */}
+            <div className="rounded-xl border border-border/60 bg-surface2/50 p-4 flex flex-col justify-between space-y-3 sm:col-span-2 lg:col-span-1">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] uppercase tracking-widest text-muted bg-surface border border-border px-2 py-0.5 rounded">
+                    Designed
+                  </span>
+                </div>
+                <h4 className="font-heading text-base font-bold text-text">&infin; PC Nodes</h4>
+                <p className="text-[10px] text-text-dim mt-0.5">Additional Desktop Sub-Hubs</p>
+
+                <div className="mt-3 space-y-1 text-[9px] text-text-dim">
+                  <p className="text-muted text-[8px] uppercase tracking-wider">Role:</p>
+                  <div className="flex flex-wrap gap-1">
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Workload Distribution</span>
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Redundancy</span>
+                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Infinite Capacity</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Phase 2 &middot; Ecosystem</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 7. Tier 3 — End Nodes */}
+        <div className="relative z-10 space-y-2">
+          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 3 &middot; End Nodes &middot; Phase 2 Ecosystem</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center text-[9px]">
+            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
+              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
+              <p className="font-bold text-text mt-1">Smart Watch</p>
+              <p className="text-muted text-[8px]">Wearable &middot; Biometric Input</p>
+            </div>
+            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
+              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
+              <p className="font-bold text-text mt-1">Meta Glasses</p>
+              <p className="text-muted text-[8px]">AR Node &middot; Context Capture</p>
+            </div>
+            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
+              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
+              <p className="font-bold text-text mt-1">Smart Bulbs</p>
+              <p className="text-muted text-[8px]">Environment Control &middot; IoT</p>
+            </div>
+            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
+              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
+              <p className="font-bold text-text mt-1">&infin; End Nodes</p>
+              <p className="text-muted text-[8px]">Infinite Edge Capacity</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 8. Model Layer */}
+        <div className="relative z-10 space-y-2">
+          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Model Layer</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center text-[10px]">
+            <div className="rounded-lg border border-accent2/40 bg-surface2/60 p-2.5">
+              <p className="font-bold text-accent2">Cloud API</p>
+              <p className="text-muted text-[8px]">Primary &middot; Gemini</p>
+            </div>
+            <div className="rounded-lg border border-accent/40 bg-surface2/60 p-2.5">
+              <p className="font-bold text-accent">Local LLM</p>
+              <p className="text-muted text-[8px]">Offline Fallback &middot; Ollama</p>
+            </div>
+            <div className="rounded-lg border border-purple-500/40 bg-surface2/60 p-2.5">
+              <p className="font-bold text-purple-400">Full Local</p>
+              <p className="text-muted text-[8px]">DGX Sovereign &middot; Roadmap</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 9. Bottom Status Bar */}
+        <div className="relative z-10 rounded-lg border border-border/60 bg-black/70 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-[9px]">
+          <div className="flex items-center gap-1.5 text-emerald-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span>API Mode: Operational</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-amber-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+            <span>DAVID: Acting as Tier 1 Core</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-red-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
+            <span>Status: Field Testing</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-cyan-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+            <span>Ecosystem: Phase 2 Designed</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-purple-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+            <span>DGX Sovereign Core: Roadmap</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return null
 }
+
+
 
 /* ─── Main page ──────────────────────────────────────────────── */
 const CaseStudy = () => {

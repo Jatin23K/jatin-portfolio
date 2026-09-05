@@ -40,11 +40,12 @@ const Home = () => {
       <ProjectsSection
         projects={pipelineProjects()}
         sectionId="projects-pipeline"
-        label="CASE STUDIES / SOVEREIGN EDGE SYSTEMS"
-        title="Sovereign Edge Systems"
-        subtitle="Hardware-constrained edge deployment, Zero-Trust DRM, and persistent memory architecture running outside any third-party platform."
+        label="CAPSTONE ARCHITECTURE / THE UMBRELLA ECOSYSTEM"
+        title="Sovereign AI Ecosystem & Operating Layer"
+        subtitle="The private intelligence backbone and distributed mesh connecting all standalone applied data science models across mobile, desktop, and edge hardware."
         listAriaLabel="Sovereign builds"
       />
+
       <SkillsSection skills={skills} />
       <DataTerminalSection />
       <ContactSection />
