@@ -193,7 +193,7 @@ export const projects: Project[] = [
   {
     id: 'core-memory-intelligence',
     tier: 1,
-    typeBadge: 'Applied DS / ML',
+    typeBadge: 'Data Science / ML',
     title: 'C.O.R.E. Memory Intelligence Engine',
     oneLineOutcome:
       'Random Forest predictive classification engine that optimizes distributed memory decay — achieving a 41.46% reduction in cloud storage costs.',
