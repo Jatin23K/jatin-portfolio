@@ -577,30 +577,48 @@ const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali
           </div>
         </div>
 
-        {/* 4. Tier 1 — Core */}
+        {/* 4. Phase 1 — Direct Peer-to-Peer Bridge (In Development) */}
         <div className="relative z-10 space-y-3">
-          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 1 &middot; Core</p>
+          <div className="flex items-center justify-between border-b border-border/40 pb-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold">Phase 1 &middot; 2-Device Peer-to-Peer Bridge</span>
+            <span className="text-[8px] uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">Active Benchmarking</span>
+          </div>
+
           <div className="grid gap-4 md:grid-cols-2">
-            {/* DGX Spark Box */}
-            <div className="rounded-xl border border-amber-500/40 bg-surface2/60 p-4 sm:p-5 flex flex-col justify-between space-y-3">
+            {/* JAMES Box */}
+            <div className="rounded-xl border border-red-500/50 bg-surface2/80 p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[8px] uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded">
-                    Designed &middot; Final Tier 1
+                  <span className="text-[8px] uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/30 px-2 py-0.5 rounded font-bold">
+                    Mobile Client &middot; Active Testbench
                   </span>
                 </div>
-                <h4 className="font-heading text-lg font-bold text-amber-400">DGX Spark</h4>
-                <p className="text-[10px] text-text-dim mt-0.5">Dedicated AI Hardware &middot; Local Sovereign Brain</p>
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded bg-red-500/20 border border-red-500 flex items-center justify-center text-[10px] text-red-400">🛡</div>
+                  <h4 className="font-heading text-lg font-bold text-text">JAMES</h4>
+                </div>
+                <p className="text-[10px] text-text-dim mt-0.5">Mobile &middot; Flutter &middot; Android</p>
 
-                <div className="mt-4 grid grid-cols-2 gap-1.5 text-[9px]">
-                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Full Local Inference</span>
-                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Zero Cloud Dependency</span>
-                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">All Sub-Hub Orchestration</span>
-                  <span className="bg-black/40 border border-border/50 p-1.5 rounded text-text-dim">Sovereign Memory</span>
+                <div className="mt-3 flex flex-wrap gap-1 text-[8px]">
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Chat</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Vault</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Core Brain</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Safe Tab</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Dashboard</span>
+                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Diagnostics</span>
+                </div>
+
+                <div className="mt-3 flex items-center gap-1.5 text-[9px]">
+                  <span className="text-muted">Personas:</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-950/60 border border-red-500/40 text-red-300 font-bold text-[8px]">JAMES</span>
+                  <span className="px-1.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold text-[8px]">JANIE</span>
                 </div>
               </div>
 
-              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Hardware Limited &middot; On Roadmap</p>
+              <div className="flex items-center gap-2 text-[9px] text-emerald-400 pt-2 border-t border-border/40">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Running &middot; API Mode &middot; Socket Telemetry Active</span>
+              </div>
             </div>
 
             {/* DAVID Box */}
@@ -608,11 +626,11 @@ const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[8px] uppercase tracking-widest text-amber-300 bg-amber-500/20 border border-amber-400/50 px-2 py-0.5 rounded font-bold">
-                    Field Testing &middot; Acting as Tier 1 Core
+                    Desktop Node &middot; Acting as Phase 1 Brain
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-amber-500/20 border border-amber-500 flex items-center justify-center text-[10px] text-amber-400">&diams;</div>
+                  <div className="h-4 w-4 rounded bg-amber-500/20 border border-amber-500 flex items-center justify-center text-[10px] text-amber-400">♦</div>
                   <h4 className="font-heading text-lg font-bold text-text">DAVID</h4>
                 </div>
                 <p className="text-[10px] text-text-dim mt-0.5">Desktop PC &middot; Python + React &middot; Windows</p>
@@ -639,130 +657,95 @@ const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali
               </div>
             </div>
           </div>
-        </div>
 
-        {/* 5. Tailscale Encrypted Mesh Bar */}
-        <div className="relative z-10 flex items-center justify-center">
-          <div className="w-full border-t border-cyan-500/30 flex items-center justify-center">
-            <span className="px-4 py-1.5 -mt-3.5 rounded-full bg-[#07070c] border border-cyan-500/50 text-cyan-400 text-[10px] font-bold tracking-widest shadow-[0_0_15px_rgba(6,182,212,0.25)]">
-              TAILSCALE ENCRYPTED MESH
+          <div className="flex items-center justify-center pt-1">
+            <span className="px-4 py-1 rounded-full bg-[#07070c] border border-cyan-500/40 text-cyan-400 text-[9px] font-bold tracking-wider">
+              TAILSCALE DIRECT PEER-TO-PEER ENCRYPTED TUNNEL
             </span>
           </div>
         </div>
 
-        {/* 6. Tier 2 — Sub-Hubs */}
-        <div className="relative z-10 space-y-3">
-          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 2 &middot; Sub-Hubs</p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {/* JAMES Box */}
-            <div className="rounded-xl border border-red-500/50 bg-surface2/80 p-4 flex flex-col justify-between space-y-3 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[8px] uppercase tracking-widest text-red-400 bg-red-500/10 border border-red-500/30 px-2 py-0.5 rounded font-bold">
-                    Field Testing &middot; Live
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded bg-red-500/20 border border-red-500 flex items-center justify-center text-[10px] text-red-400">&shield;</div>
-                  <h4 className="font-heading text-base font-bold text-text">JAMES</h4>
-                </div>
-                <p className="text-[10px] text-text-dim mt-0.5">Mobile &middot; Flutter &middot; Android</p>
+        {/* 5. Phase 2 — Sovereign Star-Hub Topology (Roadmap) */}
+        <div className="relative z-10 space-y-4 pt-4 border-t border-border/40">
+          <div className="flex items-center justify-between border-b border-border/40 pb-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-accent2 font-bold">Phase 2 &middot; Sovereign Star-Hub Topology</span>
+            <span className="text-[8px] uppercase tracking-widest text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded font-bold">Roadmap Spec</span>
+          </div>
 
-                <div className="mt-3 flex flex-wrap gap-1 text-[8px]">
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Chat</span>
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Vault</span>
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Core Brain</span>
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Safe Tab</span>
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Dashboard</span>
-                  <span className="bg-black/60 border border-border/70 px-1.5 py-0.5 rounded text-text">Diagnostics</span>
-                </div>
-
-                <div className="mt-3 flex items-center gap-1.5 text-[9px]">
-                  <span className="text-muted">Personas:</span>
-                  <span className="px-1.5 py-0.5 rounded bg-red-950/60 border border-red-500/40 text-red-300 font-bold text-[8px]">JAMES</span>
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold text-[8px]">JANIE</span>
-                </div>
+          {/* Central Node */}
+          <div className="max-w-xl mx-auto rounded-xl border border-purple-500/50 bg-surface2/80 p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-[0_0_25px_rgba(168,85,247,0.12)]">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[8px] uppercase tracking-widest text-purple-300 bg-purple-500/20 border border-purple-400/40 px-2 py-0.5 rounded font-bold">
+                  Dedicated 24/7 Host &middot; Master Brain
+                </span>
+                <span className="text-[8px] text-muted font-mono">Headless Linux Server</span>
               </div>
+              <h4 className="font-heading text-lg font-bold text-purple-300">CENTRAL NODE (STANDALONE HARDWARE)</h4>
+              <p className="text-[10px] text-text-dim mt-0.5">Always-On Local Sovereign Compute Host &middot; Zero Cloud Reliance</p>
 
-              <div className="flex items-center gap-2 text-[9px] text-emerald-400 pt-2 border-t border-border/40">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Running &middot; API Mode</span>
+              <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[8px] text-center">
+                <span className="bg-black/50 border border-border/60 p-1.5 rounded text-text-dim">Full Local Inference</span>
+                <span className="bg-black/50 border border-border/60 p-1.5 rounded text-text-dim">Zero Cloud Dependency</span>
+                <span className="bg-black/50 border border-border/60 p-1.5 rounded text-text-dim">Master Vector Index</span>
+                <span className="bg-black/50 border border-border/60 p-1.5 rounded text-text-dim">Satellite Orchestration</span>
               </div>
-            </div>
-
-            {/* Home Tablet */}
-            <div className="rounded-xl border border-border/60 bg-surface2/50 p-4 flex flex-col justify-between space-y-3">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[8px] uppercase tracking-widest text-muted bg-surface border border-border px-2 py-0.5 rounded">
-                    Designed
-                  </span>
-                </div>
-                <h4 className="font-heading text-base font-bold text-text">Home Tablet</h4>
-                <p className="text-[10px] text-text-dim mt-0.5">Home Control Hub &middot; Smart Display</p>
-
-                <div className="mt-3 space-y-1 text-[9px] text-text-dim">
-                  <p className="text-muted text-[8px] uppercase tracking-wider">Planned Capabilities:</p>
-                  <div className="flex flex-wrap gap-1">
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Home Automation</span>
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Environment Control</span>
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Node Coordinator</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Phase 2 &middot; Ecosystem</p>
-            </div>
-
-            {/* Infinity PC Nodes */}
-            <div className="rounded-xl border border-border/60 bg-surface2/50 p-4 flex flex-col justify-between space-y-3 sm:col-span-2 lg:col-span-1">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[8px] uppercase tracking-widest text-muted bg-surface border border-border px-2 py-0.5 rounded">
-                    Designed
-                  </span>
-                </div>
-                <h4 className="font-heading text-base font-bold text-text">&infin; PC Nodes</h4>
-                <p className="text-[10px] text-text-dim mt-0.5">Additional Desktop Sub-Hubs</p>
-
-                <div className="mt-3 space-y-1 text-[9px] text-text-dim">
-                  <p className="text-muted text-[8px] uppercase tracking-wider">Role:</p>
-                  <div className="flex flex-wrap gap-1">
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Workload Distribution</span>
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Redundancy</span>
-                    <span className="bg-black/40 border border-border/50 px-1.5 py-0.5 rounded text-[8px]">Infinite Capacity</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-[9px] text-muted pt-2 border-t border-border/40">&bull; Phase 2 &middot; Ecosystem</p>
             </div>
           </div>
-        </div>
 
-        {/* 7. Tier 3 — End Nodes */}
-        <div className="relative z-10 space-y-2">
-          <p className="text-center text-[9px] uppercase tracking-[0.2em] text-muted">Tier 3 &middot; End Nodes &middot; Phase 2 Ecosystem</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center text-[9px]">
-            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
-              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
-              <p className="font-bold text-text mt-1">Smart Watch</p>
-              <p className="text-muted text-[8px]">Wearable &middot; Biometric Input</p>
+          {/* Tailscale Encrypted Mesh Connector */}
+          <div className="flex items-center justify-center">
+            <div className="w-full border-t border-cyan-500/30 flex items-center justify-center">
+              <span className="px-4 py-1.5 -mt-3.5 rounded-full bg-[#07070c] border border-cyan-500/50 text-cyan-400 text-[9px] font-bold tracking-widest shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+                TAILSCALE WIREGUARD ENCRYPTED MESH
+              </span>
             </div>
-            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
-              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
-              <p className="font-bold text-text mt-1">Meta Glasses</p>
-              <p className="text-muted text-[8px]">AR Node &middot; Context Capture</p>
+          </div>
+
+          {/* 4 Satellites: Mobile, Workstation, Smart Home, Remote Node */}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Satellite 1: Mobile Client */}
+            <div className="rounded-lg border border-border/60 bg-surface2/50 p-3 flex flex-col justify-between space-y-2">
+              <div>
+                <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1.5 py-0.5 rounded border border-border/40">Satellite 01</span>
+                <p className="font-bold text-text text-xs mt-1">Mobile Client</p>
+                <p className="text-muted text-[8px]">JAMES &middot; Android</p>
+                <p className="text-text-dim text-[8px] mt-2">On-the-go interaction, voice trigger, rapid dictation, and biometric auth.</p>
+              </div>
+              <p className="text-[8px] text-cyan-400 font-mono pt-1 border-t border-border/30">&bull; Event-Driven Edge</p>
             </div>
-            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
-              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
-              <p className="font-bold text-text mt-1">Smart Bulbs</p>
-              <p className="text-muted text-[8px]">Environment Control &middot; IoT</p>
+
+            {/* Satellite 2: Workstation PC */}
+            <div className="rounded-lg border border-border/60 bg-surface2/50 p-3 flex flex-col justify-between space-y-2">
+              <div>
+                <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1.5 py-0.5 rounded border border-border/40">Satellite 02</span>
+                <p className="font-bold text-text text-xs mt-1">Workstation PC</p>
+                <p className="text-muted text-[8px]">DAVID &middot; Windows</p>
+                <p className="text-text-dim text-[8px] mt-2">Deep productivity workstation, OS automation, IDE context, and heavy UI.</p>
+              </div>
+              <p className="text-[8px] text-cyan-400 font-mono pt-1 border-t border-border/30">&bull; Primary Workstation</p>
             </div>
-            <div className="rounded-lg border border-border/50 bg-surface2/40 p-2.5">
-              <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded border border-border/40">Designed</span>
-              <p className="font-bold text-text mt-1">&infin; End Nodes</p>
-              <p className="text-muted text-[8px]">Infinite Edge Capacity</p>
+
+            {/* Satellite 3: Smart Home Hub */}
+            <div className="rounded-lg border border-border/60 bg-surface2/50 p-3 flex flex-col justify-between space-y-2">
+              <div>
+                <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1.5 py-0.5 rounded border border-border/40">Satellite 03</span>
+                <p className="font-bold text-text text-xs mt-1">Smart Home Hub</p>
+                <p className="text-muted text-[8px]">Home Assistant &middot; IoT</p>
+                <p className="text-text-dim text-[8px] mt-2">Environmental telemetry, presence sensing, and local automation bus.</p>
+              </div>
+              <p className="text-[8px] text-cyan-400 font-mono pt-1 border-t border-border/30">&bull; Physical Context</p>
+            </div>
+
+            {/* Satellite 4: Remote Node */}
+            <div className="rounded-lg border border-border/60 bg-surface2/50 p-3 flex flex-col justify-between space-y-2">
+              <div>
+                <span className="text-[7px] text-muted uppercase tracking-widest bg-black/50 px-1.5 py-0.5 rounded border border-border/40">Satellite 04</span>
+                <p className="font-bold text-text text-xs mt-1">Remote Node</p>
+                <p className="text-muted text-[8px]">Auxiliary Compute</p>
+                <p className="text-text-dim text-[8px] mt-2">Off-site travel laptop or remote burst GPU joined securely via Tailnet.</p>
+              </div>
+              <p className="text-[8px] text-cyan-400 font-mono pt-1 border-t border-border/30">&bull; Burst / Off-Site Worker</p>
             </div>
           </div>
         </div>
@@ -781,7 +764,7 @@ const ModuleDiagramRenderer = ({ type }: { type: 'pipeline' | 'cache' | 'colpali
             </div>
             <div className="rounded-lg border border-purple-500/40 bg-surface2/60 p-2.5">
               <p className="font-bold text-purple-400">Full Local</p>
-              <p className="text-muted text-[8px]">DGX Sovereign &middot; Roadmap</p>
+              <p className="text-muted text-[8px]">Central Host &middot; Roadmap</p>
             </div>
           </div>
         </div>
