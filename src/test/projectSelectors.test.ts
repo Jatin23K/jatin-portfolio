@@ -16,11 +16,11 @@ describe('project selectors', () => {
     expect(visible.every((project) => project.isVisible)).toBe(true)
     expect(visible.map((project) => project.id)).toEqual([
       'tldr-shield',
-      'core-sovereign-bridge',
       'launchmint-ai',
       'leap-axiom',
       'core-memory-intelligence',
       'churn-prediction',
+      'core-sovereign-bridge',
     ])
   })
 

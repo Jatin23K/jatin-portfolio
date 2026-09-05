@@ -11,11 +11,11 @@ describe('project data validation', () => {
 
   it('fails when visible projects share duplicate order values', () => {
     const duplicateOrderProjects = projects.map((project) =>
-      project.id === 'launchmint-ai' ? { ...project, order: 1 } : project,
+      project.id === 'launchmint-ai' ? { ...project, order: 0 } : project,
     )
     const errors = validateProjects(duplicateOrderProjects)
 
-    expect(errors).toContain('Duplicate visible project order: 1')
+    expect(errors).toContain('Duplicate visible project order: 0')
   })
 
   it('fails when active project KPI metadata is missing', () => {
