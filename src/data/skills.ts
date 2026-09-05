@@ -33,7 +33,7 @@ export const skills: Skill[] = [
   {
     name: 'Machine Learning',
     label: 'Working',
-    proof: 'Classification, clustering, regression, model evaluation, Memory Intelligence, Churn Prediction',
+    proof: 'Classification, clustering, regression, hypothesis testing, Welch t-Test, Memory Intelligence, TikTok Triage',
     category: 'ml',
   },
   {

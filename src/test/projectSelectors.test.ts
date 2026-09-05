@@ -16,7 +16,7 @@ describe('project selectors', () => {
     expect(visible.every((project) => project.isVisible)).toBe(true)
     expect(visible.map((project) => project.id)).toEqual([
       'core-memory-intelligence',
-      'churn-prediction',
+      'tiktok-claim-classification',
       'launchmint-ai',
       'tldr-shield',
       'leap-axiom',
@@ -43,26 +43,22 @@ describe('project selectors', () => {
   })
 
   it('hides demo/github actions for planned cards', () => {
-    const project = projects.find((item) => item.id === 'churn-prediction')
-    expect(project).toBeDefined()
-    if (!project) {
-      return
+    const plannedMock = {
+      ...projects[0],
+      status: 'planned' as const,
+      links: {},
     }
-
-    expect(isPlannedProject(project)).toBe(true)
-    expect(shouldShowProjectAction(project, 'demo')).toBe(false)
-    expect(shouldShowProjectAction(project, 'github')).toBe(false)
+    expect(isPlannedProject(plannedMock)).toBe(true)
+    expect(shouldShowProjectAction(plannedMock, 'demo')).toBe(false)
+    expect(shouldShowProjectAction(plannedMock, 'github')).toBe(false)
   })
 
   it('hides case study action when caseStudyPublished is false', () => {
-    const project = projects.find((item) => item.id === 'churn-prediction')
-    expect(project).toBeDefined()
-    if (!project) {
-      return
+    const unpublishedMock = {
+      ...projects[0],
+      caseStudyPublished: false,
     }
-
-    expect(project.caseStudyPublished).toBe(false)
-    expect(shouldShowProjectAction(project, 'caseStudy')).toBe(false)
+    expect(shouldShowProjectAction(unpublishedMock, 'caseStudy')).toBe(false)
   })
 })
 

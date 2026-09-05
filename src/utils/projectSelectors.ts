@@ -44,7 +44,7 @@ export const axiomProjects = (): Project[] =>
   visibleProjects().filter((p) => ['leap-axiom'].includes(p.id))
 
 export const traditionalDataSystems = (): Project[] =>
-  visibleProjects().filter((p) => ['churn-prediction', 'core-memory-intelligence'].includes(p.id))
+  visibleProjects().filter((p) => ['tiktok-claim-classification', 'core-memory-intelligence'].includes(p.id))
 
 export const pipelineProjects = (): Project[] =>
   visibleProjects().filter((p) => ['core-sovereign-bridge'].includes(p.id))

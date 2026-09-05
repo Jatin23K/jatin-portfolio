@@ -634,36 +634,37 @@ export const projectDetails: Record<Project['id'], ProjectDetail> = {
     ],
     nextRelease: 'Full implementation phase on C.O.R.E. Tailscale mesh with Qdrant multi-vector collection deployment.',
   },
-  'churn-prediction': {
+  'tiktok-claim-classification': {
     summary:
-      'A telecom company was spending $105K/year sending discount emails to 7,000 customers to prevent churn — including thousands of loyal customers who were never going to leave. The retention team had no way to know who actually needed intervention.',
+      'Inferential statistics & supervised machine learning triage engine designed for TikTok Trust & Safety. Analyzes 19,382 videos with two-sample Welch’s t-testing (p = 2.61e-120), decouples multicollinear engagement metrics, and deploys a 0.9987 ROC-AUC claim classifier with zero target leakage.',
     businessContext:
-      'Blanket retention campaigns are the default when teams lack scoring. They are expensive and ineffective: discounts go to people who did not need them, and the people who did need a call never got one. The result is high campaign spend and a churn rate that does not improve.',
+      'TikTok moderators process millions of user-flagged videos daily with finite human bandwidth. Common assumptions held that verified creators drive viral reach. Welch’s t-test proved the opposite: unverified accounts generate 2.91x higher mean views, proving that triage queues must prioritize unverified viral claims.',
     approach: [
-      'Frame the problem as a ranked intervention list, not a binary prediction. The retention team needs to know who to call on Monday morning, in what order.',
-      'Build three models in sequence with explicit justification for each step: Logistic Regression (baseline, interpretable coefficients), Random Forest (non-linear, feature importances for business explanation), XGBoost (final model, best performance after tuning).',
-      'Evaluate on business cost, not accuracy. Assign real cost to false negatives ($50 missed churner) and false positives ($5 wasted discount). Choose the decision threshold that minimises total business cost, not the one that maximises F1.',
-      'Generate SHAP explanations per customer: the top 3 features driving their churn score become the retention team talking points for each call.',
-      'Wrap the final model in a FastAPI endpoint. The output is a weekly CSV: customer_id, churn_probability, risk_tier, top_3_reasons, recommended_action.',
+      'Inferential Statistics: Conducted two-sample Welch\'s t-test with Welch-Satterthwaite degrees of freedom (df = 1,571.16), proving unverified accounts average 265.7k views vs 91.4k for verified accounts (t = -25.50, p = 2.61e-120).',
+      'Data Hygiene & Anti-Leakage: Eradicated naive pre-split upsampling that corrupted initial baselines. Maintained strict train/test isolation on the natural 94:6 class imbalance, using algorithmic class_weight="balanced" inside scikit-learn.',
+      'Feature Engineering: Replaced collinear raw interaction counts (r > 0.85) with view-normalized interaction ratios (like_ratio, share_ratio, comment_ratio) to ensure logistic regression coefficient stability.',
+      'Primary Triage Classifier: Trained a balanced Random Forest model separating actionable claims from opinions, achieving 0.9987 ROC-AUC and 0.9969 test F1 score.',
+      'Creator Verification Dynamics: Fit a regularized logistic regression proving creators posting opinions have 5.14x higher odds of being verified (beta = +1.6379, OR = 5.144).',
     ],
     architecture: [
-      'Feature engineering pipeline: tenure buckets, monthly charge per active service, contract risk score, support flag.',
-      'Three-model training stack with stratified splits and class imbalance handling.',
-      'Business cost matrix for threshold selection.',
-      'SHAP explanation layer for per-customer interpretability.',
-      'FastAPI /predict endpoint serving weekly scoring runs.',
+      'Exploratory Data Pipeline: Missing value filtering (298 incomplete logging rows dropped) and right-skew distribution analysis.',
+      'Inferential Engine: SciPy-based Welch\'s t-test with Cohen\'s d (-0.5442) effect size calculation.',
+      'ColumnTransformer Preprocessing: StandardScaler for engagement ratios and OneHotEncoder for creator status.',
+      'Dual Model Stack: Balanced Random Forest (0.9987 ROC-AUC) for content claims and Balanced Logistic Regression for verification odds.',
+      'CLI Verification Suite: Standalone eda.py, hypothesis_test.py, and train_model.py scripts for 1-command reproduction.',
     ],
     milestones: [
-      'Dataset loaded and business problem quantified: $105K/year campaign spend identified.',
-      'Feature engineering complete: 6 derived features on top of 21 raw columns.',
-      'Three baseline models trained with documented justification for each.',
+      'Disproved verification reach assumption using two-sample Welch\'s t-test (p = 2.61e-120).',
+      'Refactored data pipeline to guarantee zero target leakage across 19,382 videos.',
+      'Engineered interaction ratios resolving severe engagement multicollinearity.',
+      'Delivered 0.9987 ROC-AUC and 0.9969 F1 claim classification to automate low-risk opinion bypass.',
     ],
     risks: [
-      'Model will degrade if telecom modifies its pricing or contract structure significantly — retraining trigger needed.',
-      'SHAP explanations require careful communication: a high churn score driven by contract type is an upsell opportunity, not a failure signal.',
+      'Adversarial manipulation: creators may deliberately suppress initial engagement signals to evade high-velocity triage queues.',
+      'Distribution drift: creator verification policies or viral recommendation weights may alter engagement ratios over time, requiring KS-test drift monitoring.',
     ],
     nextRelease:
-      'FastAPI scoring endpoint live with weekly batch output. Business cost comparison showing targeted campaign vs. blanket campaign cost.',
+      'Multimodal NLP embedding integration using video transcription text to detect claim intent independently of engagement metrics.',
   },
   'core-memory-intelligence': {
     summary:

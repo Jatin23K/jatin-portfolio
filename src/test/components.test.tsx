@@ -21,15 +21,15 @@ describe('component smoke tests', () => {
   })
 
   it('renders project card with planned state', () => {
-    const project = projects.find((item) => item.id === 'churn-prediction')
-    expect(project).toBeDefined()
-    if (!project) {
-      return
+    const plannedMock = {
+      ...projects[0],
+      status: 'planned' as const,
+      links: {},
     }
 
     render(
       <MemoryRouter>
-        <ProjectBlock project={project} />
+        <ProjectBlock project={plannedMock} />
       </MemoryRouter>,
     )
 
